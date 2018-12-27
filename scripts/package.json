@@ -1,0 +1,20 @@
+{
+    "name": "scripts",
+    "version": "1.0.0",
+    "description": "Utility scripts for the Exito CLI platform",
+    "main": "index.ts",
+    "license": "MIT",
+    "dependencies": {
+        "inquirer": "^6.2.1",
+        "minimist": "^1.2.0",
+        "ts-node": "^7.0.1",
+        "typescript": "^3.2.2"
+    },
+    "devDependencies": {
+
+        "@types/node": "^10.12.18"
+    },
+    "scripts": {
+        "apps": "ts-node mass-apps-operations.ts"
+    }
+}

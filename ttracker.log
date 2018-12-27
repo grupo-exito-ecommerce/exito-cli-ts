@@ -1,0 +1,75 @@
+2018-12-27 08:52:48 - error: Error
+error: Error
+error: Error
+[90m08:54:40.542[39m - error: Error
+[90m09:08:28.721[39m - error: Error
+[90m09:08:28.722[39m - debug: Debug
+[90m09:08:28.722[39m - warn: Warn
+[90m09:08:48.374[39m - error: Error
+[90m09:08:48.375[39m - warn: Warn
+[90m09:09:20.111[39m - error: Error
+[90m09:09:20.112[39m - debug: Debug
+[90m09:09:20.113[39m - warn: Warn
+[90m09:09:22.294[39m - error: Error
+[90m09:09:22.295[39m - warn: Warn
+[90m09:10:11.744[39m - error: Error
+[90m09:10:11.746[39m - warn: Warn
+[90m09:10:13.283[39m - error: Error
+[90m09:10:13.284[39m - debug: Debug
+[90m09:10:13.284[39m - warn: Warn
+[90m09:10:31.238[39m - error: Error
+[90m09:10:31.239[39m - debug: Debug
+[90m09:10:31.240[39m - warn: Warn
+[90m09:10:32.546[39m - error: Error
+[90m09:10:32.547[39m - warn: Warn
+[90m09:23:33.763[39m - info: {
+  "command": "Publish components (vtex publish)"
+}
+[90m09:29:33.522[39m - info: {
+  "command": "Publish components (vtex publish)"
+}
+[90m09:30:04.648[39m - info: {
+  "command": "Publish components (vtex publish)"
+}
+[90m09:30:04.649[39m - info: Running vtex publish
+[90m09:32:41.476[39m - info: Running vtex link
+[90m09:32:45.548[39m - info: Obtain projects from AWS
+[90m09:32:48.541[39m - info: Crear saved credentials
+[90m09:32:52.298[39m - info: Running vtex publish
+[90m09:32:55.471[39m - info: Exit...
+[90m10:23:53.026[39m - info: Running vtex link
+[90m10:24:13.311[39m - info: Running vtex link
+[90m10:33:30.351[39m - info: Running vtex linkss
+[90m10:35:31.838[39m - info: Running vtex link
+[90m10:35:31.840[39m - debug: Order dependencies list true
+[90m10:36:19.454[39m - info: Running vtex link
+[90m10:36:19.456[39m - debug: Order dependencies list true
+[90m10:36:19.456[39m - info: 
+Command to run: vtex link
+[90m10:36:19.456[39m - info: Directory to use: /Users/michaelrestrepoalvarez/Documents/VTEX/exito-cli-typescript/ 
+
+[90m10:37:12.182[39m - info: Running vtex link
+[90m10:37:12.184[39m - debug: Order dependencies list true
+[90m10:37:12.184[39m - debug: Command to run: vtex link
+[90m10:37:12.184[39m - debug: Directory to use: /Users/michaelrestrepoalvarez/Documents/VTEX/exito-cli-typescript/
+[90m10:37:12.186[39m - error: No dependencies found in the files
+[90m10:40:09.174[39m - info: Running vtex link
+[90m10:40:09.177[39m - error: No dependencies found in the files
+[90m10:49:55.742[39m - info: Running vtex link
+[90m10:49:55.746[39m - error: No dependencies found in the files
+[90m10:50:01.968[39m - info: Running vtex link
+[90m10:50:01.971[39m - error: manifest.json not found in /Users/michaelrestrepoalvarez/Documents/VTEX/exito-cli-typescript/lib
+[90m10:50:01.971[39m - error: manifest.json not found in /Users/michaelrestrepoalvarez/Documents/VTEX/exito-cli-typescript/node_modules
+[90m10:50:01.971[39m - error: manifest.json not found in /Users/michaelrestrepoalvarez/Documents/VTEX/exito-cli-typescript/scripts
+[90m10:50:01.972[39m - error: manifest.json not found in /Users/michaelrestrepoalvarez/Documents/VTEX/exito-cli-typescript/src
+[90m10:50:01.972[39m - error: No dependencies found in the files
+[90m10:50:40.648[39m - info: Running vtex link
+[90m10:50:40.651[39m - error: manifest.json not found in /Users/michaelrestrepoalvarez/Documents/VTEX/exito-cli-typescript/lib
+[90m10:50:40.651[39m - error: manifest.json not found in /Users/michaelrestrepoalvarez/Documents/VTEX/exito-cli-typescript/node_modules
+[90m10:50:40.651[39m - error: manifest.json not found in /Users/michaelrestrepoalvarez/Documents/VTEX/exito-cli-typescript/scripts
+[90m10:50:40.651[39m - error: manifest.json not found in /Users/michaelrestrepoalvarez/Documents/VTEX/exito-cli-typescript/src
+[90m10:50:40.652[39m - error: No dependencies found in the current location
+[90m10:56:32.174[39m - info: Running vtex link
+[90m10:56:32.177[39m - error: No dependencies found in the current location
+[90m11:09:41.764[39m - info: Running vtex link
+[90m11:09:41.767[39m - error: No dependencies found in the current location
