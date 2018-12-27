@@ -18,3 +18,92 @@
 
 [90m12:15:37.499[39m - info: [31merror[39m:   App build failed with message: App exito.vtex-components@1.0.0 has already been published
 
+[90m12:18:42.055[39m - info: Running vtex link
+[90m12:18:42.056[39m - debug: Order dependencies list true
+[90m12:18:42.056[39m - debug: Command to run: vtex link
+[90m12:18:42.056[39m - debug: Directory to use: /Users/michaelrestrepoalvarez/Documents/VTEX/projects.exito/
+[90m12:18:42.237[39m - info: You have 17 dependencies to link
+[90m14:43:14.127[39m - info: Obtain projects from AWS
+[90m14:44:47.859[39m - info: Obtain projects from AWS
+[90m14:45:00.233[39m - info: Obtain projects from AWS
+[90m14:46:10.673[39m - info: Obtain projects from AWS
+[90m14:47:56.490[39m - info: Obtain projects from AWS
+[90m14:47:58.999[39m - info: No project select to clone
+[90m14:52:03.053[39m - info: Obtain projects from AWS
+[90m14:52:06.585[39m - debug:  repositories=[repositoryName=CD_Exito_Paymentez, repositoryId=50064afb-7068-459d-9607-cb5057730bee, repositoryName=CD_Integration_Services, repositoryId=1c5e5031-95ac-4390-aa14-5807ec820ef9, repositoryName=ECV-Header, repositoryId=93cbee38-2a3b-4588-aeaf-137998ae23dc, repositoryName=ElasticResources, repositoryId=7c89ea5d-be80-4911-9a54-315fee3471be, repositoryName=IM_Repository_CloudFormation, repositoryId=b867ffdf-0875-456f-95d3-5983c5c477c4, repositoryName=IM_Repository_InventoryFront, repositoryId=de11b565-0d7b-4fdb-83ae-394f62faab27, repositoryName=IM_Repository_ListeningSeller, repositoryId=35c2259f-4256-4056-8d37-99fdf18c56d0, repositoryName=IM_Repository_LoadFixedInventory, repositoryId=de44cbe2-c8fd-49ef-976e-982f45fcf75d, repositoryName=IM_Repository_LoadFixedInventory_Ic, repositoryId=2fb9f939-d1f0-4bb5-9e45-b1f9bec6c20a, repositoryName=IM_Repository_LoadSinco, repositoryId=46f600a5-7e04-4607-90e4-61a8ba6fe652, repositoryName=IM_Repository_LoadWMS, repositoryId=06c70bd6-6c26-4a47-9567-f5f8ab541f1e, repositoryName=IM_Repository_Reservations, repositoryId=7e89da36-9743-4530-a5b5-851a66c2a472, repositoryName=IM_Repository_Router, repositoryId=6f794675-4601-4e93-a123-89171df7c8d4, repositoryName=IM_Repository_Sellers, repositoryId=9b5efac1-6fe3-4520-97a4-d1086e8b565b, repositoryName=IM_Repository_UpDateQuantityFixed, repositoryId=73fcb315-75a7-4a5f-adca-42ebd872e2d5, repositoryName=IM_Repository_ValidationInventoryFront, repositoryId=6385bf62-832b-4128-802c-d9cfca001e5d, repositoryName=IM_UpdateQuantityInventoryDependency, repositoryId=04957ff2-c004-449a-8d0b-4c360c0c25d8, repositoryName=InventoryManagerRespository-lambda-UploadFileCinco, repositoryId=1762835a-51b1-4ccb-8e90-cea8cc78dfc3, repositoryName=PruebaExpress_Hrm, repositoryId=68d401f4-d4a7-4438-8385-c6ac7fbe453e, repositoryName=cd-integration--service, repositoryId=376f5113-269b-4e60-bce8-73281680be3c, repositoryName=cityDepRepository, repositoryId=633ed67f-f4d6-4a06-892c-9247d4a0b0bb, repositoryName=ecommerce-integrationServices-vtexInventory, repositoryId=1f97108c-c7c3-4297-8471-dfbe62eeb413, repositoryName=ecommerce-integrationServices-vtexOrders, repositoryId=825cfe7f-d173-4850-85d6-1e07ea3fa158, repositoryName=ecommerce-integrationServices-vtexPrices, repositoryId=734d0037-2667-4074-b9b3-51df797202c3, repositoryName=ecommerce-integrationServices-vtexSellerCenter, repositoryId=60db6fed-0acd-4f7a-ae2a-802f9b3a8b69, repositoryName=ecommerce_integrationServices_vtexCatalog, repositoryId=83b801c7-5f4a-4da3-a91c-8dd37dcd3d22, repositoryName=exito-vtex-connector, repositoryId=dbfbf763-3637-433e-b7c7-cb9c52425c13, repositoryName=exito.carousel, repositoryId=995d8ef2-2987-44d2-99a6-21a312660003, repositoryName=exito.category-menu, repositoryId=8fc657d9-7b86-4793-b564-2d6cde9c2b0e, repositoryName=exito.components, repositoryId=9cd7a2ec-0ca8-4b57-a706-243c0f896d21, repositoryName=exito.exito-components, repositoryId=bde5e002-76d3-413a-8761-4e8113292352, repositoryName=exito.footer, repositoryId=cd0e3acd-f4e3-420c-b8d1-8ff67967556a, repositoryName=exito.header, repositoryId=9f71ed00-b8cc-44f3-bf37-5a09e45dd5dd, repositoryName=exito.home-configuration, repositoryId=1e2b29e7-adff-4e90-8a83-489c2bf3be6e, repositoryName=exito.login, repositoryId=40c2966b-e2e0-4554-8278-79b71b80ee87, repositoryName=exito.minicart, repositoryId=3052c5a0-6979-4158-a0f7-9de4a436752b, repositoryName=exito.product, repositoryId=80d7e965-09ac-4d2b-800a-58fc7738dae0, repositoryName=exito.product-carousel, repositoryId=d5bb5d5c-9f49-4352-b51a-af3e91f416fb, repositoryName=exito.product-details, repositoryId=0e7cb097-d6db-4a4a-8ca6-686e9e5f993c, repositoryName=exito.product-images-list, repositoryId=1d91436f-df6c-43f3-860d-41e64514e54d, repositoryName=exito.product-summary, repositoryId=33eb3c0a-78d2-46bc-82de-3303a78afa84, repositoryName=exito.search-result, repositoryId=55f9afb9-a443-4385-9d8f-c28ad9a8bd05, repositoryName=exito.shelf, repositoryId=9d27c3a7-0baa-4910-b142-5a1b5db9e809, repositoryName=exito.store, repositoryId=dbfe2c66-c044-4573-bed9-d8d502b7a73d, repositoryName=exito.vtex-components, repositoryId=7f3e318a-4a4b-47e6-8408-8354cad0f068, repositoryName=form-payment-app, repositoryId=c99181a5-0563-429c-a17a-c5fd59aa2b82, repositoryName=integration_commerce, repositoryId=27350d5b-8d1d-430f-8bd3-5255b1a7fd18, repositoryName=passenger, repositoryId=062a7824-25ff-45bb-b065-9b31aa43d180, repositoryName=web, repositoryId=6dc2b529-a864-4141-b606-97f7256f4470]
+[90m14:52:34.848[39m - info: Obtain projects from AWS
+[90m14:53:39.865[39m - info: Obtain projects from AWS
+[90m14:53:46.115[39m - debug: Found undefined projects
+[90m14:54:22.274[39m - info: 
+ Projects to clone: 0 
+
+[90m15:00:05.131[39m - info: Obtain projects from AWS
+[90m15:00:12.616[39m - debug: Found undefined projects
+[90m15:03:10.924[39m - info: Obtain projects from AWS
+[90m15:03:18.361[39m - debug: Found undefined projects
+[90m15:03:21.876[39m - info: 
+ Projects to clone: 1 
+
+[90m15:03:22.790[39m - info: Cloning undefined
+[90m15:07:46.316[39m - info: Obtain projects from AWS
+[90m15:07:53.053[39m - debug: Found undefined projects
+[90m15:07:57.246[39m - info: 
+ Projects to clone: 3 
+
+[90m15:07:58.721[39m - info: Cloning undefined
+[90m15:09:38.340[39m - info: Obtain projects from AWS
+[90m15:09:42.780[39m - debug: Found undefined projects
+[90m15:09:44.914[39m - info: Projects to clone: 2
+[90m15:09:45.894[39m - info: Cloning undefined
+[90m15:11:29.135[39m - info: Obtain projects from AWS
+[90m15:11:36.880[39m - debug: Found undefined projects
+[90m15:11:38.107[39m - info: Projects to clone: 1
+[90m15:11:38.952[39m - info: Cloning undefined
+[90m15:12:38.326[39m - info: Obtain projects from AWS
+[90m15:12:44.280[39m - debug: Found undefined projects
+[90m15:12:46.398[39m - info: Projects to clone: 1
+[90m15:12:47.306[39m - info: Cloning undefined
+[90m15:13:31.372[39m - info: Obtain projects from AWS
+[90m15:13:37.901[39m - debug: Found undefined projects
+[90m15:13:40.210[39m - info: Projects to clone: 2
+[90m15:13:41.210[39m - info: Cloning https://git-codecommit.us-east-1.amazonaws.com/v1/repos/exito.carousel
+[90m15:13:41.330[39m - info: Cloning into 'exito.carousel'...
+
+[90m15:13:42.291[39m - info: fatal: unable to access 'https://Maik:Stiven@git-codecommit.us-east-1.amazonaws.com/v1/repos/exito.carousel/': The requested URL returned error: 403
+
+[90m15:13:42.310[39m - info: Cloning https://git-codecommit.us-east-1.amazonaws.com/v1/repos/exito.category-menu
+[90m15:13:42.318[39m - info: Cloning into 'exito.category-menu'...
+
+[90m15:13:42.722[39m - info: fatal: unable to access 'https://Maik:Stiven@git-codecommit.us-east-1.amazonaws.com/v1/repos/exito.category-menu/': The requested URL returned error: 403
+
+[90m15:15:25.490[39m - info: Crear saved credentials
+[90m15:15:25.494[39m - info: Credentials has been removed
+[90m15:15:37.965[39m - info: Obtain projects from AWS
+[90m15:15:59.932[39m - debug: Found undefined projects
+[90m15:17:27.196[39m - info: Obtain projects from AWS
+[90m15:17:36.056[39m - info: Projects to clone: 3
+[90m15:17:37.108[39m - info: Cloning https://git-codecommit.us-east-1.amazonaws.com/v1/repos/exito.carousel
+[90m15:17:37.217[39m - info: Cloning into 'exito.carousel'...
+
+[90m15:17:39.262[39m - info: remote: 
+[90m15:17:41.001[39m - info: remote: Counting objects: 0
+[90m15:17:41.001[39m - info: remote: Counting objects: 51
+[90m15:17:41.273[39m - info: remote: Counting objects: 51remote: Counting objects: 51, done.        
+
+[90m15:17:44.419[39m - info: Cloning https://git-codecommit.us-east-1.amazonaws.com/v1/repos/exito.category-menu
+[90m15:17:44.426[39m - info: Cloning into 'exito.category-menu'...
+
+[90m15:17:45.630[39m - info: remote: 
+[90m15:17:47.372[39m - info: remote: Counting objects: 0
+[90m15:17:47.373[39m - info: remote: Counting objects: 55
+[90m15:17:47.790[39m - info: remote: Counting objects: 55remote: Counting objects: 55, done.        
+
+[90m15:17:50.505[39m - info: Cloning https://git-codecommit.us-east-1.amazonaws.com/v1/repos/exito.components
+[90m15:17:50.514[39m - info: Cloning into 'exito.components'...
+
+[90m15:17:51.417[39m - info: remote: 
+[90m15:17:53.028[39m - info: remote: Counting objects: 0
+[90m15:17:53.072[39m - info: remote: Counting objects: 24
+[90m15:17:55.520[39m - info: remote: Counting objects: 24remote: Counting objects: 24, done.        
+
+[90m15:18:25.867[39m - info: Exit...

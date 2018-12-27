@@ -1,5 +1,5 @@
 {
-  "name": "ex-cli",
+  "name": "exito-cli",
   "version": "1.0.0",
   "description": "Cli for vtex integration",
   "main": "lib/index.js",
@@ -33,6 +33,7 @@
     "typescript": "^3.2.2"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.119",
     "chalk": "^2.4.1",
     "configstore": "^4.0.0",
     "findhelp": "^1.0.4",

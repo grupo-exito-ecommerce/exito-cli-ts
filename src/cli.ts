@@ -1,8 +1,10 @@
+import * as aws from "./modules/aws/clone/index";
 import { CommandsTypes } from "./shared/constants";
 import log from "./shared/logger";
 import inquirer from "inquirer";
 import { OptCommand, Answer } from "./shared/interface";
 import { runCommand } from "./modules/vtex/command";
+import { clearCredentials } from "./modules/aws/config";
 
 // export function to list coffee
 module.exports = async () => {
@@ -52,11 +54,11 @@ module.exports = async () => {
         command: "",
         orderList: false
       };
-      // aws.clone(options);
+      aws.clone(options);
       break;
     case "Clear saved credentials":
       log.info("Crear saved credentials");
-      // awsConfig.clearCredentials();
+      clearCredentials();
       break;
 
     case "Cancel":
