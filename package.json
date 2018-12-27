@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Maik3345/exito-cli.git"
+    "url": "git+https://github.com/Maik3345/exito-cli-ts.git"
   },
   "keywords": [
     "exito",

@@ -1,6 +1,7 @@
-const winston = require("winston");
-const moment = require("moment");
+import winston from "winston";
+import moment from "moment";
 import chalk from "chalk";
+import path from "path";
 
 // create formatter for dates used as timestamps
 const tsFormat = () =>
@@ -19,7 +20,7 @@ const logger = new winston.Logger({
       colorize: true
     }),
     new winston.transports.File({
-      filename: "./ttracker.log",
+      filename: path.join(__dirname, "../../ttracker.log"),
       timestamp: tsFormat, // makes timestamp 'pretty'
       json: false // makes log format just like console output
     })
