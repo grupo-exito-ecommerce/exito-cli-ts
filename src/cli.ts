@@ -32,8 +32,7 @@ module.exports = async () => {
         orderList: true
       };
 
-      log.debug(options);
-      // link.runCommand(options);
+      runCommand(options);
       break;
 
     case "Upload components to vtex (vtex link)":
