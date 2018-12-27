@@ -1,5 +1,5 @@
 {
-  "name": "exito-cli",
+  "name": "exito",
   "version": "1.0.0",
   "description": "Cli for vtex integration",
   "main": "lib/index.js",
