@@ -1,2 +1,198 @@
 [90m08:43:10.429[39m - info: Running vtex link
 [90m08:43:10.467[39m - error: No dependencies found in the current location
+[90m08:44:14.750[39m - info: Running vtex link
+[90m08:44:14.753[39m - error: No dependencies found in the current location
+[90m08:44:48.196[39m - info: Running vtex link
+[90m08:44:48.198[39m - debug: Order dependencies list true
+[90m08:44:48.198[39m - debug: Command to run: vtex link
+[90m08:44:48.198[39m - debug: Directory to use: /Users/michaelrestrepoalvarez/Documents/VTEX/exito-cli-typescript/
+[90m08:44:48.201[39m - debug: manifest.json not found in /Users/michaelrestrepoalvarez/Documents/VTEX/exito-cli-typescript/.git
+[90m08:44:48.201[39m - debug: manifest.json not found in /Users/michaelrestrepoalvarez/Documents/VTEX/exito-cli-typescript/lib
+[90m08:44:48.201[39m - debug: manifest.json not found in /Users/michaelrestrepoalvarez/Documents/VTEX/exito-cli-typescript/node_modules
+[90m08:44:48.201[39m - debug: manifest.json not found in /Users/michaelrestrepoalvarez/Documents/VTEX/exito-cli-typescript/scripts
+[90m08:44:48.231[39m - debug: manifest.json not found in /Users/michaelrestrepoalvarez/Documents/VTEX/exito-cli-typescript/src
+[90m08:44:48.232[39m - error: No dependencies found in the current location
+[90m08:45:14.412[39m - info: Obtain projects from AWS
+[90m08:45:25.836[39m - debug: Found undefined projects
+[90m08:45:46.351[39m - info: Obtain projects from AWS
+[90m08:45:49.693[39m - debug: Found undefined projects
+[90m08:49:16.660[39m - info: Running vtex link
+[90m08:49:17.238[39m - info: You have 17 dependencies to link
+[90m08:49:29.818[39m - info: Total dependencies to link: 17
+[90m08:49:29.818[39m - info: Using component in the folder: /Users/michaelrestrepoalvarez/Documents/VTEX/projects.exito/exito.vtex-components
+[90m08:49:55.819[39m - info: [32minfo[39m:    **ANNOUNCEMENT**: Translation files in the `react/locales/` folder will be deprecated in favor of the `messages` builder.
+Please check https://help.vtex.com/en/announcement/new-way-of-adding-multilingual-support-to-your-vtex-io-app
+
+[90m08:49:59.432[39m - info: [31merror[39m:   Failed to copy eslint setup
+
+[90m08:49:59.433[39m - info: [32minfo[39m:    Linking app exito.vtex-components@1.0.0
+
+[90m08:50:00.556[39m - info: [32minfo[39m:    Sending 141 files 
+
+[90m08:50:56.217[39m - info: [31merror[39m:   API: 500 Internal Server Error
+
+[90m08:50:56.217[39m - info: [31merror[39m:   Message: Request to vtex.builder-hub@0.55.4 timed out after 55.0007954
+
+[90m17:58:57.501[39m - info: Running vtex publish
+[90m17:58:57.942[39m - info: You have 17 dependencies to link
+[90m17:59:06.180[39m - info: Total dependencies to link: 17
+[90m17:59:06.181[39m - info: Using component in the folder: /Users/michaelrestrepoalvarez/Documents/VTEX/projects.exito/exito.vtex-components
+[90m17:59:24.105[39m - info: - Publishing exito.vtex-components@1.1.0 ...
+
+[90m17:59:26.628[39m - info: [32minfo[39m:    Build accepted for exito.vtex-components@1.1.0 at exito/master vtex.builder-hub@0.55.7
+
+[90m17:59:26.654[39m - info: [32minfo[39m:    Starting build for app exito.vtex-components@1.1.0 vtex.builder-hub@0.55.7
+
+[90m18:00:22.846[39m - info: ✔ exito.vtex-components@1.1.0 was published successfully!
+
+[90m18:00:22.871[39m - info: Using component in the folder: /Users/michaelrestrepoalvarez/Documents/VTEX/projects.exito/exito.components
+[90m18:00:31.192[39m - info: - Publishing exito.components@1.1.0 ...
+
+[90m18:00:32.610[39m - info: [32minfo[39m:    Build accepted for exito.components@1.1.0 at exito/master vtex.builder-hub@0.55.7
+
+[90m18:00:32.618[39m - info: [32minfo[39m:    Starting build for app exito.components@1.1.0 vtex.builder-hub@0.55.7
+
+[90m18:00:40.999[39m - info: ✔ exito.components@1.1.0 was published successfully!
+
+[90m18:00:40.999[39m - info: Using component in the folder: /Users/michaelrestrepoalvarez/Documents/VTEX/projects.exito/exito.carousel
+[90m18:00:43.807[39m - info: - Publishing exito.carousel@1.1.0 ...
+
+[90m18:00:45.703[39m - info: [32minfo[39m:    Build accepted for exito.carousel@1.1.0 at exito/master vtex.builder-hub@0.55.7
+
+[90m18:00:45.703[39m - info: [32minfo[39m:    Starting build for app exito.carousel@1.1.0 vtex.builder-hub@0.55.7
+
+[90m18:00:56.771[39m - info: ✔ exito.carousel@1.1.0 was published successfully!
+
+[90m18:00:56.771[39m - info: Using component in the folder: /Users/michaelrestrepoalvarez/Documents/VTEX/projects.exito/exito.product
+[90m18:00:58.055[39m - info: - Publishing exito.product@1.1.0 ...
+
+[90m18:00:58.997[39m - info: [32minfo[39m:    Build accepted for exito.product@1.1.0 at exito/master vtex.builder-hub@0.55.7
+
+[90m18:00:59.001[39m - info: [32minfo[39m:    Starting build for app exito.product@1.1.0 vtex.builder-hub@0.55.7
+
+[90m18:01:15.783[39m - info: ✔ exito.product@1.1.0 was published successfully!
+
+[90m18:01:15.783[39m - info: Using component in the folder: /Users/michaelrestrepoalvarez/Documents/VTEX/projects.exito/exito.minicart
+[90m18:01:17.037[39m - info: - Publishing exito.minicart@1.1.0 ...
+
+[90m18:01:18.706[39m - info: [32minfo[39m:    Build accepted for exito.minicart@1.1.0 at exito/master vtex.builder-hub@0.55.7
+
+[90m18:01:18.739[39m - info: [32minfo[39m:    Starting build for app exito.minicart@1.1.0 vtex.builder-hub@0.55.7
+
+[90m18:01:56.122[39m - info: ✔ exito.minicart@1.1.0 was published successfully!
+
+[90m18:01:56.123[39m - info: Using component in the folder: /Users/michaelrestrepoalvarez/Documents/VTEX/projects.exito/exito.login
+[90m18:02:09.270[39m - info: - Publishing exito.login@1.1.0 ...
+
+[90m18:02:10.299[39m - info: ✖ Fail to publish exito.login@1.1.0
+
+[90m18:04:33.609[39m - info: Running vtex publish
+[90m18:04:33.907[39m - info: You have 17 dependencies to link
+[90m18:04:41.877[39m - info: Total dependencies to link: 11
+[90m18:04:41.878[39m - info: Using component in the folder: /Users/michaelrestrepoalvarez/Documents/VTEX/projects.exito/exito.product-summary
+[90m18:04:50.494[39m - info: - Publishing exito.product-summary@1.1.0 ...
+
+[90m18:04:52.004[39m - info: [32minfo[39m:    Build accepted for exito.product-summary@1.1.0 at exito/master vtex.builder-hub@0.55.7
+
+[90m18:04:52.016[39m - info: [32minfo[39m:    Starting build for app exito.product-summary@1.1.0 vtex.builder-hub@0.55.7
+
+[90m18:05:03.075[39m - info: ✔ exito.product-summary@1.1.0 was published successfully!
+
+[90m18:05:03.091[39m - info: Using component in the folder: /Users/michaelrestrepoalvarez/Documents/VTEX/projects.exito/exito.product-images-list
+[90m18:05:10.312[39m - info: - Publishing exito.product-images-list@1.1.0 ...
+
+[90m18:05:11.601[39m - info: [32minfo[39m:    Build accepted for exito.product-images-list@1.1.0 at exito/master vtex.builder-hub@0.55.7
+
+[90m18:05:11.618[39m - info: [32minfo[39m:    Starting build for app exito.product-images-list@1.1.0 vtex.builder-hub@0.55.7
+
+[90m18:05:27.804[39m - info: ✔ exito.product-images-list@1.1.0 was published successfully!
+
+[90m18:05:27.804[39m - info: Using component in the folder: /Users/michaelrestrepoalvarez/Documents/VTEX/projects.exito/exito.product-carousel
+[90m18:05:29.678[39m - info: - Publishing exito.product-carousel@1.1.0 ...
+
+[90m18:05:31.221[39m - info: [32minfo[39m:    Build accepted for exito.product-carousel@1.1.0 at exito/master vtex.builder-hub@0.55.7
+
+[90m18:05:31.253[39m - info: [32minfo[39m:    Starting build for app exito.product-carousel@1.1.0 vtex.builder-hub@0.55.7
+
+[90m18:05:40.537[39m - info: ✔ exito.product-carousel@1.1.0 was published successfully!
+
+[90m18:05:40.538[39m - info: Using component in the folder: /Users/michaelrestrepoalvarez/Documents/VTEX/projects.exito/exito.category-menu
+[90m18:06:01.356[39m - info: - Publishing exito.category-menu@1.1.0 ...
+
+[90m18:06:02.623[39m - info: [32minfo[39m:    Build accepted for exito.category-menu@1.1.0 at exito/master vtex.builder-hub@0.55.7
+
+[90m18:06:02.731[39m - info: [32minfo[39m:    Starting build for app exito.category-menu@1.1.0 vtex.builder-hub@0.55.7
+
+[90m18:06:19.255[39m - info: ✔ exito.category-menu@1.1.0 was published successfully!
+
+[90m18:06:19.256[39m - info: Using component in the folder: /Users/michaelrestrepoalvarez/Documents/VTEX/projects.exito/exito.product-details
+[90m18:06:36.511[39m - info: - Publishing exito.product-details@1.1.0 ...
+
+[90m18:06:37.516[39m - info: [32minfo[39m:    Build accepted for exito.product-details@1.1.0 at exito/master vtex.builder-hub@0.55.7
+
+[90m18:06:37.519[39m - info: [32minfo[39m:    Starting build for app exito.product-details@1.1.0 vtex.builder-hub@0.55.7
+
+[90m18:06:45.251[39m - info: ✔ exito.product-details@1.1.0 was published successfully!
+
+[90m18:06:45.251[39m - info: Using component in the folder: /Users/michaelrestrepoalvarez/Documents/VTEX/projects.exito/exito.home-configuration
+[90m18:06:52.161[39m - info: - Publishing exito.home-configuration@1.1.0 ...
+
+[90m18:06:53.496[39m - info: [32minfo[39m:    Build accepted for exito.home-configuration@1.1.0 at exito/master vtex.builder-hub@0.55.7
+
+[90m18:06:53.508[39m - info: [32minfo[39m:    Starting build for app exito.home-configuration@1.1.0 vtex.builder-hub@0.55.7
+
+[90m18:06:57.293[39m - info: ✔ exito.home-configuration@1.1.0 was published successfully!
+
+[90m18:06:57.293[39m - info: Using component in the folder: /Users/michaelrestrepoalvarez/Documents/VTEX/projects.exito/exito.shelf
+[90m18:07:01.001[39m - info: - Publishing exito.shelf@1.1.0 ...
+
+[90m18:07:02.059[39m - info: [32minfo[39m:    Build accepted for exito.shelf@1.1.0 at exito/master vtex.builder-hub@0.55.7
+
+[90m18:07:02.060[39m - info: [32minfo[39m:    Starting build for app exito.shelf@1.1.0 vtex.builder-hub@0.55.7
+
+[90m18:07:21.698[39m - info: ✔ exito.shelf@1.1.0 was published successfully!
+
+[90m18:07:21.699[39m - info: Using component in the folder: /Users/michaelrestrepoalvarez/Documents/VTEX/projects.exito/exito.header
+[90m18:07:23.186[39m - info: - Publishing exito.header@1.1.0 ...
+
+[90m18:07:24.615[39m - info: [32minfo[39m:    Build accepted for exito.header@1.1.0 at exito/master vtex.builder-hub@0.55.7
+
+[90m18:07:24.637[39m - info: [32minfo[39m:    Starting build for app exito.header@1.1.0 vtex.builder-hub@0.55.7
+
+[90m18:08:03.265[39m - info: ✔ exito.header@1.1.0 was published successfully!
+
+[90m18:08:03.265[39m - info: Using component in the folder: /Users/michaelrestrepoalvarez/Documents/VTEX/projects.exito/exito.search-result
+[90m18:08:04.769[39m - info: - Publishing exito.search-result@1.1.0 ...
+
+[90m18:08:06.256[39m - info: [32minfo[39m:    Build accepted for exito.search-result@1.1.0 at exito/master vtex.builder-hub@0.55.7
+
+[90m18:08:06.309[39m - info: [32minfo[39m:    Starting build for app exito.search-result@1.1.0 vtex.builder-hub@0.55.7
+
+[90m18:08:33.132[39m - info: ✔ exito.search-result@1.1.0 was published successfully!
+
+[90m18:08:33.133[39m - info: Using component in the folder: /Users/michaelrestrepoalvarez/Documents/VTEX/projects.exito/exito.footer
+[90m18:08:34.505[39m - info: - Publishing exito.footer@1.1.0 ...
+
+[90m18:08:36.001[39m - info: [32minfo[39m:    Build accepted for exito.footer@1.1.0 at exito/master vtex.builder-hub@0.55.7
+
+[90m18:08:36.041[39m - info: [32minfo[39m:    Starting build for app exito.footer@1.1.0 vtex.builder-hub@0.55.7
+
+[90m18:09:38.666[39m - info: ✔ exito.footer@1.1.0 was published successfully!
+
+[90m18:09:38.666[39m - info: Using component in the folder: /Users/michaelrestrepoalvarez/Documents/VTEX/projects.exito/exito.store
+[90m18:09:40.104[39m - info: - Publishing exito.store@1.1.0 ...
+
+[90m18:09:41.043[39m - info: [32minfo[39m:    Build accepted for exito.store@1.1.0 at exito/master vtex.builder-hub@0.55.7
+
+[90m18:09:41.044[39m - info: [32minfo[39m:    Starting build for app exito.store@1.1.0 vtex.builder-hub@0.55.7
+
+[90m18:09:50.061[39m - info: ✔ exito.store@1.1.0 was published successfully!
+
+[90m15:40:43.214[39m - info: Obtain projects from AWS
+[90m16:02:52.959[39m - info: Obtain projects from AWS
+[90m11:54:36.266[39m - info: Running vtex link
+[90m11:54:36.268[39m - error: No folders found in /Users/michaelrestrepoalvarez/Desktop/ExitoCli/
+[90m11:55:31.017[39m - info: Running vtex link
+[90m11:55:31.018[39m - error: No folders found in /Users/michaelrestrepoalvarez/Desktop/ExitoCli/
+[90m11:57:33.975[39m - info: Running vtex link
+[90m11:57:33.976[39m - error: No folders found in /Users/michaelrestrepoalvarez/Desktop/ExitoCli/

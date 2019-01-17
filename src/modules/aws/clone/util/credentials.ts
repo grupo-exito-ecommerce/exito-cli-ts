@@ -1,47 +1,67 @@
-import { Credentials } from "./../../../../shared/interface";
 import fs from "fs";
 import inquirer from "inquirer";
 var _ = require("lodash");
 var path = require("path");
-var colors = require("colors/safe");
+import log from "../../../../shared/logger";
+const filePath = "../../../../../config.json";
+import { Credentials } from "./../../../../shared/interface";
+const emptyUser: Credentials = {
+  username: "",
+  pwd: ""
+};
 
-export const setCredentials = async function() {
-  const information = await fs.readFileSync(
-    path.join(__dirname, "../../../../../config.json"),
-    {
-      encoding: "utf8"
-    }
-  );
+const message =
+  "No have aws credentials, save your aws credentials for clone projects";
 
-  let credential = JSON.parse(information);
+export const setCredentials = async (): Promise<Credentials> => {
+  try {
+    const exist = await fs.existsSync(path.join(__dirname, filePath));
+    if (exist) {
+      // Do something if the file exist
+      const information = await fs.readFileSync(
+        path.join(__dirname, filePath),
+        {
+          encoding: "utf8"
+        }
+      );
 
-  if (!_.isEmpty(credential.user)) {
-    let credentials = credential;
-    return credentials;
-  } else {
-    console.log(colors.yellow("Enter credentials for AWS"));
+      let credential: { user: Credentials } = JSON.parse(information);
 
-    // Get AWS CodeCommit Credential
-    const credentials: any = await getCredentials();
-    if (credentials) {
-      let isSave = await saveCredentials(credentials);
-      if (isSave) {
-        return credentials;
+      if (!_.isEmpty(credential.user)) {
+        let credentials = credential;
+        return credentials.user;
       } else {
-        return false;
+        log.debug(message);
+        return await requireCredentials();
       }
     } else {
-      return false;
+      log.debug(message);
+      return await requireCredentials();
     }
+  } catch (e) {
+    log.debug(e);
+    return emptyUser;
+  }
+};
+
+export const requireCredentials = async (): Promise<Credentials> => {
+  log.info("Enter credentials for AWS");
+  // Get AWS CodeCommit Credential
+  const credentials: Credentials = await getCredentials();
+  if (credentials.username !== "") {
+    let isSave = await saveCredentials(credentials);
+    if (isSave) {
+      return credentials;
+    } else {
+      return emptyUser;
+    }
+  } else {
+    return emptyUser;
   }
 };
 
 // Método para preguntar las credenciales de aws al usuario
-export const saveCredentials = function(credentials: Credentials) {
-  // let user = {
-  //   name: "t-mirestrepo+1-at-402457222534",
-  //   pwd: "7AfwNbUdNG9w7BrUFEI+DiFcHlK2sxMe15h307gH8ks="
-  // };
+export const saveCredentials = (credentials: Credentials): Boolean => {
   // 1.  Guardo las credenciales indicadas
   fs.writeFile(
     path.join(__dirname, "../../../../../config.json"),
@@ -49,15 +69,17 @@ export const saveCredentials = function(credentials: Credentials) {
     "utf8",
     (e: any) => {
       // error handling and whatever
-      console.log(e);
+      log.debug(e);
       return false;
     }
   );
-
   return true;
 };
 
-const getCredentials = async function() {
+/**
+ *  Metodo empleado para realizar la solicitud de las credenciales al usuario
+ */
+const getCredentials = async (): Promise<Credentials> => {
   const questions = [
     {
       type: "input",
@@ -76,6 +98,6 @@ const getCredentials = async function() {
   if (response) {
     return response;
   } else {
-    return false;
+    return emptyUser;
   }
 };

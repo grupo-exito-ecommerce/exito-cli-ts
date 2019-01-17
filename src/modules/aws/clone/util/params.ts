@@ -1,7 +1,10 @@
 import log from "../../../../shared/logger";
 import inquirer from "inquirer";
 
-export const getCriteriaOfSearch = async () => {
+/**
+ *  Método para obtener el criterio de busqueda a emplear para filtrar los projectos
+ */
+export const getCriteriaOfSearch = async (): Promise<string> => {
   // 1.  Pregunto por el indicativo a emplear para filtrar los projectos
   const questions = [
     {
@@ -21,6 +24,6 @@ export const getCriteriaOfSearch = async () => {
       log.debug("No criteria enter, list all projects");
       return "all";
     }
-    return false;
+    return "none";
   }
 };

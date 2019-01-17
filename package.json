@@ -2,8 +2,8 @@
   "name": "exito",
   "version": "1.0.0",
   "description": "Cli for vtex integration",
-  "main": "lib/index.js",
-  "bin": "lib/index.js",
+  "main": "lib/src/index.js",
+  "bin": "lib/src/index.js",
   "scripts": {
     "ts": "tsc",
     "ts-watch": "tsc --watch",
@@ -25,6 +25,7 @@
   "homepage": "https://github.com/Maik3345/exito-cli#readme",
   "devDependencies": {
     "@types/configstore": "^4.0.0",
+    "@types/update-notifier": "^2.5.0",
     "@types/inquirer": "^0.0.43",
     "@types/node": "^10.12.18",
     "@types/ramda": "^0.25.45",
@@ -33,6 +34,8 @@
     "typescript": "^3.2.2"
   },
   "dependencies": {
+    "lodash": "4.17.11",
+    "bluebird": "^3.5.0",
     "@types/lodash": "^4.14.119",
     "chalk": "^2.4.1",
     "configstore": "^4.0.0",
@@ -40,6 +43,7 @@
     "inquirer": "^6.2.1",
     "moment": "^2.23.0",
     "ramda": "^0.26.1",
-    "winston": "^2.4.0"
+    "winston": "^2.4.0",
+    "update-notifier": "^2.3.0"
   }
 }

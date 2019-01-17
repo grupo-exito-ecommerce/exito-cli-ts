@@ -39,6 +39,10 @@ export interface OptCommand {
   command: string;
 }
 
+export interface CloneOptCommand {
+  _: Array<string>;
+}
+
 export interface Answer {
   command: string;
 }

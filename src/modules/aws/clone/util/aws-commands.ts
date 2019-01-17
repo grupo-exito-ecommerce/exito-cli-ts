@@ -6,6 +6,9 @@ import {
 } from "../../../../shared/interface";
 import log from "../../../../shared/logger";
 
+/**
+ *  Método para obtener la lista de repositorios disponibles en aws
+ */
 export const getProjectDirectory = (): Promise<ProjectList> => {
   return new Promise(function(fulfill, reject) {
     try {
@@ -15,11 +18,10 @@ export const getProjectDirectory = (): Promise<ProjectList> => {
           reject(error);
         }
         result = JSON.parse(stdout.toString());
-        log.debug(`Found ${result.length} projects`);
         fulfill(result);
       });
     } catch (error) {
-      log.error(error);
+      log.debug(error);
       reject(error);
     }
   });
@@ -42,7 +44,7 @@ export const getProjectInformation = (
         }
       );
     } catch (error) {
-      log.error(error);
+      log.debug(error);
       reject(error);
     }
   });
@@ -79,7 +81,7 @@ export const cloneProject = (options: RepositoryOptions) => {
         log.info(data.toString());
       });
     } catch (error) {
-      log.error(error);
+      log.debug(error);
       reject(error);
     }
   });

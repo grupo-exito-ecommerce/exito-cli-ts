@@ -16,6 +16,7 @@ Publish components (vtex publish)
 Upload components to vtex (vtex link)
 Clone projects from aws
 Clear saved credentials
+Continuos integration
 ```
 
 ## Desarollo local

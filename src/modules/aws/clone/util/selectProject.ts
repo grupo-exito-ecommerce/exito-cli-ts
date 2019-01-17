@@ -3,24 +3,31 @@ import log from "../../../../shared/logger";
 import inquirer from "inquirer";
 
 // Método que busca una dependencia e la lista de dependencias filtradas por el usuario
-export const findDependency = async (projectList: any) => {
-  let filderDependencies: any = await choiseDependencies(projectList);
-  if (filderDependencies.projects) {
-    projectList = await projectList.filter((item: any) => {
-      let isFind = filderDependencies.projects.find((filter: string) => {
-        if (item.value == filter) {
-          return true;
-        } else {
-          return false;
-        }
+export const findDependency = async (
+  projectList: any
+): Promise<Array<RepositoryList>> => {
+  if (projectList.length) {
+    let filderDependencies: any = await choiseDependencies(projectList);
+    if (filderDependencies.projects) {
+      projectList = await projectList.filter((item: any) => {
+        let isFind = filderDependencies.projects.find((filter: string) => {
+          if (item.value == filter) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+        return isFind;
       });
-      return isFind;
-    });
 
-    log.info(`Projects to clone: ${projectList.length}`);
-    return projectList;
+      log.info(`Projects to clone: ${projectList.length}`);
+      return projectList;
+    } else {
+      return [];
+    }
   } else {
-    return false;
+    log.debug("No projects found with the criteria specific");
+    return [];
   }
 };
 

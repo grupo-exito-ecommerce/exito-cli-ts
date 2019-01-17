@@ -7,6 +7,7 @@ import {
 var dependenciesList: Array<ContentDependencies> = [];
 // variable que posee la información  de los manifest.json
 var manifests: Array<ContentManifest> = [];
+import log from "../../../shared/logger";
 
 // 3. Método que permite obtener el orden de dependencias, arma un array donde se indica el grado de importancia por medio de un nivel
 exports.getListProyects = async function(manifest: Array<ContentManifest>) {
@@ -64,11 +65,11 @@ export const resolverDenpendecies = async (
   for (const prop in dependencies) {
     var manifest = manifests.find(res => {
       if (`${res.vendor}.${res.name}` == prop) {
-        // console.log(colors.green(`dependencie found: ${prop}`))
+        log.debug(`dependencie found: ${prop}`);
         findLevelDependency(prop);
         return true;
       } else {
-        // console.log(colors.red(`dependencie not found: ${prop}`))
+        log.debug(`dependencie not found: ${prop}`);
         return false;
       }
     });

@@ -1,4 +1,5 @@
 var { cloneProject } = require("./aws-commands");
+import log from "../../../../shared/logger";
 
 export const executeCommands = async (options: any) => {
   let index = options.position;
@@ -26,7 +27,7 @@ export const executeCommands = async (options: any) => {
       };
       executeCommands(optionsExec);
     } else {
-      console.log("Process succes with errors");
+      log.debug("Process clone succes with errors");
     }
   } else {
     process.exit();

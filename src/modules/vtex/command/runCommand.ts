@@ -62,7 +62,7 @@ export const runCommand = async function(options: OptCommand) {
         log.error(`No dependencies found in the current location`);
       }
     } else {
-      log.error(`No folders found in ${directory}`);
+      log.error(`No projects found in ${directory}`);
     }
   } else {
     log.error(`No commands specified to run`);

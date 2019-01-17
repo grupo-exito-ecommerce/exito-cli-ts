@@ -1,4 +1,14 @@
-export const filterProjects = async (projectsList: any, term: any) => {
+import { RepositoryList } from "../../../../shared/interface";
+
+/**
+ * Método empleado para realizar el filtro de la lista de proyectos obtenidos
+ * @param projectsList
+ * @param term
+ */
+export const filterProjects = async (
+  projectsList: any,
+  term: any
+): Promise<Array<RepositoryList>> => {
   return await projectsList.repositories.filter((item: any) => {
     return Object.keys(item).find(element => {
       if (
@@ -8,10 +18,7 @@ export const filterProjects = async (projectsList: any, term: any) => {
         // Busco los projectos de acuerdo al termino ingresado por el usuario
         let isSelected =
           item[element].toUpperCase().indexOf(term.toUpperCase()) !== -1;
-        // if (isSelected) {
-        //   // valido si  el projecto fue seleccionados
-        //   isSelected = item.selected === true;
-        // }
+
         return isSelected;
       } else {
         return false;
