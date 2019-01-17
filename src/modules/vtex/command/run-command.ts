@@ -1,4 +1,3 @@
-import { OptCommand } from "../../../shared/interface";
 import log from "../../../shared/logger";
 
 var { getDirectories, getContentFiles } = require("../util/fs");
@@ -17,11 +16,12 @@ var manifests = [];
 var orderList = false;
 
 // 1. Método inicial que se encarga de buscar las carpetas dentro del directorio indicado.
-export const runCommand = async function(options: OptCommand) {
+export default async (command: string, all: string) => {
   // indico cual comando se va a ejecutar y cual directorio se va a emplear
-  commands = options.command;
-  directory = options.directory;
-  orderList = options.orderList;
+  commands = `vtex ${command}`;
+  directory = process.cwd() + "/";
+  orderList = true;
+
   log.debug(`Order dependencies list ${orderList}`);
   log.debug(`Command to run: ${commands}`);
   log.debug(`Directory to use: ${directory}`);
@@ -48,7 +48,12 @@ export const runCommand = async function(options: OptCommand) {
         // busco la dependencia en el manifest y paso toda su información de manifest
         log.info(`You have ${dependenciesList.length} dependencies to link`);
 
-        const dependenciesToUse = await findDependency(dependenciesList);
+        let dependenciesToUse = dependenciesList;
+
+        if (!all) {
+          dependenciesToUse = await findDependency(dependenciesList);
+        }
+
         if (dependenciesToUse.length) {
           let options = {
             position: 0,

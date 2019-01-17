@@ -11,26 +11,28 @@ npm i -g exito-cli
 Comandos disponibles:
 
 ```bash
-npm run exito
-Publish components (vtex publish)
-Upload components to vtex (vtex link)
-Clone projects from aws
-Clear saved credentials
-Continuos integration
+
+$ exito
+
+Usage: exito <command> [options]
+
+  Commands:
+
+    clone <criteria> [all]      Clone specific list of projectos from aws, if your add the option <all>, this automatical download all projects found with the specific <criteria>
+    vtex <command> [all]        Execute specific command from vtex, the current commands suport is: <link>, <publish>
+
+    credentials                              Manage your credentials for aws
+    credentials get                          Gets the current credentials used in aws
+    credentials clear                        Clear the current credentials used in aws
+    credentials set <username> <pwd>         Sets the current credentials for aws
+
+  Options:
+
+    -h, --help  show help information
 ```
 
 ## Desarollo local
 
-local `sudo npm link` ò `node exito-cli`
+local `sudo npm link` ò `node npm link`
 
 Publish to npm `sudo npm publish`
-
-## Documentación
-
-**Publish components** (vtex publish): Permite publicar todos los componentes en orden de dependencia
-
-**Upload components to vtex**: Permite analizar la carpeta donde se este corriendo el comando y obtener el orden en que se deben de subir los componentes a vtex, este comando es muy util cuando se necesitan subir muchos proyectos aun que también sirve con pocos proyectos. luego de obtener el orden de los componentes se inicia la subida de los componentes empleando el método de vtex `vtex link`
-
-**Clone projects from aws**: Permite obtener los proyectos de aws, filtra los proyectos por medio de un prefijo que van a compartir todos los proyectos y luego realiza la clonación en el directorio indicado.
-
-**Clear saved credentials**: Permite remover las credenciales guardas para aws.

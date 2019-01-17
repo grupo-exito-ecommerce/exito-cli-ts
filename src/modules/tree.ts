@@ -1,11 +1,21 @@
 export default {
   clone: {
+    alias: "c",
     description:
       "Clone specific list of projectos from aws, if your add the option <all>, this automatical download all projects found with the specific <criteria>",
     handler: "./aws/clone/clone-projects",
     requiredArgs: "criteria",
     optionalArgs: ["all"]
   },
+  vtex: {
+    alias: "v",
+    description:
+      "Execute specific command from vtex, the current commands suport is: <link>, <publish>",
+    handler: "./vtex/command/run-command",
+    requiredArgs: "command",
+    optionalArgs: ["all"]
+  },
+
   credentials: {
     description: "Manage your credentials for aws",
     get: {

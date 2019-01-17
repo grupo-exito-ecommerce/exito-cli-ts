@@ -6,15 +6,12 @@ import { find, run as unboundRun } from "findhelp";
 import * as Bluebird from "bluebird";
 import * as path from "path";
 import { without } from "ramda";
-// import function to list options
-// const cli = require("./cli");
 import notify from "./update";
 
 // // check updates
 notify();
 
 // // print options
-// cli();
 const VERBOSE = "--verbose";
 
 const run = (command: any) =>
@@ -34,13 +31,6 @@ const main = async () => {
   const command = await find(tree, without([VERBOSE], args));
 
   await run(command);
-
-  //   process.argv.forEach(function(val, index) {
-  //     console.log(index + ": " + val);
-  //   });
-
-  //   var args = process.argv.slice(2);
-  //   console.log(args);
 };
 
 const onError = (e: string) => {

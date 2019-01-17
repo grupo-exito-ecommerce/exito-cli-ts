@@ -64,7 +64,7 @@ export default async (crit: string, all: string) => {
           let filterProject: Array<RepositoryList> = [];
           filterProject = state.projectList.repositories;
 
-          // 3.1 Filtro el array de acuerdo al criterio de busqueda
+          // 3.1 Filtro el array de acuerdo al criterio de busqueda, si se indica all como criterio paso a obtener todos los projectos
           if (criteria != "all") {
             filterProject = await filterProjects(
               state.projectList,
