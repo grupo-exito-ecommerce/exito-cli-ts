@@ -69,7 +69,7 @@ export const resolverDenpendecies = async (
         findLevelDependency(prop);
         return true;
       } else {
-        log.debug(`dependencie not found: ${prop}`);
+        // log.debug(`dependencie not found: ${prop}`);
         return false;
       }
     });
