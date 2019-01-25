@@ -1,6 +1,6 @@
 {
   "name": "exito",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Cli for vtex integration",
   "main": "lib/src/index.js",
   "bin": "lib/src/index.js",
@@ -11,18 +11,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Maik3345/exito-cli-ts.git"
+    "url": "git+https://github.com/grupo-exito-ecommerce/exito-cli-ts"
   },
   "keywords": [
     "exito",
     "cli"
   ],
-  "author": "Michae Steven Restrepo Alvarez",
+  "author": "Grupo Exito Ecommerce",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Maik3345/exito-cli/issues"
+    "url": "https://github.com/grupo-exito-ecommerce/exito-cli-ts/issues"
   },
-  "homepage": "https://github.com/Maik3345/exito-cli#readme",
+  "homepage": "https://github.com/grupo-exito-ecommerce/exito-cli-ts#readme",
   "devDependencies": {
     "@types/configstore": "^4.0.0",
     "@types/update-notifier": "^2.5.0",
@@ -34,16 +34,17 @@
     "typescript": "^3.2.2"
   },
   "dependencies": {
-    "lodash": "4.17.11",
-    "bluebird": "^3.5.0",
     "@types/lodash": "^4.14.119",
+    "bluebird": "^3.5.0",
     "chalk": "^2.4.1",
     "configstore": "^4.0.0",
     "findhelp": "^1.0.4",
     "inquirer": "^6.2.1",
+    "inquirer-prompt-suggest": "^0.1.0",
+    "lodash": "4.17.11",
     "moment": "^2.23.0",
     "ramda": "^0.26.1",
-    "winston": "^2.4.0",
-    "update-notifier": "^2.3.0"
+    "update-notifier": "^2.3.0",
+    "winston": "^2.4.0"
   }
 }
