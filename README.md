@@ -20,7 +20,8 @@ Usage: exito <command> [options]
 
     clone <criteria> [all]      Clone specific list of projectos from aws, if your add the option <all>, this automatical download all projects found with the specific <criteria>
     vtex <command> [all]        Execute specific command from vtex, the current commands suport is: <link>, <publish>
-
+    init                        Clone project
+    
     create             Command to create options
     create workspace   Create the workspaces config for develops
 
