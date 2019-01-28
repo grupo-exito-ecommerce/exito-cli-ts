@@ -1,4 +1,4 @@
-import { CommandsTypes } from "./../../../shared/constants";
+import { consts } from "./../../../shared/constants";
 import {
   link_succes_log,
   link_error_log,
@@ -66,7 +66,7 @@ export const validateLog = (
   logMesage: string,
   type: string
 ) => {
-  if (command == CommandsTypes.link) {
+  if (command == consts.link) {
     if (type == "succes") {
       const isFind = !!link_succes_log.find((element: LogContent) =>
         logMesage.includes(element.log)
@@ -78,7 +78,7 @@ export const validateLog = (
       );
       return isFind;
     }
-  } else if (command == CommandsTypes.publish) {
+  } else if (command == consts.publish) {
     if (type == "succes") {
       const isFind = !!publish_succes_log.find((element: LogContent) =>
         logMesage.includes(element.log)

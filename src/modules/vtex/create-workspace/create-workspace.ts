@@ -1,6 +1,6 @@
 import log from '../../../shared/logger';
 import inquirer from 'inquirer';
-import { CommandsTypes } from '../../../shared/constants';
+import { consts } from '../../../shared/constants';
 import { childProcessRunCommand } from '../util/childProcessRunCommand';
 
 interface QuestionModel {
@@ -76,7 +76,7 @@ const confirmCreation = (question: QuestionModel) => {
   inquirer.prompt(questions).then(async answers => {
     let result: any = answers;
     if (result.confirm) {
-      let createDevelop: string = `${CommandsTypes.workspace_create} ${
+      let createDevelop: string = `${consts.workspace_create} ${
         question.develop
       } `;
       let createQa: string = '';
@@ -84,11 +84,11 @@ const confirmCreation = (question: QuestionModel) => {
 
       if (question.quantity > 1) {
         for (let index = 1; index <= question.quantity; index++) {
-          createQa += `${CommandsTypes.workspace_create} ${question.qa +
+          createQa += `${consts.workspace_create} ${question.qa +
             index} && `;
         }
       } else {
-        createQa = `${CommandsTypes.workspace_create} ${question.qa +
+        createQa = `${consts.workspace_create} ${question.qa +
           question.quantity} && `;
       }
 

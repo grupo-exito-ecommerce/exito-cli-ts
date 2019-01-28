@@ -15,6 +15,12 @@ export default {
     requiredArgs: 'command',
     optionalArgs: ['all']
   },
+
+  init: {
+    alias: 'i',
+    description: 'Clone project',
+    handler: './github/init/index'
+  },
   create: {
     description: 'Command to create options',
     workspace: {
