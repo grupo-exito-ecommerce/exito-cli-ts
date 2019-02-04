@@ -1,25 +1,29 @@
-import log from "../../../shared/logger";
+import {
+  DependenciesListModel,
+  ContentManifest
+} from './../../../shared/models/global';
+import log from '../../../shared/logger';
+import { getDirectories, getContentFiles } from '../util/fs';
+import { getListProyects } from '../util/get-order-dependencies';
+import { findDependency } from '../util/find-dependencies';
+import { executeCommands } from '../util/execute-commands';
 
-var { getDirectories, getContentFiles } = require("../util/fs");
-var { getListProyects } = require("../util/getOrderDependencies");
-var { findDependency } = require("../util/findDependencies");
-var { executeCommands } = require("../util/executeCommands");
 // variable que indica donde se encuentan los archivos a emplear
-let directory = "";
+let directory: string = '';
 // variable que posee el comando que se va a ejecutar actualmente
-let commands = "";
+let commands: string = '';
 // variable que posee la lista de dependencias ordenadas por nivel
-var dependenciesList = [];
+let dependenciesList: Array<DependenciesListModel> = [];
 // variable que posee la información  de los manifest.json
-var manifests = [];
+let manifests: Array<ContentManifest> = [];
 // variable que indica si se debe organizar el orden de las dependencias de mayor relevancia a menor
-var orderList = false;
+let orderList: boolean = false;
 
 // 1. Método inicial que se encarga de buscar las carpetas dentro del directorio indicado.
 export default async (command: string, all: string) => {
   // indico cual comando se va a ejecutar y cual directorio se va a emplear
   commands = `vtex ${command}`;
-  directory = process.cwd() + "/";
+  directory = process.cwd() + '/';
   orderList = true;
 
   log.debug(`Order dependencies list ${orderList}`);
@@ -29,7 +33,7 @@ export default async (command: string, all: string) => {
   if (commands && directory) {
     // obtengo todos los nombres de las carpetas dentro del directorio indicado
 
-    let files = await getDirectories(directory);
+    let files: Array<string> = await getDirectories(directory);
 
     if (files.length) {
       // si hay directorios, paso a buscar el archivo manifest.json y obtener su contenido

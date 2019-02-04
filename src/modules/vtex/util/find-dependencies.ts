@@ -1,11 +1,11 @@
-import { ContentDependencies } from "../../../shared/interface";
-import inquirer from "inquirer";
-import log from "../../../shared/logger";
+import { ContentDependencies } from '../../../shared/models/global';
+import inquirer from 'inquirer';
+import log from '../../../shared/logger';
 
 // Método que busca una dependencia e la lista de dependencias filtradas por el usuario
-exports.findDependency = async (
+export const findDependency = async (
   dependenciesList: Array<ContentDependencies>
-) => {
+): Promise<Array<any>> => {
   let filderDependencies: any = await choiseDependencies(dependenciesList);
   if (filderDependencies.dependencies) {
     dependenciesList = await dependenciesList.filter(
@@ -26,7 +26,7 @@ exports.findDependency = async (
 
     return dependenciesList;
   } else {
-    return false;
+    return [];
   }
 };
 
@@ -34,15 +34,15 @@ const choiseDependencies = async (
   dependenciesList: Array<ContentDependencies>
 ) => {
   let dependencies = [
-    new inquirer.Separator("\n = Dependencies list = \n"),
+    new inquirer.Separator('\n = Dependencies list = \n'),
     ...dependenciesList
   ];
 
   const promptCommands: Array<ContentDependencies> = await inquirer.prompt([
     {
-      type: "checkbox",
-      message: "Pick Dependencies to link",
-      name: "dependencies",
+      type: 'checkbox',
+      message: 'Pick Dependencies to link',
+      name: 'dependencies',
       choices: dependencies
     }
   ]);

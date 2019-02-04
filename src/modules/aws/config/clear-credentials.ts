@@ -3,7 +3,7 @@ import inquirer from "inquirer";
 import { setCredentials } from "./util/set-credentials";
 
 export default async () => {
-  var questions = [
+  let questions = [
     {
       type: "confirm",
       name: "confirm",

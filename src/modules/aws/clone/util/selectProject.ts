@@ -1,4 +1,4 @@
-import { RepositoryList } from "./../../../../shared/interface";
+import { RepositoryList } from "./../../../../shared/models/global";
 import log from "../../../../shared/logger";
 import inquirer from "inquirer";
 

@@ -7,7 +7,8 @@
   "scripts": {
     "ts": "tsc",
     "ts-watch": "tsc --watch",
-    "watch-ts": "tsc -w"
+    "watch-ts": "tsc -w",
+    "prepublish": "npm run tsc"
   },
   "repository": {
     "type": "git",

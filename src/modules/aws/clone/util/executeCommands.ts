@@ -1,4 +1,4 @@
-var { cloneProject } = require("./aws-commands");
+let { cloneProject } = require("./aws-commands");
 import log from "../../../../shared/logger";
 
 export const executeCommands = async (options: any) => {

@@ -1,9 +1,9 @@
-import { Credentials } from "./../../../shared/interface";
+import { Credentials } from "./../../../shared/models/global";
 import {
   getProjectDirectory,
   getProjectInformation
 } from "./util/aws-commands";
-import { RepositoryList, AwsState } from "../../../shared/interface";
+import { RepositoryList, AwsState } from "../../../shared/models/global";
 import _ from "lodash";
 import { setCredentials } from "./util/credentials";
 import { filterProjects } from "./util/filterProjects";

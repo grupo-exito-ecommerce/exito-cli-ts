@@ -1,9 +1,9 @@
 import fs from "fs";
-var path = require("path");
-var _ = require("lodash");
+let path = require("path");
+let _ = require("lodash");
 const filePath = "../../../../../config.json";
 import log from "../../../shared/logger";
-import { Credentials } from "./../../../shared/interface";
+import { Credentials } from "./../../../shared/models/global";
 const message =
   "No have aws credentials, save your aws credentials for clone projects";
 
