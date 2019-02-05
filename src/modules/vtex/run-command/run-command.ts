@@ -32,48 +32,58 @@ export default async (command: string, all: string) => {
 
   if (commands && directory) {
     // obtengo todos los nombres de las carpetas dentro del directorio indicado
-
     let files: Array<string> = await getDirectories(directory);
 
     if (files.length) {
-      // si hay directorios, paso a buscar el archivo manifest.json y obtener su contenido
-      manifests = await getContentFiles(files);
-
-      // Obtengo el orden en que se van a compilar las dependencias
-      dependenciesList = await getListProyects(manifests);
-
-      // Luego de finalizar la busqueda de dependencias, paso a ejecutar los comandos por medio de consola
-      if (dependenciesList.length) {
-        // cambio el orden a asc, esto permitira ejecutar primero los componentes que son dependencias
-        if (orderList) {
-          dependenciesList.reverse();
-        }
-
-        // busco la dependencia en el manifest y paso toda su información de manifest
-        log.info(`You have ${dependenciesList.length} dependencies to link`);
-
-        let dependenciesToUse = dependenciesList;
-
-        if (!all) {
-          dependenciesToUse = await findDependency(dependenciesList);
-        }
-
-        if (dependenciesToUse.length) {
-          let options = {
-            position: 0,
-            manifests: manifests,
-            dependenciesList: dependenciesToUse,
-            commands: commands
-          };
-          executeCommands(options);
-        }
-      } else {
-        log.error(`No dependencies found in the current location`);
-      }
+      findProjectContnet(files, all);
     } else {
       log.error(`No projects found in ${directory}`);
     }
   } else {
     log.error(`No commands specified to run`);
+  }
+};
+
+// Método que se encarga de buscar un proyecto en el directorio actual
+export const searchProjectCurrentDirectory = (all: string) => {
+  log.info('Use the current location for search one project');
+  findProjectContnet([directory], all);
+};
+
+export const findProjectContnet = async (files: Array<string>, all: string) => {
+  // si hay directorios, paso a buscar el archivo manifest.json y obtener su contenido
+  manifests = await getContentFiles(files);
+
+  // Obtengo el orden en que se van a compilar las dependencias
+  dependenciesList = await getListProyects(manifests);
+
+  // Luego de finalizar la busqueda de dependencias, paso a ejecutar los comandos por medio de consola
+  if (dependenciesList.length) {
+    // cambio el orden a asc, esto permitira ejecutar primero los componentes que son dependencias
+    if (orderList) {
+      dependenciesList.reverse();
+    }
+
+    // busco la dependencia en el manifest y paso toda su información de manifest
+    log.info(`You have ${dependenciesList.length} dependencies to link`);
+
+    let dependenciesToUse = dependenciesList;
+
+    if (!all) {
+      dependenciesToUse = await findDependency(dependenciesList);
+    }
+
+    if (dependenciesToUse.length) {
+      let options = {
+        position: 0,
+        manifests: manifests,
+        dependenciesList: dependenciesToUse,
+        commands: commands
+      };
+      executeCommands(options);
+    }
+  } else {
+    log.error(`No dependencies found in the current location`);
+    searchProjectCurrentDirectory(all);
   }
 };
