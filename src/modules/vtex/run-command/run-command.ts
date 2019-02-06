@@ -31,23 +31,27 @@ export default async (command: string, all: string) => {
   log.debug(`Directory to use: ${directory}`);
 
   if (commands && directory) {
-    // obtengo todos los nombres de las carpetas dentro del directorio indicado
-    let files: Array<string> = await getDirectories(directory);
-
-    if (files.length) {
-      findProjectContnet(files, all);
-    } else {
-      log.error(`No projects found in ${directory}`);
-    }
+    // Realizo la busqueda en el directorio actual
+    searchProjectCurrentDirectory(all);
   } else {
     log.error(`No commands specified to run`);
   }
 };
 
 // Método que se encarga de buscar un proyecto en el directorio actual
-export const searchProjectCurrentDirectory = (all: string) => {
+export const searchProjectCurrentDirectory = async (all: string) => {
   log.info('Use the current location for search one project');
-  findProjectContnet([directory], all);
+  let response = await findProjectContnet([directory], all);
+  if (!response) {
+    // obtengo todos los nombres de las carpetas dentro del directorio indicado
+    let files: Array<string> = await getDirectories(directory);
+
+    if (files.length) {
+      findProjectContnet(files, all);
+    } else {
+      log.warn(`No projects found in ${directory}`);
+    }
+  }
 };
 
 export const findProjectContnet = async (files: Array<string>, all: string) => {
@@ -83,7 +87,7 @@ export const findProjectContnet = async (files: Array<string>, all: string) => {
       executeCommands(options);
     }
   } else {
-    log.error(`No dependencies found in the current location`);
-    searchProjectCurrentDirectory(all);
+    log.warn(`No dependencies found in the current location`);
+    return false;
   }
 };

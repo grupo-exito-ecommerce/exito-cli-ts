@@ -8,7 +8,7 @@
     "ts": "tsc",
     "ts-watch": "tsc --watch",
     "watch-ts": "tsc -w",
-    "prepublish": "npm run tsc"
+    "prepublish": "npm run ts"
   },
   "repository": {
     "type": "git",
@@ -42,16 +42,16 @@
     "chalk": "^2.4.1",
     "configstore": "^4.0.0",
     "findhelp": "^1.0.4",
+    "fs-extra": "^7.0.0",
     "inquirer": "^6.2.1",
     "inquirer-prompt-suggest": "^0.1.0",
     "lodash": "4.17.11",
     "moment": "^2.23.0",
-    "ramda": "^0.25.0",
-    "update-notifier": "^2.3.0",
-    "winston": "^2.4.0",
     "pipe-streams-to-promise": "^0.2.0",
-    "fs-extra": "^7.0.0",
+    "ramda": "^0.25.0",
     "request": "^2.83.0",
-    "unzip-stream": "^0.3.0"
+    "unzip-stream": "^0.3.0",
+    "update-notifier": "^2.3.0",
+    "winston": "^2.4.0"
   }
 }
