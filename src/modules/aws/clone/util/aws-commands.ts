@@ -3,7 +3,7 @@ import {
   RepositoryOptions,
   ProjectList,
   RepositoryMetadataResponse
-} from "../../../../shared/interface";
+} from "../../../../shared/models/global";
 import log from "../../../../shared/logger";
 
 /**

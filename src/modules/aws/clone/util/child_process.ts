@@ -1,6 +1,6 @@
 import log from "../../../../shared/logger";
 import { spawn } from "child_process";
-import { OptRunCommand } from "../../../../shared/interface";
+import { OptRunCommand } from "../../../../shared/models/global";
 
 exports.runCommand = (options: OptRunCommand) => {
   return new Promise(function(fulfill, reject) {

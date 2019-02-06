@@ -11,14 +11,19 @@ export default {
     alias: 'v',
     description:
       'Execute specific command from vtex, the current commands suport is: <link>, <publish>',
-    handler: './vtex/command/run-command',
+    handler: './vtex/run-command/run-command',
     requiredArgs: 'command',
     optionalArgs: ['all']
   },
-
+  publish: {
+    alias: 'p',
+    description:
+      'Publish only one component into Vtex, This process create one ramdon workspace in Vtex and publish the component located in the current folder',
+    handler: './vtex/publish-component/publish-component'
+  },
   init: {
     alias: 'i',
-    description: 'Clone project',
+    description: 'Create basic files and folders for your VTEX app',
     handler: './github/init/index'
   },
   create: {

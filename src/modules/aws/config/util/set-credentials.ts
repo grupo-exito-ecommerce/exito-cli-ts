@@ -1,5 +1,5 @@
 import fs from "fs";
-var path = require("path");
+let path = require("path");
 import log from "../../../../shared/logger";
 
 // Método para preguntar las credenciales de aws al usuario

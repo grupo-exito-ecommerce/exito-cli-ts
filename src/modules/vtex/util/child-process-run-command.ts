@@ -2,7 +2,7 @@ const { spawn } = require('child_process');
 import log from '../../../shared/logger';
 
 export const childProcessRunCommand = function(command: string) {
-  const task = spawn(`${command}}`, [], {
+  const task = spawn(`${command}`, [], {
     shell: true
   });
 

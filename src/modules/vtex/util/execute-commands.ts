@@ -2,10 +2,10 @@ import {
   OptRunCommand,
   ContentManifest,
   OptExecuteCommand
-} from "../../../shared/interface";
-var childProcess = require("./child_process");
+} from '../../../shared/models/global';
+import { runCommand } from './child-process';
 
-const executeCommands = function(options: OptExecuteCommand) {
+export const executeCommands = (options: OptExecuteCommand) => {
   let index = options.position;
   if (index < options.dependenciesList.length) {
     // Obtengo el path del projecto, buscando en la lista de manifests
@@ -18,7 +18,7 @@ const executeCommands = function(options: OptExecuteCommand) {
           path: res.path
         };
 
-        childProcess.runCommand(optionsCommand).then(() => {
+        runCommand(optionsCommand).then(() => {
           index++;
           const optionsToRun: OptExecuteCommand = {
             position: index,
@@ -33,8 +33,4 @@ const executeCommands = function(options: OptExecuteCommand) {
   } else {
     process.exit();
   }
-};
-
-module.exports = {
-  executeCommands
 };

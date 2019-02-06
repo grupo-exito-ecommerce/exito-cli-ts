@@ -120,3 +120,12 @@ export interface Manifest {
   mustUpdateAt?: string;
   latest?: string;
 }
+
+export interface DependenciesListModel {
+  level: number;
+  title: string;
+  value: string;
+  selected: boolean;
+}
+
+
