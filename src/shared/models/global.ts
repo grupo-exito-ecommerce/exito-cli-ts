@@ -103,3 +103,29 @@ export interface OptionsCommand {
   credentials: Credentials;
   projectList: Array<RepositoryList>;
 }
+
+export interface Manifest {
+  name?: string;
+  title?: string;
+  vendor?: string;
+  version: string;
+  dependencies?: {};
+  builders?: {
+    [builder: string]: string;
+  };
+  settingsSchema?: {};
+  description?: string;
+  categories?: string[];
+  registries?: string[];
+  mustUpdateAt?: string;
+  latest?: string;
+}
+
+export interface DependenciesListModel {
+  level: number;
+  title: string;
+  value: string;
+  selected: boolean;
+}
+
+

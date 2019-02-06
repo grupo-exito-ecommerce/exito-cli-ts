@@ -1,16 +1,19 @@
+import { DependenciesListModel } from './../../../shared/models/global';
 import {
   ContentDependencies,
   ContentManifest,
   ObjLevelImportance
-} from "../../../shared/interface";
+} from '../../../shared/models/global';
 // variable que posee la lista de dependencias ordenadas por nivel
-var dependenciesList: Array<ContentDependencies> = [];
+let dependenciesList: Array<DependenciesListModel> = [];
 // variable que posee la información  de los manifest.json
-var manifests: Array<ContentManifest> = [];
-import log from "../../../shared/logger";
+let manifests: Array<ContentManifest> = [];
+import log from '../../../shared/logger';
 
 // 3. Método que permite obtener el orden de dependencias, arma un array donde se indica el grado de importancia por medio de un nivel
-exports.getListProyects = async function(manifest: Array<ContentManifest>) {
+export const getListProyects = async (
+  manifest: Array<ContentManifest>
+): Promise<Array<DependenciesListModel>> => {
   manifests = manifest;
 
   // 1. Armo un array con dependencias de todos los componentes de la carpeta indicada. se inicia a nvl 0 ya que no hay dependencias validadas aun
@@ -42,7 +45,7 @@ export const findLevelDependency = function(item: string) {
     selected: true
   };
 
-  var found = dependenciesList.find((res: ContentDependencies) => {
+  let found = dependenciesList.find((res: ContentDependencies) => {
     if (res.value == item) {
       res.level += 1;
       return true;
@@ -63,13 +66,13 @@ export const resolverDenpendecies = async (
   dependencies: ContentDependencies
 ) => {
   for (const prop in dependencies) {
-    var manifest = manifests.find(res => {
+    let manifest = manifests.find(res => {
       if (`${res.vendor}.${res.name}` == prop) {
         log.debug(`dependencie found: ${prop}`);
         findLevelDependency(prop);
         return true;
       } else {
-        log.debug(`dependencie not found: ${prop}`);
+        // log.debug(`dependencie not found: ${prop}`);
         return false;
       }
     });

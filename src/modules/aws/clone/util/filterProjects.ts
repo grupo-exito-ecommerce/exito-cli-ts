@@ -1,4 +1,4 @@
-import { RepositoryList } from "../../../../shared/interface";
+import { RepositoryList } from "../../../../shared/models/global";
 
 /**
  * Método empleado para realizar el filtro de la lista de proyectos obtenidos

@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+### v2.0.2 (2019-01-25)
+
+Creación del comando `exito init` para la descarga de los códigos fuentes alojados en github
+
+### v2.0.1 (2019-01-25)
+
+Creación del comando `exito create workspace` para la creación de la configuración de los workspace de desarrollo
+
 ### v1.1.0 (2019-01-14)
 
 Integración de la logica para realizar el proceso de integración continua de todos los proyectos a Vtex.
@@ -23,3 +31,4 @@ Se debe de tener en cuenta en todos los componentes a la hora de ser publicados:
 
 * La versión del componente debe de ser mayor a la actual, de lo contrario vtex no tomara los cambios realizados sobre el componente, para validar la versión actual de un componente publicado podemos emplear `vtex deps list` el cual lista las dependencias publicadas.
 ---
+
