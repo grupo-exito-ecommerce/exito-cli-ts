@@ -1,7 +1,7 @@
 import inquirer from "inquirer";
 
 const run = async () => {
-  var questions = [
+  let questions = [
     {
       type: "input",
       name: "username",

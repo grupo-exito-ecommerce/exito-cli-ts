@@ -1,7 +1,7 @@
-import { Credentials } from "./../../../shared/interface";
+import { Credentials } from "./../../../shared/models/global";
 import log from "../../../shared/logger";
 import fs from "fs";
-var path = require("path");
+let path = require("path");
 
 // Método para preguntar las credenciales de aws al usuario
 export const saveCredentials = function(credentials: Credentials) {

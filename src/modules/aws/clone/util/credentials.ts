@@ -1,10 +1,10 @@
 import fs from "fs";
 import inquirer from "inquirer";
-var _ = require("lodash");
-var path = require("path");
+let _ = require("lodash");
+let path = require("path");
 import log from "../../../../shared/logger";
 const filePath = "../../../../../config.json";
-import { Credentials } from "./../../../../shared/interface";
+import { Credentials } from "./../../../../shared/models/global";
 const emptyUser: Credentials = {
   username: "",
   pwd: ""

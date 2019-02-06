@@ -1,7 +1,7 @@
 import log from '../../../shared/logger';
 import inquirer from 'inquirer';
 import { consts } from '../../../shared/constants';
-import { childProcessRunCommand } from '../util/childProcessRunCommand';
+import { childProcessRunCommand } from '../util/child-process-run-command';
 
 interface QuestionModel {
   develop: string;
@@ -11,7 +11,7 @@ interface QuestionModel {
 export default async function() {
   log.info('Enter the options to create the workspace config');
 
-  var questions = [
+  let questions = [
     {
       type: 'input',
       name: 'develop',
@@ -62,7 +62,7 @@ export default async function() {
 }
 
 const confirmCreation = (question: QuestionModel) => {
-  var questions = [
+  let questions = [
     {
       type: 'confirm',
       name: 'confirm',

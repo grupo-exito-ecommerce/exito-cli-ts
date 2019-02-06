@@ -20,8 +20,9 @@ Usage: exito <command> [options]
 
     clone <criteria> [all]      Clone specific list of projectos from aws, if your add the option <all>, this automatical download all projects found with the specific <criteria>
     vtex <command> [all]        Execute specific command from vtex, the current commands suport is: <link>, <publish>
-    init                        Clone project
-    
+    publish                     Publish only one component into Vtex, This process create one ramdon workspace in Vtex and publish the component located in the current folder
+    init                        Create basic files and folders for your VTEX app
+
     create             Command to create options
     create workspace   Create the workspaces config for develops
 
@@ -40,8 +41,3 @@ Usage: exito <command> [options]
 local `sudo npm link` ò `node npm link`
 
 Publish to npm `sudo npm publish`
-
-
-## Librerias empleadas
-
-[Inquirer](https://www.npmjs.com/package/inquirer)

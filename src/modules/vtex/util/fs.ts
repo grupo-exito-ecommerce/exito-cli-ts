@@ -1,12 +1,12 @@
-import { ContentManifest } from "../../../shared/interface";
-import { resolve } from "path";
-import log from "../../../shared/logger";
-const fs = require("fs");
-const path = require("path");
+import { ContentManifest } from '../../../shared/models/global';
+import { resolve } from 'path';
+import log from '../../../shared/logger';
+const fs = require('fs');
+const path = require('path');
 
 let manifests: Array<ContentManifest> = [];
 
-exports.getDirectories = function(srcpath: string) {
+export const getDirectories = (srcpath: string): Promise<Array<string>> => {
   return fs
     .readdirSync(srcpath)
     .map((file: any) => path.join(srcpath, file))
@@ -14,7 +14,9 @@ exports.getDirectories = function(srcpath: string) {
 };
 
 // Método que permite traer el contenido de todos los directorios indicados
-exports.getContentFiles = async function(files: any) {
+export const getContentFiles = async (
+  files: any
+): Promise<Array<ContentManifest>> => {
   await files.forEach(async (file: any) => {
     await getContent(resolve(file));
   });
@@ -23,12 +25,12 @@ exports.getContentFiles = async function(files: any) {
 };
 
 // Metodo que trae el contenido de un directorio indicado
-const getContent = async function(dir: string) {
+const getContent = async (dir: string) => {
   try {
     if (fs.existsSync(`${dir}/manifest.json`)) {
       // Do something
-      var result = await JSON.parse(
-        fs.readFileSync(`${dir}/manifest.json`, "utf8")
+      let result = await JSON.parse(
+        fs.readFileSync(`${dir}/manifest.json`, 'utf8')
       );
 
       if (result) {
