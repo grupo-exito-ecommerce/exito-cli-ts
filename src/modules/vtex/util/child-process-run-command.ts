@@ -14,5 +14,8 @@ export const childProcessRunCommand = function(command: string) {
   // Método para imprimir el log de error
   task.stderr.on('data', function(data: string) {
     log.info(data.toString());
+    if(data.toString().includes('Publishing failed')){
+      process.exit(1)
+    }
   });
 };
