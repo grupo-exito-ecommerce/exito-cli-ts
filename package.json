@@ -1,6 +1,6 @@
 {
   "name": "exito",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Cli for vtex integration",
   "main": "lib/src/index.js",
   "bin": "lib/src/index.js",
