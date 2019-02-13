@@ -74,9 +74,7 @@ export const getTemplateContent = (options: CreateTemplate) => {
                     "Name": "${options.codePipeLineName}"
                 },
                 "ServiceRole": "arn:aws:iam::402457222534:role/service-role/exito.continuos-integration-code-build",
-                "Name": {
-                    "Ref": "CodeBuildName"
-                },
+                "Name": "${options.codeBuildName}",
                 "TimeoutInMinutes": 60,
                 "EncryptionKey": "arn:aws:kms:us-east-1:402457222534:alias/aws/s3",
                 "Description": "Build for components for Vtex",

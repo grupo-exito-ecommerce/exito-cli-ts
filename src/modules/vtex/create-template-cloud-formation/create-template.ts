@@ -8,7 +8,7 @@ const {
   themeDevelop,
   themeMaster,
   buildSpecDevelopDir,
-  buildSpecMasterpDir,
+  buildSpecMasterDir,
   codeBuild,
   codePipeline,
   branchDevelop,
@@ -32,8 +32,8 @@ export default async (repository: string) => {
     nameBranch: branchDevelop,
     namefile: themeDevelop,
     buildSpecDir: buildSpecDevelopDir,
-    codeBuildName: `${nameRepositoryFormat}-${codeBuild}`,
-    codePipeLineName: `${nameRepositoryFormat}-${codePipeline}`
+    codeBuildName: `${nameRepositoryFormat}-${codeBuild}-${branchDevelop}`,
+    codePipeLineName: `${nameRepositoryFormat}-${codePipeline}-${branchDevelop}`
   };
 
   await ensureDirectoryExistence(dirname);
@@ -43,9 +43,14 @@ export default async (repository: string) => {
   await createTemplate(config);
 
   log.info('Creating master template');
-  config.namefile = themeMaster;
-  config.buildSpecDir = buildSpecMasterpDir;
-  config.nameBranch = branchMaster;
+  config = {
+    nameRepository: repository,
+    nameBranch: branchMaster,
+    namefile: themeMaster,
+    buildSpecDir: buildSpecMasterDir,
+    codeBuildName: `${nameRepositoryFormat}-${codeBuild}-${branchMaster}`,
+    codePipeLineName: `${nameRepositoryFormat}-${codePipeline}-${branchMaster}`
+  };
 
   await createTemplate(config);
   log.info('Templates generate succesfully!!');

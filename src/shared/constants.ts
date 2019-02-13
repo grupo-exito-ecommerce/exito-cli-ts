@@ -11,7 +11,7 @@ export const consts = {
     themeDevelop: 'develop-template',
     themeMaster: 'master-template',
     buildSpecDevelopDir: 'config/aws/develop-buildspec.yml',
-    buildSpecMasterpDir: 'config/aws/master-buildspec.yml',
+    buildSpecMasterDir: 'config/aws/master-buildspec.yml',
     codeBuild: 'code-build',
     codePipeline: 'code-pipeline',
     branchDevelop: 'develop',
