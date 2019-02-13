@@ -34,6 +34,14 @@ export default {
       handler: './vtex/create-workspace/create-workspace'
     }
   },
+  generate: {
+    description: 'Generate options for the project',
+    config: {
+      alias: 'c',
+      description: 'Get the last config  for projects',
+      handler: './vtex/create-config-project/get-config'
+    }
+  },
   credentials: {
     description: 'Manage your credentials for aws',
     get: {

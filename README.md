@@ -26,6 +26,8 @@ Usage: exito <command> [options]
     create             Command to create options
     create workspace   Create the workspaces config for develops
 
+    generate                              Generate options for the project
+    generate config                       Get the last config  for projects
     credentials                              Manage your credentials for aws
     credentials get                          Gets the current credentials used in aws
     credentials clear                        Clear the current credentials used in aws
@@ -38,6 +40,11 @@ Usage: exito <command> [options]
 
 ## Desarollo local
 
+Start `npm run ts-watch`
+
 local `sudo npm link` ò `node npm link`
+
+
+## Promover a npm
 
 Publish to npm `sudo npm publish`
