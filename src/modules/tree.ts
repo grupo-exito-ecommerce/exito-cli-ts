@@ -40,6 +40,13 @@ export default {
       alias: 'c',
       description: 'Get the last config  for projects',
       handler: './vtex/create-config-project/get-config'
+    },
+    template: {
+      alias: 't',
+      description:
+        'Create the template for aws cloud-formation for mount the infra structure for continuos integration',
+      handler: './vtex/create-template-cloud-formation/create-template',
+      requiredArgs: ['repository']
     }
   },
   credentials: {

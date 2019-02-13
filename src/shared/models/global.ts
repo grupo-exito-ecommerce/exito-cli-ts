@@ -128,4 +128,11 @@ export interface DependenciesListModel {
   selected: boolean;
 }
 
-
+export interface CreateTemplate {
+  namefile: string;
+  nameRepository: string;
+  nameBranch: string;
+  buildSpecDir: string;
+  codeBuildName: string;
+  codePipeLineName: string;
+}
