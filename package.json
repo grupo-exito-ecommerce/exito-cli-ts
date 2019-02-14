@@ -29,6 +29,7 @@
     "@types/configstore": "^4.0.0",
     "@types/fs-extra": "^5.0.4",
     "@types/inquirer": "^0.0.43",
+    "@types/ncp": "^2.0.1",
     "@types/node": "^10.12.18",
     "@types/ramda": "types/npm-ramda#dist",
     "@types/request": "^2.48.1",

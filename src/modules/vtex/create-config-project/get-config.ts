@@ -1,8 +1,7 @@
 import log from '../../../shared/logger';
-import ncp from 'ncp'
-const configDirectory: string = __dirname + '/resources';
+import { ncp } from 'ncp';
 
-ncp.limit = 16;
+const configDirectory: string = __dirname + '/resources';
 
 export default async () => {
   log.info('Generating the last config for your project');
@@ -16,7 +15,7 @@ export default async () => {
 
 const move = (source: string, destination: string): Promise<boolean> => {
   return new Promise((resolve, reject) => {
-    ncp(source, destination, function(err: string) {
+    ncp(source, destination, (err: Error) => {
       if (err) {
         reject(false);
       }
