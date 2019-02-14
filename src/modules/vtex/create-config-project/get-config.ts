@@ -1,5 +1,5 @@
 import log from '../../../shared/logger';
-var ncp = require('ncp').ncp;
+import ncp from 'ncp'
 const configDirectory: string = __dirname + '/resources';
 
 ncp.limit = 16;
