@@ -21,4 +21,3 @@ tsconfig.json
 coverage/
 scripts/
 yarn.lock
-resources

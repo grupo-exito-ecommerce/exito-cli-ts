@@ -1,8 +1,0 @@
-version: 0.2
-# This file only run the docker file from the indicate folder
-phases:
- build:
-   commands:
-     - echo "Create Docker image validate code coverage..."
-     - docker build --no-cache -f config/docker/coverage.dockerfile .
-     - echo "Porccess finished."

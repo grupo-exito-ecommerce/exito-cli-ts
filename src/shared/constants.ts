@@ -4,6 +4,7 @@ export const consts = {
   publish: 'vtex publish',
   workspace_create: 'vtex workspace create',
   github_account: 'grupo-exito-ecommerce',
+  config_repository: 'exito-vtex-config',
   // configuration aws cloud-formation for vtex
   aws_template: {
     configDir: 'config',

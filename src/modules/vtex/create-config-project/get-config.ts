@@ -1,33 +1,26 @@
+import { consts } from './../../../shared/constants';
+import { download } from './../../github/init/git';
 import log from '../../../shared/logger';
-import { ncp } from 'ncp';
-
-const configDirectory: string = __dirname + '/resources';
 
 export default async () => {
   try {
     log.info('Generating the last config for your project');
-    let firstCopy = await move(configDirectory, process.cwd() + '/');
+    let firstCopy = await move();
     if (firstCopy) {
       log.info('files config generate succesfully!!');
     } else {
       log.error('error on generate files config');
     }
   } catch (error) {
-    log.debug(error)
+    log.debug(error);
   }
 };
 
-const move = (source: string, destination: string): Promise<boolean> => {
-  return new Promise((resolve, reject) => {
-    try {
-      ncp(source, destination, (err: Error) => {
-        if (err) {
-          reject(false);
-        }
-        resolve(true);
-      });
-    } catch (error) {
-      log.debug(error)
-    }
-  });
+const move = async (): Promise<Boolean> => {
+  try {
+    return await download(consts.config_repository);
+  } catch (error) {
+    log.error(`Error on download config ${error}`);
+    return false;
+  }
 };

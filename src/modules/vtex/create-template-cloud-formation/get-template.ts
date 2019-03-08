@@ -25,7 +25,6 @@ export const getTemplateContent = (options: CreateTemplate) => {
                                 "Name": "SourceArtifact"
                             }],
                             "Configuration": {
-                                "PollForSourceChanges": "false",
                                 "BranchName": "${options.nameBranch}",
                                 "RepositoryName": "${options.nameRepository}"
                             },
