@@ -8,10 +8,10 @@ import * as path from "path";
 import { without } from "ramda";
 import notify from "./update";
 
-// // check updates
+// check updates
 notify();
 
-// // print options
+// print options
 const VERBOSE = "--verbose";
 
 const run = (command: any) =>
