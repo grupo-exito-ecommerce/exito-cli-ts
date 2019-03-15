@@ -6,7 +6,8 @@ import * as git from './git';
 import * as _ from 'lodash';
 
 const templates: any = {
-  'hello react typescript': 'hello-react-ts'
+  'hello react typescript': 'hello-react-ts',
+  'graphql getstarted': 'graphql-getstarted'
 };
 
 const promptTemplates = async (): Promise<string> => {
