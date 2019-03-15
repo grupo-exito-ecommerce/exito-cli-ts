@@ -11,3 +11,4 @@ yarn-error.log
 scripts/errors.json
 package-lock.json
 ttracker.log
+yarn.lock

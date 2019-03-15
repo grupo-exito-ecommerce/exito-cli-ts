@@ -1,12 +1,13 @@
 {
   "name": "exito",
-  "version": "2.0.5",
+  "version": "2.0.11",
   "description": "Cli for vtex integration",
   "main": "lib/src/index.js",
   "bin": "lib/src/index.js",
   "scripts": {
     "ts": "tsc",
     "ts-watch": "tsc --watch",
+    "copy": "ncp resources lib/src/modules/vtex/create-config-project/resources/",
     "watch-ts": "tsc -w",
     "prepublish": "npm run ts"
   },
@@ -26,18 +27,20 @@
   "homepage": "https://github.com/grupo-exito-ecommerce/exito-cli-ts#readme",
   "devDependencies": {
     "@types/configstore": "^4.0.0",
-    "@types/update-notifier": "^2.5.0",
+    "@types/fs-extra": "^5.0.5",
     "@types/inquirer": "^0.0.43",
-    "@types/node": "^10.12.18",
-    "@types/request": "^2.48.1",
+    "@types/ncp": "^2.0.1",
+    "@types/node": "^11.9.4",
     "@types/ramda": "types/npm-ramda#dist",
-    "nodemon": "^1.18.9",
+    "@types/request": "^2.48.1",
+    "@types/update-notifier": "^2.5.0",
+    "nodemon": "^1.18.10",
     "tslint": "^5.12.0",
-    "typescript": "^3.2.2",
-    "@types/fs-extra": "^5.0.4"
+    "@types/lodash": "^4.14.121",
+    "typescript": "^3.3.3"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.119",
+    "ncp": "^2.0.0",
     "bluebird": "^3.5.0",
     "chalk": "^2.4.1",
     "configstore": "^4.0.0",
