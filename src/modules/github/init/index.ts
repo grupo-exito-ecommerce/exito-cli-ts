@@ -16,13 +16,13 @@ const promptTemplates = async (): Promise<string> => {
     'service',
     await inquirer.prompt({
       name: 'service',
-      message: 'Choose where do you want to start from',
+      message: consts.messages.gitInitProyect,
       type: 'list',
       choices: [...keys(templates), cancel]
     })
   );
   if (chosen === cancel) {
-    log.info('Bye o/');
+    log.info(consts.messages.gitInitClose);
     return process.exit();
   }
   return chosen;
@@ -38,7 +38,7 @@ const promptContinue = async () => {
     })
   );
   if (!proceed) {
-    log.info('Bye o/');
+    log.info(consts.messages.gitInitClose);
     process.exit();
   }
 };
@@ -46,7 +46,7 @@ const promptContinue = async () => {
 export default async () => {
   log.debug('Prompting for app info');
   log.info(
-    'Hello! I will help you generate basic files and folders for your app.'
+    consts.messages.gitInitHellow
   );
   try {
     const repo = templates[await promptTemplates()];

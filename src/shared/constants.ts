@@ -17,5 +17,11 @@ export const consts = {
     codePipeline: 'code-pipeline',
     branchDevelop: 'develop',
     branchMaster: 'master'
+  },
+  messages: {
+    awsAccesKey: 'Check your Access key and Secret Access key for aws, Run aws configure for configure this information.',
+    gitInitProyect: 'Choose where do you want to start from',
+    gitInitClose: 'Bye',
+    gitInitHellow: 'Hello! I will help you generate basic files and folders for your app.'
   }
 };

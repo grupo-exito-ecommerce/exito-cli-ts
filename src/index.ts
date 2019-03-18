@@ -46,4 +46,4 @@ try {
   onError(e);
 }
 
-process.on("unhandledRejection", onError);
+process.on("SIGALRM", onError);
