@@ -13,7 +13,7 @@ exports.runCommand = (options: OptRunCommand) => {
       });
 
       // Método para imprimir el log normal
-      task.stdout.on("data", data => {
+      task.stdout!.on("data", data => {
         log.info(data.toString());
         if (data.includes("Step success finished")) {
           task.kill("SIGINT");
@@ -27,7 +27,7 @@ exports.runCommand = (options: OptRunCommand) => {
       });
 
       // Método para imprimir el log de error
-      task.stderr.on("data", function(data) {
+      task.stderr!.on("data", function(data) {
         log.info("Error: " + data);
 
         // Validación en caso de error

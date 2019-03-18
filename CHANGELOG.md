@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+### v2.0.11 (2019-03-18)
+
+Se soluciona el bug al clonar proyectos con el comando exito clone desde windows.
+
 ### v2.0.11 (2019-03-8)
 
 Se remueve `"PollForSourceChanges": "false",` del template creado para cloudFormation, esta linea creaba las instancias de CodePipeline sin la opción de escuchar cambios de CodeCommit
