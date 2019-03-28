@@ -13,29 +13,28 @@ const getAuth = async () => {
   }
 }
 
-export default async function () {
+export default async function (account:string,workspace:string, email: string ) {
   log.info('Login process vtex');
   const auth = await getAuth()
   if (auth) {
-    log.info(auth.data)
-    const vtexDirConfig = await runOnlyCommand('find  ~/.config/configstore/vtex.json')
-    log.info(vtexDirConfig)
-
-    const options: ConfigVtexJson = {
-      account: "exito",
-      authToken: auth.data,
-      workspase: "production",
-      login: 'mrestrepoa@grupo-exito.com'
-    }
-    
+    const authToken = auth.data;
+    log.debug("auth token to use:" + authToken)
+    log.debug(`\n Credentials for use: \n account:${account} workspace:${workspace} email:${email}`)
     // 1. Find the directory of the file for config vtex
+    const vtexDirConfig = await runOnlyCommand('find  ~/.config/configstore/vtex.json')
+    log.info('Vtex config file ubicate in the folder: ' + vtexDirConfig.replace(/\s/g, ''))
+
+    // options for the file config.json
+    const options: ConfigVtexJson = {
+      account: account,
+      authToken: authToken,
+      workspase: workspace,
+      login: email
+    }
 
     // 2. Overrite the config file from vtex
-    // mrestrepoa@grupo-exito.com
-    // exito
-    // production
-   await  overriteFIle(vtexDirConfig,options)
-   console.log("finish write file")
+    await overwriteFile(vtexDirConfig, options)
+    log.info("Vtex.json file successfully overwritten, now you logged in Vtex!!")
   }
 };
 
@@ -43,10 +42,11 @@ export default async function () {
 /**
  * Método que sobreescribe el archivo de tema base para la aplicación.
  */
-const overriteFIle = async (dirname:string,options: ConfigVtexJson) => {
-  return fs.writeFile(`${dirname.replace(/\s/g,'')}`,
+const overwriteFile = async (dirname: string, options: ConfigVtexJson) => {
+  // remove white spaces in the path
+  return fs.writeFile(`${dirname.replace(/\s/g, '')}`,
     await getConfigTemplate(options),
-    function(err: string) {
+    function (err: string) {
       if (err) {
         throw err;
       }

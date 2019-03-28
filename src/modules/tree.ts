@@ -12,7 +12,7 @@ export default {
     description:
     'Set credentials for vtex',
     handler: './vtex/login/login-vtex',
-    requiredArgs: 'account'
+    requiredArgs: ['account','workspace','email']
   },
   vtex: {
     alias: 'v',
