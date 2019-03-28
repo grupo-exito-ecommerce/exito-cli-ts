@@ -7,6 +7,13 @@ export default {
     requiredArgs: 'criteria',
     optionalArgs: ['all']
   },
+  login: {
+    alias: 'l',
+    description:
+    'Set credentials for vtex',
+    handler: './vtex/login/login-vtex',
+    requiredArgs: 'account'
+  },
   vtex: {
     alias: 'v',
     description:
@@ -78,3 +85,4 @@ export default {
     }
   ]
 };
+

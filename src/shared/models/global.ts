@@ -136,3 +136,10 @@ export interface CreateTemplate {
   codeBuildName: string;
   codePipeLineName: string;
 }
+
+export interface ConfigVtexJson {
+  login:string;
+  authToken: string;
+  account: string;
+  workspase: string;
+}
