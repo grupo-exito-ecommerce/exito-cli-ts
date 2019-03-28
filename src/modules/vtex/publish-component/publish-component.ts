@@ -9,9 +9,8 @@ export default async function() {
   log.info(`Creating workspaces ${nameWorkspace}`);
   // 2 Creo el workspace en Vtex, Paso el workspace a producción
   let command_create_workspace = `
-  vtex workspace create ${nameWorkspace} && 
+  vtex workspace create ${nameWorkspace} -p && 
   vtex workspace use ${nameWorkspace} && 
-  vtex workspace production true && 
   vtex publish &&
   vtex workspace use master  && 
   vtex workspace delete ${nameWorkspace} -y

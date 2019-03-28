@@ -16,6 +16,7 @@ export const getProjectDirectory = (): Promise<ProjectList> => {
       let result: ProjectList;
       exec(`aws codecommit list-repositories`, (error, stdout, _stderr) => {
         if(error){
+          log.error("AWS Error:"+ error)
           log.info(consts.messages.awsAccesKey)
           reject(error);
           process.exit(1)

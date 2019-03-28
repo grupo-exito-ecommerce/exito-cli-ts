@@ -11,9 +11,8 @@ export const saveCredentials = function(credentials: Credentials) {
       path.join(__dirname, "../../../../../config.json"),
       JSON.stringify({ user: credentials }, null, 2),
       "utf8",
-      (e: any) => {
+      () => {
         // error handling and whatever
-        log.debug(e);
         return false;
       }
     );
@@ -23,19 +22,18 @@ export const saveCredentials = function(credentials: Credentials) {
   }
 };
 
-export default async (options: any) => {
+export default async (username: string,password:string) => {
   try {
-    console.log(options);
-    // let user: Credentials = {
-    //   username: username,
-    //   pwd: pwd
-    // };
-    // let credentials = await saveCredentials(user);
-    // if (credentials) {
-    //   log.info("Your credentials has ven saved");
-    // } else {
-    //   log.error("Error on save your credentials");
-    // }
+    let user: Credentials = {
+      username: username,
+      pwd: password
+    };
+    let credentials = await saveCredentials(user);
+    if (credentials) {
+      log.info("Your credentials has ven saved");
+    } else {
+      log.error("Error on save your credentials");
+    }
   } catch (e) {
     log.debug(e);
   }
