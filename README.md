@@ -13,7 +13,6 @@ Comandos disponibles:
 ```bash
 
 $ exito
-
   Usage: exito <command> [options]
 
   Commands:
@@ -29,6 +28,7 @@ $ exito
     aws clone <criteria> [all]      Clone specific list of projectos from aws, if your add the option <all>, this automatical download all projects found with the specific <criteria>
 
     generate                          Generate options for the project
+    generate vtexjson                 Create the json file config of vtex
     generate workspaces               Create the workspaces config for develops
     generate config                   Get the last config  for projects
     generate docker <repository>      Create the docker file for aws code-build for build the proyect in environment production and dev

@@ -1,6 +1,6 @@
 {
   "name": "exito",
-  "version": "2.0.15",
+  "version": "2.0.19",
   "description": "Cli for vtex integration",
   "main": "lib/src/index.js",
   "bin": "lib/src/index.js",
@@ -36,6 +36,7 @@
     "@types/request": "^2.48.1",
     "@types/update-notifier": "^2.5.0",
     "axios": "^0.18.0",
+    "configstore": "^4.0.0",
     "nodemon": "^1.18.10",
     "tslint": "^5.12.0",
     "typescript": "^3.3.3"
@@ -44,7 +45,6 @@
     "ncp": "^2.0.0",
     "bluebird": "^3.5.0",
     "chalk": "^2.4.1",
-    "configstore": "^4.0.0",
     "findhelp": "^1.0.4",
     "fs-extra": "^7.0.0",
     "inquirer": "^6.2.1",

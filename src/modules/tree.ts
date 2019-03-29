@@ -36,6 +36,11 @@ export default {
   },
   generate: {
     description: 'Generate options for the project',
+    vtexjson: {
+      alias: 'v',
+      description: 'Create the json file config of vtex',
+      handler: './generate/create-vtex-json/create-vtex-json'
+    },
     workspaces: {
       alias: 'w',
       description: 'Create the workspaces config for develops',
