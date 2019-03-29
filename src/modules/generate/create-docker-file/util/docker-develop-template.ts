@@ -19,6 +19,6 @@ export const developDocker = () => {
   RUN ls
   RUN exito generate vtexjson
   RUN exito vtex login exito demoauth mrestrepoa@grupo-exito.com --verbose
-  RUN use develop
-  RUN exito vtex link all --verbose
+  RUN vtex use develop
+  RUN exito vtex run link all --verbose
   RUN echo "Finsih proccess, component link in the workspace develop"`};
