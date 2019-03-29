@@ -15,7 +15,7 @@ export const runOnlyCommand = (command: string): Promise<string> => {
     // Método para imprimir el log de error
     task.stderr!.on('data', function (data: string) {
       log.info(data.toString());
-      reject(data.toString())
+      reject(false)
       process.exit(1)
     });
   })
