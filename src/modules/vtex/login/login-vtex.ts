@@ -7,7 +7,7 @@ let fs = require('fs');
 
 const getAuth = async () => {
   try {
-    return await axios.get('https://exito.myvtex.com/exito/token')
+    return await axios.get('https://demoauth--exito.myvtex.com/exito/token')
   } catch (error) {
     console.error(error)
   }
