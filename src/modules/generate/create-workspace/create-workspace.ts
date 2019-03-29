@@ -1,7 +1,7 @@
-import log from '../../../shared/logger';
+import { childProcessRunCommand } from './../../../shared/util/child-process-run-command';
+import log from './../../../shared/logger';
 import inquirer from 'inquirer';
-import { consts } from '../../../shared/constants';
-import { childProcessRunCommand } from '../util/child-process-run-command';
+import { consts } from './../../../shared/constants';
 
 interface QuestionModel {
   develop: string;

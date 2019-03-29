@@ -1,5 +1,5 @@
-import log from '../../../shared/logger';
-import { childProcessRunCommand } from '../util/child-process-run-command';
+import { childProcessRunCommand } from './../../../../shared/util/child-process-run-command';
+import log from './../../../../shared/logger';
 
 export default async function() {
   log.info('Loading publish component process');

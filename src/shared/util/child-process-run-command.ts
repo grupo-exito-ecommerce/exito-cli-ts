@@ -1,4 +1,4 @@
-import log from '../../../shared/logger';
+import log from '../../shared/logger';
 import { spawn } from 'child_process';
 
 export const childProcessRunCommand = function(command: string) {

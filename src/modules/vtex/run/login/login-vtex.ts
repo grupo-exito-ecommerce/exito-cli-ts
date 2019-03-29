@@ -1,7 +1,7 @@
-import { consts } from './../../../shared/constants';
-import { ConfigVtexJson } from './../../../shared/models/global';
-import log from '../../../shared/logger';
-import { runOnlyCommand } from '../util/run-command-child-process';
+import { consts } from './../../../../shared/constants';
+import { ConfigVtexJson } from './../../../../shared/models/global';
+import log from './../../../../shared/logger';
+import { runOnlyCommand } from './../../util/run-command-child-process';
 import { getConfigTemplate } from './util/config-template';
 const axios = require('axios')
 let fs = require('fs');
@@ -10,7 +10,8 @@ const chalk = require('chalk');
 // Call to get auth information
 const getAuth = async () => {
   try {
-    return await axios.get(consts.authtoken)
+    log.debug(consts.authtoken+`?config=${Math.floor((Math.random() * 10) + 1)}`)
+    return await axios.get(consts.authtoken+`?config=${Math.floor((Math.random() * 10) + 1)}`)
   } catch (error) {
     console.error(error)
   }

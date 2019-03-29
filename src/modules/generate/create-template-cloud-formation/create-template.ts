@@ -1,6 +1,7 @@
 import { consts } from './../../../shared/constants';
-import log from '../../../shared/logger';
+import log from './../../../shared/logger';
 import { getTemplateContent } from './get-template';
+import { CreateTemplate } from './../../../shared/models/global';
 let fs = require('fs');
 const {
   configDir,
@@ -15,8 +16,6 @@ const {
   branchMaster
 } = consts.aws_template;
 const dirname = process.cwd() + `/${configDir}`;
-
-import { CreateTemplate } from './../../../shared/models/global';
 
 /**
  * Este archivo realiza la creación de la estructura base para el tema de la aplicación.

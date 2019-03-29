@@ -20,13 +20,18 @@ $ exito
 
     init        Create basic files and folders for your VTEX app
 
+    credentials                              Manage your credentials for aws
+    credentials get                          Gets the current credentials used in aws
+    credentials clear                        Clear the current credentials used in aws
+    credentials set <username> <pwd>         Sets the current credentials for aws
+
     aws                             Vtex options
     aws clone <criteria> [all]      Clone specific list of projectos from aws, if your add the option <all>, this automatical download all projects found with the specific <criteria>
-    aws credentials                 Manage your credentials for aws
 
     generate                          Generate options for the project
     generate workspaces               Create the workspaces config for develops
     generate config                   Get the last config  for projects
+    generate docker <repository>      Create the docker file for aws code-build for build the proyect in environment production and dev
     generate template <repository>    Create the template for aws cloud-formation for mount the infra structure for continuos integration
 
     vtex                                           Vtex options

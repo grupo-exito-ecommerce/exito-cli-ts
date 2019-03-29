@@ -1,4 +1,4 @@
-import { ConfigVtexJson } from './../../../../shared/models/global';
+import { ConfigVtexJson } from './../../../../../shared/models/global';
 
 export const getConfigTemplate = (options: ConfigVtexJson) => {
   return `{

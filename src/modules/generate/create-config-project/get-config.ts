@@ -1,6 +1,6 @@
 import { consts } from './../../../shared/constants';
 import { download } from './../../github/init/git';
-import log from '../../../shared/logger';
+import log from './../../../shared/logger';
 
 export default async () => {
   try {

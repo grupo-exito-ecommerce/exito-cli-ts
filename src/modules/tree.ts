@@ -1,5 +1,23 @@
 export default {
-
+  credentials: {
+    description: 'Manage your credentials for aws',
+    get: {
+      alias: 'g',
+      description: 'Gets the current credentials used in aws',
+      handler: './aws/config/get-credentials'
+    },
+    clear: {
+      alias: 'c',
+      description: 'Clear the current credentials used in aws',
+      handler: './aws/config/clear-credentials'
+    },
+    set: {
+      alias: 's',
+      description: 'Sets the current credentials for aws',
+      handler: './aws/config/set-credentials',
+      requiredArgs: ['username', 'pwd']
+    }
+  },
   aws: {
     description: 'Vtex options',
     clone: {
@@ -9,25 +27,6 @@ export default {
       handler: './aws/clone/clone-projects',
       requiredArgs: 'criteria',
       optionalArgs: ['all']
-    },
-    credentials: {
-      description: 'Manage your credentials for aws',
-      get: {
-        alias: 'g',
-        description: 'Gets the current credentials used in aws',
-        handler: './aws/config/get-credentials'
-      },
-      clear: {
-        alias: 'c',
-        description: 'Clear the current credentials used in aws',
-        handler: './aws/config/clear-credentials'
-      },
-      set: {
-        alias: 's',
-        description: 'Sets the current credentials for aws',
-        handler: './aws/config/set-credentials',
-        requiredArgs: ['username', 'pwd']
-      }
     }
   },
   init: {
@@ -40,18 +39,25 @@ export default {
     workspaces: {
       alias: 'w',
       description: 'Create the workspaces config for develops',
-      handler: './vtex/create-workspace/create-workspace'
+      handler: './generate/create-workspace/create-workspace'
     },
     config: {
       alias: 'c',
       description: 'Get the last config  for projects',
-      handler: './vtex/create-config-project/get-config'
+      handler: './generate/create-config-project/get-config'
+    },
+    docker: {
+      alias: 'd',
+      description:
+        'Create the docker file for aws code-build for build the proyect in environment production and dev',
+      handler: './generate/create-docker-file/create-docker-file',
+      requiredArgs: ['repository']
     },
     template: {
       alias: 't',
       description:
         'Create the template for aws cloud-formation for mount the infra structure for continuos integration',
-      handler: './vtex/create-template-cloud-formation/create-template',
+      handler: './generate/create-template-cloud-formation/create-template',
       requiredArgs: ['repository']
     }
   },
@@ -61,7 +67,7 @@ export default {
       alias: 'v',
       description:
         'Execute specific command from vtex, the current commands suport is: <link>, <publish>',
-      handler: './vtex/run-command/run-command',
+      handler: './vtex/run/run-command/run-command',
       requiredArgs: 'command',
       optionalArgs: ['all']
     },
@@ -69,13 +75,13 @@ export default {
       alias: 'p',
       description:
         'Publish only one component into Vtex, This process create one ramdon workspace in Vtex and publish the component located in the current folder',
-      handler: './vtex/publish-component/publish-component'
+      handler: './vtex/run/publish-component/publish-component'
     },
     login: {
       alias: 'l',
       description:
         'Set credentials for vtex in the config file from vtex',
-      handler: './vtex/login/login-vtex',
+      handler: './vtex/run/login/login-vtex',
       requiredArgs: ['account', 'workspace', 'email']
     }
   },
