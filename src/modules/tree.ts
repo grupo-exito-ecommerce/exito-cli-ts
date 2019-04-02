@@ -29,6 +29,15 @@ export default {
       optionalArgs: ['all']
     }
   },
+  infra: {
+    description: 'Vtex options',
+    update: {
+      alias: 'c',
+      description:
+        'Update the continuous integration and commit the changes.',
+      handler: './aws/infra/update-infra/update-infra'
+    }
+  },
   init: {
     alias: 'i',
     description: 'Create basic files and folders for your VTEX app',
@@ -54,7 +63,7 @@ export default {
     docker: {
       alias: 'd',
       description:
-        'Create the docker file for aws code-build for build the proyect in environment production and dev',
+        'Create the docker file for aws code-build for build the proyect in environment production (prod) and develop (dev)',
       handler: './generate/create-docker-file/create-docker-file',
       requiredArgs: ['environment']
     },
