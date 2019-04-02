@@ -10,11 +10,22 @@ const chalk = require('chalk');
 // Call to get auth information
 const getAuth = async () => {
   try {
-    log.debug(consts.authtoken+`?config=${Math.floor((Math.random() * 10) + 1)}`)
-    return await axios.get(consts.authtoken+`?config=${Math.floor((Math.random() * 10) + 1)}`)
+    log.debug(consts.authtoken+`?config=${makeid()}`)
+    return await axios.get(consts.authtoken+`?config=${makeid()}`)
   } catch (error) {
     console.error(error)
   }
+}
+
+function makeid() {
+  var text = '';
+  var possible =
+    'abcdefghijklmnopqrstuvwxyz';
+
+  for (var i = 0; i < 5; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
 }
 
 export default async function (account: string, workspace: string, email: string) {

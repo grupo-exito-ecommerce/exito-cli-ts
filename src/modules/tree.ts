@@ -56,7 +56,7 @@ export default {
       description:
         'Create the docker file for aws code-build for build the proyect in environment production and dev',
       handler: './generate/create-docker-file/create-docker-file',
-      requiredArgs: ['repository']
+      requiredArgs: ['environment']
     },
     template: {
       alias: 't',
