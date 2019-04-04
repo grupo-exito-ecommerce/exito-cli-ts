@@ -7,6 +7,7 @@ import { getDirectories, getContentFiles } from './../../util/fs';
 import { getListProyects } from './../../util/get-order-dependencies';
 import { findDependency } from './../../util/find-dependencies';
 import { executeCommands } from './../../util/execute-commands';
+import chalk from "chalk";
 
 // variable que indica donde se encuentan los archivos a emplear
 let directory: string = '';
@@ -40,7 +41,7 @@ export default async (command: string, all: string) => {
 
 // Método que se encarga de buscar un proyecto en el directorio actual
 export const searchProjectCurrentDirectory = async (all: string) => {
-  log.info('Use the current location for search one project');
+  log.debug('Use the current location for search one project');
   let response = await findProjectContnet([directory], all);
   if (!response) {
     // obtengo todos los nombres de las carpetas dentro del directorio indicado
@@ -69,7 +70,7 @@ export const findProjectContnet = async (files: Array<string>, all: string) => {
     }
 
     // busco la dependencia en el manifest y paso toda su información de manifest
-    log.info(`You have ${dependenciesList.length} dependencies to link`);
+    log.info(`You have ${chalk.greenBright(`${dependenciesList.length}`)} proyects to link`);
 
     let dependenciesToUse = dependenciesList;
 
@@ -87,7 +88,7 @@ export const findProjectContnet = async (files: Array<string>, all: string) => {
       executeCommands(options);
     }
   } else {
-    log.warn(`No dependencies found in the current location`);
+    log.debug(`No dependencies found in the current location`);
     return false;
   }
 };

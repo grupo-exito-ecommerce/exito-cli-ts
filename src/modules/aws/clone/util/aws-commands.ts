@@ -11,12 +11,12 @@ import log from "../../../../shared/logger";
  *  Método para obtener la lista de repositorios disponibles en aws
  */
 export const getProjectDirectory = (): Promise<ProjectList> => {
-  return new Promise(function(fulfill, reject) {
+  return new Promise(function (fulfill, reject) {
     try {
       let result: ProjectList;
-      exec(`aws codecommit list-repositories`, (error, stdout, _stderr) => {
-        if(error){
-          log.error("AWS Error:"+ error)
+      exec(consts.aws.command_list_repositories, (error, stdout, _stderr) => {
+        if (error) {
+          log.error("AWS Error:" + error)
           log.info(consts.messages.awsAccesKey)
           reject(error);
           process.exit(1)
@@ -34,13 +34,13 @@ export const getProjectDirectory = (): Promise<ProjectList> => {
 export const getProjectInformation = (
   projectName: string
 ): Promise<RepositoryMetadataResponse> => {
-  return new Promise(function(fulfill, reject) {
+  return new Promise(function (fulfill, reject) {
     try {
       let result: RepositoryMetadataResponse;
       exec(
-        `aws codecommit get-repository --repository-name ${projectName}`,
+        `${consts.aws.command_get_repositories} ${projectName}`,
         (error, stdout, _stderr) => {
-          if(error){
+          if (error) {
             log.info(consts.messages.awsAccesKey)
             reject(error);
             process.exit(1)
@@ -57,7 +57,7 @@ export const getProjectInformation = (
 };
 
 export const cloneProject = (options: RepositoryOptions) => {
-  return new Promise(function(fulfill, reject) {
+  return new Promise(function (fulfill, reject) {
     try {
       log.info(`Cloning ${options.project.repositoryMetadata.cloneUrlHttp}`);
       const repositorie = options.project.repositoryMetadata.cloneUrlHttp.replace(
@@ -66,9 +66,9 @@ export const cloneProject = (options: RepositoryOptions) => {
       );
 
       const task = spawn(
-        `cd ${options.path} && git clone https://${
-          options.credentials.username
-        }:${options.credentials.pwd}@${repositorie} -b master `,
+        `cd ${options.path} && ${consts.git.command_clone} https://${
+        options.credentials.username
+        }:${options.credentials.pwd}@${repositorie} ${consts.git.command_default_branch_clone} `,
         [],
         { shell: true }
       );

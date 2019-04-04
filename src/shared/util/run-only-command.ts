@@ -1,4 +1,4 @@
-import log from '../../../shared/logger';
+import log from './../logger';
 import { spawn } from 'child_process';
 
 export const runOnlyCommand = (command: string): Promise<string> => {

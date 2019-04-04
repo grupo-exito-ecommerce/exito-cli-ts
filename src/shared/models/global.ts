@@ -64,7 +64,7 @@ export interface RepositoryMetadata {
 }
 
 export interface RepositoryOptions {
-  credentials: Credentials;
+  credentials: AwsCredentials;
   project: {
     repositoryMetadata: RepositoryMetadata;
   };
@@ -79,7 +79,7 @@ export interface RepositoryList {
   selected: boolean;
 }
 
-export interface Credentials {
+export interface AwsCredentials {
   username: string;
   pwd: string;
 }
@@ -87,7 +87,7 @@ export interface Credentials {
 export interface AwsState {
   path: string;
   criteria: string;
-  credentials: Credentials;
+  credentials: AwsCredentials;
   projectList: ProjectList;
 }
 
@@ -100,7 +100,7 @@ export interface OptionsCommand {
   path: string;
   commands: string;
   position: number;
-  credentials: Credentials;
+  credentials: AwsCredentials;
   projectList: Array<RepositoryList>;
 }
 
@@ -138,7 +138,7 @@ export interface CreateTemplate {
 }
 
 export interface ConfigVtexJson {
-  login:string;
+  login: string;
   authToken: string;
   account: string;
   workspase: string;

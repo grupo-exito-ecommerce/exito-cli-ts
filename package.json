@@ -1,6 +1,6 @@
 {
   "name": "exito",
-  "version": "2.0.22",
+  "version": "2.0.24",
   "description": "Cli for vtex integration",
   "main": "lib/src/index.js",
   "bin": "lib/src/index.js",
@@ -47,7 +47,7 @@
     "chalk": "^2.4.1",
     "findhelp": "^1.0.4",
     "fs-extra": "^7.0.0",
-    "inquirer": "^6.2.1",
+    "inquirer": "^6.2.2",
     "inquirer-prompt-suggest": "^0.1.0",
     "lodash": "4.17.11",
     "moment": "^2.23.0",

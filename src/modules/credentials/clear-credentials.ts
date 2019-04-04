@@ -1,6 +1,6 @@
-import log from "../../../shared/logger";
+import log from "../../shared/logger";
 import inquirer from "inquirer";
-import { setCredentials } from "./util/set-credentials";
+import { clear } from "../../conf";
 
 export default async () => {
   let questions = [
@@ -15,12 +15,8 @@ export default async () => {
   inquirer.prompt(questions).then(async answers => {
     let result: any = answers;
     if (result.confirm) {
-      let response = await setCredentials();
-      if (response) {
-        log.info("Credentials has been removed");
-      } else {
-        log.error("Error on removed credentilas");
-      }
+      clear();
+      log.info("Credentials has been removed");
     }
   });
 };

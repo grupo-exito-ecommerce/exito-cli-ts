@@ -4,17 +4,17 @@ export default {
     get: {
       alias: 'g',
       description: 'Gets the current credentials used in aws',
-      handler: './aws/config/get-credentials'
+      handler: './credentials/get-credentials'
     },
     clear: {
       alias: 'c',
       description: 'Clear the current credentials used in aws',
-      handler: './aws/config/clear-credentials'
+      handler: './credentials/clear-credentials'
     },
     set: {
       alias: 's',
       description: 'Sets the current credentials for aws',
-      handler: './aws/config/set-credentials',
+      handler: './credentials/set-credentials',
       requiredArgs: ['username', 'pwd']
     }
   },

@@ -1,8 +1,8 @@
 import { consts } from './../../../../shared/constants';
 import { ConfigVtexJson } from './../../../../shared/models/global';
 import log from './../../../../shared/logger';
-import { runOnlyCommand } from './../../util/run-command-child-process';
 import { getConfigTemplate } from './util/config-template';
+import { runOnlyCommand } from '../../../../shared/util/run-only-command';
 const axios = require('axios')
 let fs = require('fs');
 const chalk = require('chalk');
