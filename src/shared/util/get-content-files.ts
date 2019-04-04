@@ -1,6 +1,6 @@
-import { ContentManifest } from '../../../shared/models/global';
+import { ContentManifest } from '../../shared/models/global';
 import { resolve } from 'path';
-import log from '../../../shared/logger';
+import log from '../../shared/logger';
 const fs = require('fs');
 const path = require('path');
 
@@ -15,7 +15,7 @@ export const getDirectories = (srcpath: string): Promise<Array<string>> => {
 
 // Método que permite traer el contenido de todos los directorios indicados
 export const getContentFiles = async (
-  files: any
+  files: Array<string>
 ): Promise<Array<ContentManifest>> => {
   await files.forEach(async (file: any) => {
     await getContent(resolve(file));
@@ -25,7 +25,7 @@ export const getContentFiles = async (
 };
 
 // Metodo que trae el contenido de un directorio indicado
-const getContent = async (dir: string) => {
+export const getContent = async (dir: string) => {
   try {
     if (fs.existsSync(`${dir}/manifest.json`)) {
       // Do something

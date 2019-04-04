@@ -1,8 +1,8 @@
 import log from "../../../../../shared/logger";
-import { getDirectories } from "../../../../vtex/util/fs";
 import fs from 'fs';
 import chalk from "chalk";
 import { choiseFolders } from "./choise-folders";
+import { getDirectories } from "../../../../../shared/util/get-content-files";
 
 export const readDirectory = async (directory: string) => {
     log.debug("Read current directory to find .git folder")

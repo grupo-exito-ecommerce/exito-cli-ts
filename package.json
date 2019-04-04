@@ -42,15 +42,15 @@
     "typescript": "^3.3.3"
   },
   "dependencies": {
-    "ncp": "^2.0.0",
     "bluebird": "^3.5.0",
     "chalk": "^2.4.1",
     "findhelp": "^1.0.4",
-    "fs-extra": "^7.0.0",
+    "fs-extra": "^7.0.1",
     "inquirer": "^6.2.2",
     "inquirer-prompt-suggest": "^0.1.0",
     "lodash": "4.17.11",
     "moment": "^2.23.0",
+    "ncp": "^2.0.0",
     "pipe-streams-to-promise": "^0.2.0",
     "ramda": "^0.25.0",
     "request": "^2.83.0",

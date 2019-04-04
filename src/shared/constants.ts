@@ -6,7 +6,11 @@ export const consts = {
   github_account: 'grupo-exito-ecommerce',
   config_repository: 'exito-vtex-config',
   authtoken: 'https://demoauth--exito.myvtex.com/exito/token',
-  git:{
+  exito: {
+    command_generate_config: 'exito generate config',
+    command_generate_tempalte: 'exito generate template'
+  },
+  git: {
     namefeature: 'feature/aws-infra-update-exito-cli',
     command_create_feature: 'git checkout -b',
     command_clone: 'git clone',

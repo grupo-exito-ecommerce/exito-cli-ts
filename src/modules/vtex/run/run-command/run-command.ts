@@ -3,11 +3,11 @@ import {
   ContentManifest
 } from './../../../../shared/models/global';
 import log from './../../../../shared/logger';
-import { getDirectories, getContentFiles } from './../../util/fs';
 import { getListProyects } from './../../util/get-order-dependencies';
 import { findDependency } from './../../util/find-dependencies';
 import { executeCommands } from './../../util/execute-commands';
 import chalk from "chalk";
+import { getDirectories, getContentFiles } from '../../../../shared/util/get-content-files';
 
 // variable que indica donde se encuentan los archivos a emplear
 let directory: string = '';

@@ -3,6 +3,7 @@ export interface ContentManifest {
   name: string;
   path: string;
   dependencies: ContentDependencies;
+  version: string;
 }
 
 export interface OptRunCommand {

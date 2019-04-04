@@ -4,14 +4,18 @@ import { runOnlyCommand } from "../../../../../shared/util/run-only-command";
 
 export const createGitFeature = async (directory: Array<string>) => {
     log.info('Creating feature git')
-    console.log(directory.length)
-    directory.map(item => {
-        createFeatureBranch(item);
-    })
+    return Promise.all(directory.map(async (item) => {
+        await createFeatureBranch(item);
+    }))
 }
 
-
-const createFeatureBranch = (directory: string) => {
-    const command = `cd ${directory} &&  ${consts.git.command_create_feature} ${consts.git.namefeature}`
-    runOnlyCommand(command)
+// Método que permite crear el feature en el proyecto indicado.
+const createFeatureBranch = async (directory: string) => {
+    try {
+        const command = `cd ${directory} &&  ${consts.git.command_create_feature} ${consts.git.namefeature}`
+        const response = await runOnlyCommand(command)
+        return response
+    } catch (error) {
+        return false
+    }
 }
