@@ -7,7 +7,7 @@ import { getListProyects } from './../../util/get-order-dependencies';
 import { findDependency } from './../../util/find-dependencies';
 import { executeCommands } from './../../util/execute-commands';
 import chalk from "chalk";
-import { getDirectories, getContentFiles } from '../../../../shared/util/get-content-files';
+import { getDirectories, getManifestsContent } from '../../../../shared/util/get-content-files';
 
 // variable que indica donde se encuentan los archivos a emplear
 let directory: string = '';
@@ -57,7 +57,7 @@ export const searchProjectCurrentDirectory = async (all: string) => {
 
 export const findProjectContnet = async (files: Array<string>, all: string) => {
   // si hay directorios, paso a buscar el archivo manifest.json y obtener su contenido
-  manifests = await getContentFiles(files);
+  manifests = await getManifestsContent(files);
 
   // Obtengo el orden en que se van a compilar las dependencias
   dependenciesList = await getListProyects(manifests);

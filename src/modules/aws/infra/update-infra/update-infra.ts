@@ -1,15 +1,17 @@
-import { createGitFeature } from './util/create-git-feature';
+import { createGitFeature } from "./util/create-git-feature";
 import log from "../../../../shared/logger";
 import { readDirectory } from "./util/read-directory";
-import { updateConfigContinuosIntegration } from './util/update-continuos-integration';
-import { incrementVersion } from './util/increment-version';
+import { updateConfigContinuosIntegration } from "./util/update-continuos-integration";
+import { incrementVersion } from "./util/increment-version";
+// import { pushChanges } from './util/push-changes';
 
 export default async () => {
-    const directory = process.cwd() + '/';
+  const directory = process.cwd() + "/";
 
-    // 1. Leer el directorio actual y obtener los proyectos disponibles con la carpeta .git
-    const currentDirectory: Array<string> = await readDirectory(directory);
+  // 1. Leer el directorio actual y obtener los proyectos disponibles con la carpeta .git
+  const currentDirectory: Array<string> = await readDirectory(directory);
 
+  if (currentDirectory.length) {
     // 2. Entrar en cada directorio y crear la configuración de feature/infra-update-cli
     await createGitFeature(currentDirectory);
 
@@ -20,14 +22,8 @@ export default async () => {
     await incrementVersion(currentDirectory);
 
     // 5. Realizar push y integrar al master o develop
-    pushChanges();
+    // await pushChanges(currentDirectory);
 
-}
-
-
-
-const pushChanges = () => {
-    log.info("Push changes")
-}
-
-
+    log.info("Infra update!! :)");
+  }
+};

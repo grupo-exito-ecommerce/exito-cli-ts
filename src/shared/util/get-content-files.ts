@@ -14,18 +14,27 @@ export const getDirectories = (srcpath: string): Promise<Array<string>> => {
 };
 
 // Método que permite traer el contenido de todos los directorios indicados
-export const getContentFiles = async (
+export const getManifestsContent = async (
   files: Array<string>
 ): Promise<Array<ContentManifest>> => {
   await files.forEach(async (file: any) => {
-    await getContent(resolve(file));
+    await getInformation(resolve(file));
   });
 
   return manifests;
 };
 
+
+// Método que permite traer el contenido de un solo directorio
+export const getManifestContent = async (
+  directory: string
+): Promise<ContentManifest> => {
+    await getInformation(resolve(directory));
+  return manifests[0];
+};
+
 // Metodo que trae el contenido de un directorio indicado
-export const getContent = async (dir: string) => {
+export const getInformation = async (dir: string) => {
   try {
     if (fs.existsSync(`${dir}/manifest.json`)) {
       // Do something
