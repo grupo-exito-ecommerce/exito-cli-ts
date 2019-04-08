@@ -16,7 +16,8 @@ export const productionDocker = () => {
     RUN vtex --version
     RUN exito --version
     RUN ls
-    RUN exito generate vtexjson
-    RUN exito vtex login exito demoauth mrestrepoa@grupo-exito.com --verbose
+    RUN exito generate vtex_json
+    RUN exito vtex set_vendor exito
+    RUN exito vtex login exito master mrestrepoa@grupo-exito.com --verbose
     RUN exito run publish --verbose
 `};
