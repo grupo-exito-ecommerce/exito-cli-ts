@@ -66,6 +66,13 @@ export default {
       handler: "./generate/create-docker-file/create-docker-file",
       requiredArgs: ["environment"]
     },
+    sonar: {
+      alias: "s",
+      description:
+        "Create the sonar file for test",
+      handler: "./generate/create-sonar-file/create-sonar-file",
+      requiredArgs: ["repository"]
+    },
     template: {
       alias: "t",
       description:

@@ -31,10 +31,11 @@ Usage: exito <command> [options]
     infra update      Update the continuous integration and commit the changes.
 
     generate                           Generate options for the project
-    generate vtex_json                  Create the json file config of vtex
+    generate vtex_json                 Create the json file config of vtex
     generate workspaces                Create the workspaces config for develops
     generate config                    Get the last config  for projects
     generate docker <environment>      Create the docker file for aws code-build in environment production (prod) and develop (dev)
+    generate sonar <repository>        Create the sonar file for test
     generate template <repository>     Create the template for aws cloud-formation for mount the infra structure for continuos integration
 
     vtex                                           Vtex options

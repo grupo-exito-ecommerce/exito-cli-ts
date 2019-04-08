@@ -1,4 +1,4 @@
-import { CreateTemplate } from './../../../shared/models/global';
+import { CreateTemplate } from './../../../../shared/models/global';
 
 export const getTemplateContent = (options: CreateTemplate) => {
   return `{

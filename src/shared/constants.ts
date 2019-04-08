@@ -10,6 +10,7 @@ export const consts = {
   authtoken: "--exito.myvtex.com/exito/token",
   exito: {
     command_generate_config: "exito generate config",
+    command_generate_sonar: "exito generate sonar",
     command_generate_tempalte: "exito generate template"
   },
   git: {
@@ -30,6 +31,7 @@ export const consts = {
   // configuration aws cloud-formation for vtex
   aws_template: {
     configDir: "config",
+    sonarDir: "sonar",
     cloudFormationDir: "cloud-formation",
     themeDevelop: "develop-template",
     themeMaster: "master-template",

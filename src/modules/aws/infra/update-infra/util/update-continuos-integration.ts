@@ -16,6 +16,9 @@ export const updateConfigContinuosIntegration = (directory: Array<string>) => {
 
       // 3. Creo el template de aws.
       await createTemplateFiles(item);
+
+      // 4. Creo el archivo de sonar
+      await createSonarFiles(item);
     })
   );
 };
@@ -30,6 +33,16 @@ const createConfigFolder = async (directory: string) => {
 const deletConfigFolder = async (directory: string) => {
   log.debug("deleting current folder.");
   return await deleteFolderRecursive(directory + "/config");
+};
+
+const createSonarFiles = async (directory: string) => {
+  log.debug("creating sonar configuration.");
+  const repositoryName = await getRepositoryName(directory);
+  return await runOnlyCommand(
+    `cd ${directory} && ${
+      consts.exito.command_generate_sonar
+    } ${repositoryName}`
+  );
 };
 
 const createTemplateFiles = async (directory: string) => {

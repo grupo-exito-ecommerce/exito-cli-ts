@@ -1,6 +1,6 @@
 import { consts } from './../../../shared/constants';
 import log from './../../../shared/logger';
-import { getTemplateContent } from './get-template';
+import { getTemplateContent } from './util/get-template';
 import { CreateTemplate } from './../../../shared/models/global';
 let fs = require('fs');
 const {
