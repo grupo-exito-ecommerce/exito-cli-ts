@@ -44,7 +44,7 @@ export default {
   },
   generate: {
     description: "Generate options for the project",
-    vtexjson: {
+    vtex_json: {
       alias: "v",
       description: "Create the json file config of vtex",
       handler: "./generate/create-vtex-json/create-vtex-json"
