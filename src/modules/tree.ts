@@ -23,7 +23,7 @@ export default {
     clone: {
       alias: "c",
       description:
-        "Clone specific list of projectos from aws, if your add the option <all>, this automatical download all projects found with the specific <criteria>",
+        "Clone specific list of projectos from aws, if your add the option <all>",
       handler: "./aws/clone/clone-projects",
       requiredArgs: "criteria",
       optionalArgs: ["all"]
@@ -62,7 +62,7 @@ export default {
     docker: {
       alias: "d",
       description:
-        "Create the docker file for aws code-build for build the proyect in environment production (prod) and develop (dev)",
+        "Create the docker file for aws code-build in environment production (prod) and develop (dev)",
       handler: "./generate/create-docker-file/create-docker-file",
       requiredArgs: ["environment"]
     },

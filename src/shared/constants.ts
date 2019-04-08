@@ -15,7 +15,7 @@ export const consts = {
   git: {
     namefeature: "feature/aws-infra-update-exito-cli",
     command_create_feature: "git checkout -b",
-    command_push_changes: `git add . && git commit -m "exito cli update infra, version ${getCurrenVersion()}" && git push`,
+    command_push_changes: `git add . && git commit -m "exito cli update infra, version ${getCurrenVersion()}" && git push --set-upstream origin feature/aws-infra-update-exito-cli`,
     command_clone: "git clone",
     command_default_branch_clone: "-b master"
   },

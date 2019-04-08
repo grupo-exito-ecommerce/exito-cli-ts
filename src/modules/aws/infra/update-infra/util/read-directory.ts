@@ -11,7 +11,7 @@ export const readDirectory = async (directory: string) => {
 
   // filter the directory to find .git folder
   let filter: Array<string> = currentDirectory.filter(
-    (item: string) => fs.existsSync(item + "/.git") == true
+    (item: string) => fs.existsSync(item + "/.git") == true && fs.existsSync(item + "/manifest.json") == true
   );
 
   // print log info

@@ -3,7 +3,7 @@ import log from "../../../../shared/logger";
 import { readDirectory } from "./util/read-directory";
 import { updateConfigContinuosIntegration } from "./util/update-continuos-integration";
 import { incrementVersion } from "./util/increment-version";
-// import { pushChanges } from './util/push-changes';
+import { pushChanges } from './util/push-changes';
 
 export default async () => {
   const directory = process.cwd() + "/";
@@ -22,7 +22,7 @@ export default async () => {
     await incrementVersion(currentDirectory);
 
     // 5. Realizar push y integrar al master o develop
-    // await pushChanges(currentDirectory);
+    await pushChanges(currentDirectory);
 
     log.info("Infra update!! :)");
   }

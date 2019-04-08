@@ -14,9 +14,17 @@ export const pushChanges = async (directory: Array<string>) => {
 // Método que permite hacer push y un merge a develop y master
 const pushChangesAndMerge = async (directory: string) => {
   try {
-    const command = `cd ${directory} &&  ${consts.git.command_push_changes} `;
-    const response = await runOnlyCommand(command);
-    return response;
+    // comandos empleados para realizar el push
+    const pushChanges = `cd ${directory} &&  ${
+      consts.git.command_push_changes
+    }`;
+    const command = `${pushChanges}`;
+    await runOnlyCommand(command);
+
+    const mergeChanges = `cd ${directory}  && git checkout develop && git merge origin/feature/aws-infra-update-exito-cli && git push  && git checkout master && git merge origin/develop && git push`;
+    await runOnlyCommand(mergeChanges);
+
+    return true;
   } catch (error) {
     return false;
   }

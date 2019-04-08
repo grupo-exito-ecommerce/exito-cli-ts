@@ -1,18 +1,16 @@
-import { consts } from './../../../shared/constants';
-import { download } from './../../github/init/git';
-import log from './../../../shared/logger';
+import { consts } from "./../../../shared/constants";
+import { download } from "./../../github/init/git";
+import log from "./../../../shared/logger";
 
 export default async () => {
   try {
-    log.info('Generating the last config for your project');
+    log.info("Generating the last config for your project");
     let firstCopy = await move();
     if (firstCopy) {
-      log.info('files config generate succesfully!!');
-    } else {
-      log.error('error on generate files config');
+      log.info("files config generate succesfully!!");
     }
   } catch (error) {
-    log.debug(error);
+    log.error(error);
   }
 };
 
