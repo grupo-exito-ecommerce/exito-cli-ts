@@ -19,7 +19,7 @@ export default {
     }
   },
   aws: {
-    description: "Vtex options",
+    description: "Aws options",
     clone: {
       alias: "c",
       description:
@@ -30,7 +30,7 @@ export default {
     }
   },
   infra: {
-    description: "Vtex options",
+    description: "Proyects infra options",
     update: {
       alias: "c",
       description: "Update the continuous integration and commit the changes.",

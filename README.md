@@ -24,10 +24,10 @@ Usage: exito <command> [options]
     credentials clear                        Clear the current credentials used in aws
     credentials set <username> <pwd>         Sets the current credentials for aws
 
-    aws                             Vtex options
+    aws                             Aws options
     aws clone <criteria> [all]      Clone specific list of projectos from aws, if your add the option <all>
 
-    infra             Vtex options
+    infra             Proyects infra options
     infra update      Update the continuous integration and commit the changes.
 
     generate                           Generate options for the project
