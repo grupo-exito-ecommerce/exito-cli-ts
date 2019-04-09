@@ -19,21 +19,24 @@ export default async (
     email: email,
     workspace: workspace
   };
+
   // 1. Create the file in base to the selection 'dev' or 'production
+  log.info(`Creating the docker file ${environemnt}`);
+
   if (environemnt == consts.environment.develop) {
-    log.info(`Create the docker ${environemnt}`);
-    createDevelopDockerFile();
+    await createDevelopDockerFile();
+    log.info("Docker file creation successfully");
   } else if (environemnt == consts.environment.production) {
-    log.info(`Create the docker ${environemnt}`);
-    createMasterDockerFile();
+    await createMasterDockerFile();
+    log.info("Docker file creation successfully");
   } else {
-    log.error("No environment indicate to create the file");
+    log.error("No environment indicate to create the docker file");
   }
 };
 
 const createDevelopDockerFile = async () => {
   try {
-    return fs.writeFile(
+    return fs.writeFileSync(
       `${dirname}/${consts.generate.develop_dockerfile_name}`,
       await developDocker(options),
       function(err: string) {
@@ -49,7 +52,7 @@ const createDevelopDockerFile = async () => {
 
 const createMasterDockerFile = async () => {
   try {
-    return fs.writeFile(
+    return fs.writeFileSync(
       `${dirname}/${consts.generate.master_dockerfile_name}`,
 
       await masterDocker(options),

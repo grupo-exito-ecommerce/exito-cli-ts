@@ -79,6 +79,7 @@ export default async function(
     }
   } else {
     log.error("No token information found.");
+    process.exit(1);
   }
 }
 
@@ -87,7 +88,7 @@ export default async function(
  */
 const overwriteFile = async (dirname: string, options: ConfigVtexJson) => {
   try {
-    console.log(dirname.replace(/\s/g, ""))
+    console.log(dirname.replace(/\s/g, ""));
     // remove white spaces in the path
     return fs.writeFile(
       `${dirname.replace(/\s/g, "")}`,

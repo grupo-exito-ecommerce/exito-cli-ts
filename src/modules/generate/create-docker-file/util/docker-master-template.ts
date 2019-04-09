@@ -25,6 +25,6 @@ RUN exito vtex login ${options.vendor} ${options.workspace} ${
     options.email
   } --verbose
 
-RUN exito vtex run publish --verbose
+RUN exito vtex publish --verbose
 `;
 };
