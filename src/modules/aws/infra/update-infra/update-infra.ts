@@ -30,6 +30,6 @@ export default async () => {
     // 7. Elimino el branch destinado para la actualización de la configuración.
     await deleteGitFeature(currentDirectory);
 
-    log.info("Infra update correctly :)");
+    log.info("Successfully updated configuration :)");
   }
 };

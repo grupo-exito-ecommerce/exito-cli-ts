@@ -1,7 +1,7 @@
+import { getCurrenVersion } from "./../../../../conf";
 import { DockerConfiguration } from "./../../../../shared/models/global";
-import { getCurrenVersion } from "../../../../conf";
 
-export const developDocker = (options: DockerConfiguration) => {
+export const masterDocker = (options: DockerConfiguration) => {
   return `# exito cli version ${getCurrenVersion()}
 FROM node:8
 
@@ -13,17 +13,18 @@ COPY ./ /project
 
 WORKDIR /project
 
-RUN echo "Uploading project in the workspace ${options.workspace}"
+RUN echo "Publish project in the workspace ${
+    options.workspace
+  } with the account ${options.vendor}"
 
 RUN exito generate vtex_json --verbose
+
+RUN exito vtex set_vendor ${options.vendor} --verbose
 
 RUN exito vtex login ${options.vendor} ${options.workspace} ${
     options.email
   } --verbose
 
-RUN exito vtex set_vendor ${options.vendor} --verbose
-
-RUN exito vtex run link all --verbose
-
-RUN echo "Project successfully uploaded in the workspace ${options.workspace}"`;
+RUN exito vtex run publish --verbose
+`;
 };

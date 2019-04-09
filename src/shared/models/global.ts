@@ -144,3 +144,9 @@ export interface ConfigVtexJson {
   account: string;
   workspase: string;
 }
+
+export interface DockerConfiguration{
+  vendor: string
+  email: string
+  workspace: string
+}

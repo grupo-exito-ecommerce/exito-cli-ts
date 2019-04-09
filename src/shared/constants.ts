@@ -8,7 +8,12 @@ export const consts = {
   github_account: "grupo-exito-ecommerce",
   config_repository: "exito-vtex-config",
   authtoken: "--exito.myvtex.com/exito/token",
+  generate: {
+    master_dockerfile_name: "master-cli.dockerfile",
+    develop_dockerfile_name: "develop-cli.dockerfile"
+  },
   exito: {
+    default_src: "src",
     command_generate_config: "exito generate config",
     command_generate_sonar: "exito generate sonar",
     command_generate_tempalte: "exito generate template"

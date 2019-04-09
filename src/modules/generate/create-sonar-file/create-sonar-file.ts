@@ -4,22 +4,29 @@ import log from "./../../../shared/logger";
 import { sonarTemplate } from "./util/sonar-template";
 const { configDir, sonarDir } = consts.aws_template;
 const dirname = process.cwd() + `/${configDir}`;
+const chalk = require("chalk");
 
-export default async (repository: string) => {
-  log.info(`Create the sonar file`);
+export default async (repository: string, version: string, src: string) => {
+  log.info(`Creating the sonar file`);
   try {
     await ensureDirectoryExistence(dirname);
     await ensureDirectoryExistence(dirname + `/${sonarDir}`);
-
-    return fs.writeFile(
+    log.info(
+      `${chalk.blue("name")} ${repository} ${chalk.blue(
+        "version"
+      )} ${version} ${chalk.blue("directory")} ${src}`
+    );
+    await fs.writeFileSync(
       `${dirname}/${sonarDir}/sonar-project.properties`,
-      await sonarTemplate(repository),
+      await sonarTemplate(repository, version, src),
       function(err: string) {
         if (err) {
           throw err;
         }
       }
     );
+
+    log.info("Sonar file created succesfully.");
   } catch (error) {
     log.debug("error" + error);
   }

@@ -64,14 +64,13 @@ export default {
       description:
         "Create the docker file for aws code-build in environment production (prod) and develop (dev)",
       handler: "./generate/create-docker-file/create-docker-file",
-      requiredArgs: ["environment"]
+      requiredArgs: ["environment", "vendor", "workspace", "email"]
     },
     sonar: {
       alias: "s",
-      description:
-        "Create the sonar file for test",
+      description: "Create the sonar file for test",
       handler: "./generate/create-sonar-file/create-sonar-file",
-      requiredArgs: ["repository"]
+      requiredArgs: ["repository", "version", "src"]
     },
     template: {
       alias: "t",
@@ -93,8 +92,7 @@ export default {
     },
     publish: {
       alias: "p",
-      description:
-        "Publish only one component into Vtex",
+      description: "Publish only one component into Vtex",
       handler: "./vtex/run/publish-component/publish-component"
     },
     login: {

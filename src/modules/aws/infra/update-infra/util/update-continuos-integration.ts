@@ -1,31 +1,33 @@
+import { ContentManifest } from "./../../../../../shared/models/global";
 import { consts } from "./../../../../../shared/constants";
 import log from "../../../../../shared/logger";
-import { runOnlyCommand } from "../../../../../shared/util/run-only-command";
+import { runMultipleCommand } from "../../../../../shared/util/run-multiple-command";
+import { getManifestContent } from "../../../../../shared/util/get-content-files";
 const fs = require("fs");
 
 export const updateConfigContinuosIntegration = (directory: Array<string>) => {
   log.info("Update continuos integration config");
 
   return Promise.all(
-    directory.map(async item => {
+    directory.map(async (dir: string) => {
       // 1. Elimino la carpeta config
-      await deletConfigFolder(item);
+      await deletConfigFolder(dir);
 
       // 2. Creo la carpeta config
-      await createConfigFolder(item);
+      await createConfigFolder(dir);
 
       // 3. Creo el template de aws.
-      await createTemplateFiles(item);
+      await createTemplateFiles(dir);
 
       // 4. Creo el archivo de sonar
-      await createSonarFiles(item);
+      await createSonarFiles(dir);
     })
   );
 };
 
 const createConfigFolder = async (directory: string) => {
   log.debug("creating folder config.");
-  return await runOnlyCommand(
+  return await runMultipleCommand(
     `cd ${directory} && ${consts.exito.command_generate_config}`
   );
 };
@@ -38,17 +40,18 @@ const deletConfigFolder = async (directory: string) => {
 const createSonarFiles = async (directory: string) => {
   log.debug("creating sonar configuration.");
   const repositoryName = await getRepositoryName(directory);
-  return await runOnlyCommand(
+  const manifest: ContentManifest = await getManifestContent(directory);
+  return await runMultipleCommand(
     `cd ${directory} && ${
       consts.exito.command_generate_sonar
-    } ${repositoryName}`
+    } ${repositoryName} ${manifest.version} ${consts.exito.default_src}`
   );
 };
 
 const createTemplateFiles = async (directory: string) => {
   log.debug("creating templates for aws.");
   const repositoryName = await getRepositoryName(directory);
-  return await runOnlyCommand(
+  return await runMultipleCommand(
     `cd ${directory} && ${
       consts.exito.command_generate_tempalte
     } ${repositoryName}`

@@ -1,6 +1,6 @@
 import { consts } from "./../../../../../shared/constants";
 import log from "../../../../../shared/logger";
-import { runOnlyCommand } from "../../../../../shared/util/run-only-command";
+import { runMultipleCommand } from "../../../../../shared/util/run-multiple-command";
 
 export const createGitFeature = async (directory: Array<string>) => {
   log.info("Creating feature git");
@@ -26,7 +26,7 @@ const createFeatureBranch = async (directory: string) => {
     const command = `cd ${directory} &&  ${consts.git.command_create_feature} ${
       consts.git.namefeature
     }`;
-    const response = await runOnlyCommand(command);
+    const response = await runMultipleCommand(command);
     return response;
   } catch (error) {
     return false;
@@ -37,5 +37,5 @@ export const deleteRepo = async (directory: string) => {
   const deleteRepo = `cd ${directory} && git branch -d ${
     consts.git.namefeature
   } && git push origin --delete ${consts.git.namefeature}`;
-  await runOnlyCommand(deleteRepo);
+  await runMultipleCommand(deleteRepo);
 };
