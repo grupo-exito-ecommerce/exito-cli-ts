@@ -1,10 +1,123 @@
-import { CreateTemplate } from './../../../../shared/models/global';
+import { CreateTemplate } from "./../../../../shared/models/global";
 
 export const getTemplateContent = (options: CreateTemplate) => {
   return `{
     "AWSTemplateFormatVersion": "2010-09-09",
-    "Description": "Template for Pipeline Frontend to publish components in Vtex ",
+    "Description": "Cloud Formation Template for ${options.nameRepository}",
     "Resources": {
+        "AmazonCloudWatchEventRule": {
+            "Type": "AWS::Events::Rule",
+            "DependsOn": ["pipeline"],
+            "Properties": {
+                "EventPattern": {
+                    "source": [
+                        "aws.codecommit"
+                    ],
+                    "detail-type": [
+                        "CodeCommit Repository State Change"
+                    ],
+                    "resources": [{
+                        "Fn::Join": [
+                            "",
+                            [
+                                "arn:aws:codecommit:",
+                                {
+                                    "Ref": "AWS::Region"
+                                },
+                                ":",
+                                {
+                                    "Ref": "AWS::AccountId"
+                                },
+                                ":",
+                                "${options.nameRepository}"
+                            ]
+                        ]
+                    }],
+                    "detail": {
+                        "event": [
+                            "referenceCreated",
+                            "referenceUpdated"
+                        ],
+                        "referenceType": [
+                            "branch"
+                        ],
+                        "referenceName": ["${options.nameBranch}"]
+                    }
+                },
+                "Targets": [{
+                    "Arn": {
+                        "Fn::Join": [
+                            "",
+                            [
+                                "arn:aws:codepipeline:",
+                                {
+                                    "Ref": "AWS::Region"
+                                },
+                                ":",
+                                {
+                                    "Ref": "AWS::AccountId"
+                                },
+                                ":",
+                                "${options.codePipeLineName}"
+                            ]
+                        ]
+                    },
+                    "RoleArn": {
+                        "Fn::GetAtt": [
+                            "AmazonCloudWatchEventRole",
+                            "Arn"
+                        ]
+                    },
+                    "Id": "codepipeline-AppPipeline"
+                }]
+            }
+        },
+        "AmazonCloudWatchEventRole": {
+            "Type": "AWS::IAM::Role",
+            "DependsOn": ["pipeline"],
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [{
+                        "Effect": "Allow",
+                        "Principal": {
+                            "Service": [
+                                "events.amazonaws.com"
+                            ]
+                        },
+                        "Action": "sts:AssumeRole"
+                    }]
+                },
+                "Path": "/",
+                "Policies": [{
+                    "PolicyName": "cwe-pipeline-execution",
+                    "PolicyDocument": {
+                        "Version": "2012-10-17",
+                        "Statement": [{
+                            "Effect": "Allow",
+                            "Action": "codepipeline:StartPipelineExecution",
+                            "Resource": {
+                                "Fn::Join": [
+                                    "",
+                                    [
+                                        "arn:aws:codepipeline:",
+                                        {
+                                            "Ref": "AWS::Region"
+                                        },
+                                        ":",
+                                        {
+                                            "Ref": "AWS::AccountId"
+                                        },
+                                        ":",
+                                        "${options.codePipeLineName}"
+                                    ]
+                                ]
+                            }
+                        }]
+                    }
+                }]
+            }
+        },
         "pipeline": {
             "Type": "AWS::CodePipeline::Pipeline",
             "DependsOn": ["codebuild"],
@@ -25,6 +138,7 @@ export const getTemplateContent = (options: CreateTemplate) => {
                                 "Name": "SourceArtifact"
                             }],
                             "Configuration": {
+                                "PollForSourceChanges": "false",
                                 "BranchName": "${options.nameBranch}",
                                 "RepositoryName": "${options.nameRepository}"
                             },

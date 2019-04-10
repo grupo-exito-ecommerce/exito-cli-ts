@@ -1,18 +1,21 @@
 import {
   DependenciesListModel,
   ContentManifest
-} from './../../../../shared/models/global';
-import log from './../../../../shared/logger';
-import { getListProyects } from './../../util/get-order-dependencies';
-import { findDependency } from './../../util/find-dependencies';
-import { executeCommands } from './../../util/execute-commands';
+} from "./../../../../shared/models/global";
+import log from "./../../../../shared/logger";
+import { getListProyects } from "./../../util/get-order-dependencies";
+import { findDependency } from "./../../util/find-dependencies";
+import { executeCommands } from "./../../util/execute-commands";
 import chalk from "chalk";
-import { getDirectories, getManifestsContent } from '../../../../shared/util/get-content-files';
+import {
+  getDirectories,
+  getManifestsContent
+} from "../../../../shared/util/get-content-files";
 
 // variable que indica donde se encuentan los archivos a emplear
-let directory: string = '';
+let directory: string = "";
 // variable que posee el comando que se va a ejecutar actualmente
-let commands: string = '';
+let commands: string = "";
 // variable que posee la lista de dependencias ordenadas por nivel
 let dependenciesList: Array<DependenciesListModel> = [];
 // variable que posee la información  de los manifest.json
@@ -24,7 +27,7 @@ let orderList: boolean = false;
 export default async (command: string, all: string) => {
   // indico cual comando se va a ejecutar y cual directorio se va a emplear
   commands = `vtex ${command}`;
-  directory = process.cwd() + '/';
+  directory = process.cwd() + "/";
   orderList = true;
 
   log.debug(`Order dependencies list ${orderList}`);
@@ -41,8 +44,9 @@ export default async (command: string, all: string) => {
 
 // Método que se encarga de buscar un proyecto en el directorio actual
 export const searchProjectCurrentDirectory = async (all: string) => {
-  log.debug('Use the current location for search one project');
+  log.debug("Use the current location for search one project");
   let response = await findProjectContnet([directory], all);
+  // si no se encontraron projectos en el directorio actual, paso a buscar en los sub directorios.
   if (!response) {
     // obtengo todos los nombres de las carpetas dentro del directorio indicado
     let files: Array<string> = await getDirectories(directory);
@@ -70,7 +74,11 @@ export const findProjectContnet = async (files: Array<string>, all: string) => {
     }
 
     // busco la dependencia en el manifest y paso toda su información de manifest
-    log.info(`You have ${chalk.greenBright(`${dependenciesList.length}`)} proyects to link`);
+    log.info(
+      `You have ${chalk.greenBright(
+        `${dependenciesList.length}`
+      )} proyects to link`
+    );
 
     let dependenciesToUse = dependenciesList;
 
@@ -87,6 +95,8 @@ export const findProjectContnet = async (files: Array<string>, all: string) => {
       };
       executeCommands(options);
     }
+
+    return true;
   } else {
     log.debug(`No dependencies found in the current location`);
     return false;
