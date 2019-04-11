@@ -28,7 +28,9 @@ export const runCommand = function(options: OptRunCommand) {
 
       if (validateLog(options.command, data.toString(), "error")) {
         task.kill("SIGINT");
-        fulfill(true);
+        fulfill(false);
+        log.error("Process error")
+        process.exit(1);
       }
     });
 
@@ -38,19 +40,14 @@ export const runCommand = function(options: OptRunCommand) {
       // Validación en caso de error
       if (validateLog(options.command, data.toString(), "error")) {
         task.kill("SIGINT");
-        reject(true);
-        process.exit();
+        reject(false);
+        log.error("Process error")
+        process.exit(1);
       }
 
       if (validateLog(options.command, data.toString(), "succes")) {
         task.kill("SIGINT");
         fulfill(true);
-      }
-
-      if (validateLog(options.command, data.toString(), "error")) {
-        task.kill("SIGINT");
-        reject(true);
-        process.exit();
       }
     });
   });

@@ -138,6 +138,14 @@ export interface CreateTemplate {
   codePipeLineName: string;
 }
 
+export interface CreateTemplateCloudFormation {
+  codeCommitProyects: Array<string>;
+  nameBranch: string;
+  buildSpecDir: string;
+  codeBuildName: string;
+  codePipeLineName: string;
+}
+
 export interface ConfigVtexJson {
   login: string;
   authToken: string;

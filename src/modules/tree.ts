@@ -76,8 +76,8 @@ export default {
       alias: "t",
       description:
         "Create the template for aws cloud-formation for mount the infra structure for continuos integration",
-      handler: "./generate/create-template-cloud-formation/create-template",
-      requiredArgs: ["repository"]
+      handler: "./generate/create-template-cloud-formation-v2/create-template",
+      requiredArgs: ["name", "branch", "yml_directory"]
     }
   },
   vtex: {

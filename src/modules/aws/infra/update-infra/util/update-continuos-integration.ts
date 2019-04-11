@@ -3,6 +3,7 @@ import { consts } from "./../../../../../shared/constants";
 import log from "../../../../../shared/logger";
 import { runMultipleCommand } from "../../../../../shared/util/run-multiple-command";
 import { getManifestContent } from "../../../../../shared/util/get-content-files";
+import { getRepositoryName } from "../../../../../shared/util/get-repository-name";
 const fs = require("fs");
 
 export const updateConfigContinuosIntegration = (directory: Array<string>) => {
@@ -56,12 +57,6 @@ const createTemplateFiles = async (directory: string) => {
       consts.exito.command_generate_tempalte
     } ${repositoryName}`
   );
-};
-
-// Método que retorna el nombre del repositorios, se realiza obteniendo el nombre de la carpeta donde se enuentra el proyecto. por estandar lo manejamos de acuerdo al nombre del repositorio.
-const getRepositoryName = (directory: string) => {
-  const dir = directory.split("/");
-  return dir[dir.length - 1];
 };
 
 // Método para eliminar la carpeta config

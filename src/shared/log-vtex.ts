@@ -4,10 +4,19 @@ export const link_succes_log = [
   },
   {
     log: "You can try out the individual react components"
+  },
+  {
+    log: "Debugger tunnel listening on"
+  },
+  {
+    log: "Available service routes"
   }
 ];
 
 export const link_error_log = [
+  {
+    log: "timeout of"
+  },
   {
     log: "App build failed with message"
   },
@@ -16,6 +25,12 @@ export const link_error_log = [
   },
   {
     log: "Please remove your workspace from production"
+  },
+  {
+    log: "App build failed with message: An unknown error has occurred"
+  },
+  {
+    log: "Something exploded"
   }
 ];
 

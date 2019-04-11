@@ -21,8 +21,11 @@ const pushChangesAndMerge = async (directory: string) => {
     const command = `${pushChanges}`;
     await runMultipleCommand(command);
 
-    const mergeChanges = `cd ${directory}  && git checkout develop && git merge origin/feature/aws-infra-update-exito-cli && git push  && git checkout master && git merge origin/develop && git push`;
-    await runMultipleCommand(mergeChanges);
+    const mergeChangesDevelop = `cd ${directory}  && git checkout develop && git merge origin/feature/aws-infra-update-exito-cli`;
+    await runMultipleCommand(mergeChangesDevelop);
+
+    const mergeChangesMaster = `cd ${directory}  && git checkout master && git merge origin/develop && git push`;
+    await runMultipleCommand(mergeChangesMaster);
 
     return true;
   } catch (error) {
