@@ -52,9 +52,14 @@ export const searchProjectCurrentDirectory = async (all: string) => {
     let files: Array<string> = await getDirectories(directory);
 
     if (files.length) {
-      findProjectContnet(files, all);
+      console.log(files)
+      let subFiles = await findProjectContnet(files, all);
+      if (!subFiles) {
+        process.exit(1);
+      }
     } else {
       log.warn(`No projects found in ${directory}`);
+      process.exit(1);
     }
   }
 };
@@ -95,7 +100,6 @@ export const findProjectContnet = async (files: Array<string>, all: string) => {
       };
       executeCommands(options);
     }
-
     return true;
   } else {
     log.debug(`No dependencies found in the current location`);

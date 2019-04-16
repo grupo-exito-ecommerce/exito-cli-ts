@@ -11,7 +11,7 @@ RUN yarn global add exito && yarn cache clean
 
 COPY ./ /project
 
-WORKDIR /project
+WORKDIR /project/
 
 RUN echo "Uploading project in the workspace ${options.workspace}"
 

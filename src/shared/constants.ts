@@ -9,8 +9,8 @@ export const consts = {
   config_repository: "exito-vtex-config",
   authtoken: "--exito.myvtex.com/exito/token",
   generate: {
-    master_dockerfile_name: "master-cli.dockerfile",
-    develop_dockerfile_name: "develop-cli.dockerfile"
+    master_dockerfile_name: "docker-cli.dockerfile",
+    develop_dockerfile_name: "docker-cli.dockerfile"
   },
   exito: {
     default_src: "src",

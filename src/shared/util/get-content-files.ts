@@ -6,6 +6,14 @@ const path = require('path');
 
 let manifests: Array<ContentManifest> = [];
 
+// Método que retorna los archivos en el directorio actual
+export const getFilesInCurrentDirectory = (srcpath: string): Promise<Array<string>> => {
+  return fs
+    .readdirSync(srcpath)
+    .map((file: any) => path.join(srcpath, file))
+};
+
+// Método que retorna un array con los directorios encontrados
 export const getDirectories = (srcpath: string): Promise<Array<string>> => {
   return fs
     .readdirSync(srcpath)

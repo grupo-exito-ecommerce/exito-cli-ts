@@ -3,7 +3,7 @@ import log from "../../../../../shared/logger";
 import { runMultipleCommand } from "../../../../../shared/util/run-multiple-command";
 
 export const pushChanges = async (directory: Array<string>) => {
-  log.info("Push change and merge in git");
+  log.info("Push change in the feature");
   return Promise.all(
     directory.map(async item => {
       await pushChangesAndMerge(item);
@@ -21,11 +21,11 @@ const pushChangesAndMerge = async (directory: string) => {
     const command = `${pushChanges}`;
     await runMultipleCommand(command);
 
-    const mergeChangesDevelop = `cd ${directory}  && git checkout develop && git merge origin/feature/aws-infra-update-exito-cli`;
-    await runMultipleCommand(mergeChangesDevelop);
+    // const mergeChangesDevelop = `cd ${directory}  && git checkout develop && git merge origin/feature/aws-infra-update-exito-cli`;
+    // await runMultipleCommand(mergeChangesDevelop);
 
-    const mergeChangesMaster = `cd ${directory}  && git checkout master && git merge origin/develop && git push`;
-    await runMultipleCommand(mergeChangesMaster);
+    // const mergeChangesMaster = `cd ${directory}  && git checkout master && git merge origin/develop && git push`;
+    // await runMultipleCommand(mergeChangesMaster);
 
     return true;
   } catch (error) {

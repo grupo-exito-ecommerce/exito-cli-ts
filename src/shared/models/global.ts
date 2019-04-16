@@ -146,6 +146,18 @@ export interface CreateTemplateCloudFormation {
   codePipeLineName: string;
 }
 
+export interface BranchTriggerInformation {
+  customData: string;
+  name: string;
+}
+
+export interface CreateTriggerCodeCommit {
+  codeCommitProyect: string;
+  branchs: Array<BranchTriggerInformation>;
+  updateReference: Array<string>;
+  destinationArn: string;
+}
+
 export interface ConfigVtexJson {
   login: string;
   authToken: string;
@@ -153,8 +165,8 @@ export interface ConfigVtexJson {
   workspase: string;
 }
 
-export interface DockerConfiguration{
-  vendor: string
-  email: string
-  workspace: string
+export interface DockerConfiguration {
+  vendor: string;
+  email: string;
+  workspace: string;
 }

@@ -31,10 +31,15 @@ export default {
   },
   infra: {
     description: "Proyects infra options",
-    update: {
-      alias: "c",
-      description: "Update the continuous integration and commit the changes.",
-      handler: "./aws/infra/update-infra/update-infra"
+    update_config: {
+      alias: "uc",
+      description: "Update the continuous integration and prepare the commit for push the changes.",
+      handler: "./aws/infra/update-config/update-config"
+    },
+    update_triggers: {
+      alias: "ut",
+      description: "Run a local triggers.json",
+      handler: "./aws/infra/update-triggers/update-triggers"
     }
   },
   init: {
@@ -72,12 +77,12 @@ export default {
       handler: "./generate/create-sonar-file/create-sonar-file",
       requiredArgs: ["repository", "version", "src"]
     },
-    template: {
+    trigger: {
       alias: "t",
       description:
         "Create the template for aws cloud-formation for mount the infra structure for continuos integration",
-      handler: "./generate/create-template-cloud-formation-v2/create-template",
-      requiredArgs: ["name", "branch", "yml_directory"]
+      handler: "./generate/create-triggers-code-commit/create-template",
+      requiredArgs: ["arn"]
     }
   },
   vtex: {
