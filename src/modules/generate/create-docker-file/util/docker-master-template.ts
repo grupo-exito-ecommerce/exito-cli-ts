@@ -26,5 +26,7 @@ RUN exito vtex login ${options.vendor} ${options.workspace} ${
   } --verbose
 
 RUN exito vtex publish --verbose
+
+RUN vtex deps update
 `;
 };
