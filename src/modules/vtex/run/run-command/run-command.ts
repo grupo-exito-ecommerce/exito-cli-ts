@@ -52,7 +52,6 @@ export const searchProjectCurrentDirectory = async (all: string) => {
     let files: Array<string> = await getDirectories(directory);
 
     if (files.length) {
-      console.log(files)
       let subFiles = await findProjectContnet(files, all);
       if (!subFiles) {
         process.exit(1);
