@@ -147,7 +147,7 @@ export interface CreateTemplateCloudFormation {
 }
 
 export interface BranchTriggerInformation {
-  customData: string;
+  customData: any;
   name: string;
 }
 

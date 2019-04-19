@@ -16,7 +16,7 @@ const publishComponent = (manifest: ContentManifest) => {
   // Uso el workspace master y realizo la publicación
   let command_create_workspace = `cd ${
     manifest.path
-  } && vtex workspace use master && vtex publish`;
+  } && vtex workspace use master && vtex publish --verbose`;
   childProcessRunCommand(command_create_workspace);
 };
 

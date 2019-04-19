@@ -36,13 +36,25 @@ export default async (destinationArn: string) => {
       branchs: [
         {
           name: "develop",
-          customData: `CodeBuild=exito-vtex-deploy-develop,Vendor=exito,Workspace=dev,CodeCommitBranch=develop,DockerEnvironment=dev,UrlToClone=${urlToClone +
-            nameProyect}`
+          customData: {
+            code_build: "exito-vtex-deploy-develop",
+            vendor: "exito",
+            workspace: "dev",
+            code_commit_branch: "develop",
+            docker_environment: "dev",
+            url_to_clone: urlToClone + nameProyect
+          }
         },
         {
           name: "master",
-          customData: `CodeBuild=exito-vtex-deploy-master,Vendor=exito,Workspace=master,CodeCommitBranch=master,DockerEnvironment=prod,UrlToClone=${urlToClone +
-            nameProyect}`
+          customData: {
+            code_build: "exito-vtex-deploy-master",
+            vendor: "exito",
+            workspace: "master",
+            code_commit_branch: "master",
+            docker_environment: "prod",
+            url_to_clone: urlToClone + nameProyect
+          }
         }
       ],
       destinationArn: destinationArn,

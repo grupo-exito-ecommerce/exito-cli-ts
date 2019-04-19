@@ -28,7 +28,7 @@ const createCodeCommitConfig = (branchInfo: BranchTriggerInformation) => {
     "name": "${currentOptions.codeCommitProyect.replace(".", "-")}-${
     branchInfo.name
   }-deploy",
-    "customData": "${branchInfo.customData}"
+    "customData": "${escape(branchInfo.customData)}"
 }`;
 };
 
@@ -48,4 +48,10 @@ export const getTemplateContent = (options: CreateTriggerCodeCommit) => {
     ${getCodeBuildProyects()}
 ]
 }`;
+};
+
+const escape = (obj: any) => {
+  var escapedValue = JSON.stringify(obj).replace(/"/g, '\\"');
+  // var oldValue = escapedValue.replace(/\\\"/g, "\"");
+  return escapedValue;
 };
