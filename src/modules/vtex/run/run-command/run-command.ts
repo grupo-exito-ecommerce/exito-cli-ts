@@ -26,7 +26,7 @@ let orderList: boolean = false;
 // 1. Método inicial que se encarga de buscar las carpetas dentro del directorio indicado.
 export default async (command: string, all: string) => {
   // indico cual comando se va a ejecutar y cual directorio se va a emplear
-  commands = `vtex ${command} --verbose`;
+  commands = `vtex ${command}`;
   directory = process.cwd() + "/";
   orderList = true;
 
