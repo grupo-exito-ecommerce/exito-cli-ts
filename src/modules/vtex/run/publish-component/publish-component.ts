@@ -1,14 +1,14 @@
-import { ContentManifest } from "./../../../../shared/models/global";
-import { childProcessRunCommand } from "./../../../../shared/util/child-process-run-command";
-import log from "./../../../../shared/logger";
+import { ContentManifest } from './../../../../shared/models/global';
+import { childProcessRunCommand } from './../../../../shared/util/child-process-run-command';
+import log from './../../../../shared/logger';
 import {
   getManifestsContent,
   getDirectories
-} from "../../../../shared/util/get-content-files";
-const directory = process.cwd() + "/";
+} from '../../../../shared/util/get-content-files';
+const directory = process.cwd() + '/';
 
 export default async function() {
-  log.info("Loading publish component process");
+  log.info('Loading publish component process');
   searchProjectCurrentDirectory();
 }
 
@@ -21,8 +21,8 @@ const publishComponent = (manifest: ContentManifest) => {
 };
 
 // Método que se encarga de buscar un proyecto en el directorio actual
-export const searchProjectCurrentDirectory = async () => {
-  log.debug("Use the current location for search one project");
+const searchProjectCurrentDirectory = async () => {
+  log.debug('Use the current location for search one project');
   let response = await findProjectContnet([directory]);
   // si no se encontraron projectos en el directorio actual, paso a buscar en los sub directorios.
   if (!response) {
@@ -42,7 +42,7 @@ export const searchProjectCurrentDirectory = async () => {
   }
 };
 
-export const findProjectContnet = async (files: Array<string>) => {
+const findProjectContnet = async (files: Array<string>) => {
   // si hay directorios, paso a buscar el archivo manifest.json y obtener su contenido
   const manifests: Array<ContentManifest> = await getManifestsContent(files);
   if (manifests.length) {

@@ -101,7 +101,7 @@ export default {
       handler: "./vtex/npm-install/npm-install"
     },
     coverage: {
-      alias: "ni",
+      alias: "co",
       description: "Run the coverage process in the proyect",
       handler: "./vtex/run-coverage/run-coverage"
     },

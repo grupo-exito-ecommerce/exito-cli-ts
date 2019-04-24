@@ -16,6 +16,7 @@ export const runOnlyCommand = (command: string): Promise<string> => {
     task.stderr!.on("data", function(data: string) {
       log.debug("Error running the command: " + command);
       log.error(data.toString());
+      process.exit(1)
     });
   });
 };
