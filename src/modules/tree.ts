@@ -31,11 +31,11 @@ export default {
   },
   infra: {
     description: "Proyects infra options",
-    update_config: {
-      alias: "uc",
-      description: "Update the continuous integration and prepare the commit for push the changes.",
-      handler: "./aws/infra/update-config/update-config"
-    },
+    // update_config: {
+    //   alias: "uc",
+    //   description: "Update the continuous integration and prepare the commit for push the changes.",
+    //   handler: "./aws/infra/update-config/update-config"
+    // },
     update_triggers: {
       alias: "ut",
       description: "Run a local triggers.json",
@@ -94,6 +94,16 @@ export default {
       handler: "./vtex/run/run-command/run-command",
       requiredArgs: "command",
       optionalArgs: ["all"]
+    },
+    npm_install: {
+      alias: "ni",
+      description: "Install the dependencies in the curren proyect.",
+      handler: "./vtex/npm-install/npm-install"
+    },
+    coverage: {
+      alias: "ni",
+      description: "Run the coverage process in the proyect",
+      handler: "./vtex/run-coverage/run-coverage"
     },
     publish: {
       alias: "p",
