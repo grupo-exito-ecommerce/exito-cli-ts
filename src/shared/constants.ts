@@ -33,6 +33,9 @@ export const consts = {
     develop: "dev",
     production: "prod"
   },
+  code_commit:{
+    codeCommitTriggerDir: "code-commit-triggers"
+  },
   // configuration aws cloud-formation for vtex
   aws_template: {
     configDir: "config",

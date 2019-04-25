@@ -5,7 +5,7 @@ import {
 } from '../../../shared/util/get-content-files';
 import { ContentManifest } from '../../../shared/models/global';
 import fs from 'fs';
-import { runOnlyCommand } from '../../../shared/util/run-only-command';
+import { runMultipleCommand } from '../../../shared/util/run-multiple-command';
 const directory = process.cwd() + '/';
 
 export default async function() {
@@ -50,11 +50,17 @@ const findProject = async (files: Array<string>) => {
 const findNodeOrReactFolder = async (file: string) => {
   if (fs.existsSync(file + '/node') == true) {
     log.info('Proyect contain the folder node');
-    const command = `cd ${file}/node && jest --coverage`;
-    runOnlyCommand(command);
+    const command = `cd ${file}/node && node ./node_modules/jest/bin/jest.js --coverage -u && cd ../..`;
+    runMultipleCommand(command, [
+      `Jest: "global" coverage threshold for`,
+      'test failed in'
+    ]);
   } else if (fs.existsSync(file + '/react') == true) {
     log.info('Proyect contain the folder react');
-    const command = `cd ${file}/react && jest --coverage`;
-    runOnlyCommand(command);
+    const command = `cd ${file}/react && node ./node_modules/jest/bin/jest.js --coverage -u && npm run sonar-scanner && cd ../..`;
+    runMultipleCommand(command, [
+      `Jest: "global" coverage threshold for`,
+      'test failed in'
+    ]);
   }
 };
