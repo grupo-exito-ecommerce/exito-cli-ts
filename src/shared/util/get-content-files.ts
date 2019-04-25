@@ -7,10 +7,10 @@ const path = require('path');
 let manifests: Array<ContentManifest> = [];
 
 // Método que retorna los archivos en el directorio actual
-export const getFilesInCurrentDirectory = (srcpath: string): Promise<Array<string>> => {
-  return fs
-    .readdirSync(srcpath)
-    .map((file: any) => path.join(srcpath, file))
+export const getFilesInCurrentDirectory = (
+  srcpath: string
+): Promise<Array<string>> => {
+  return fs.readdirSync(srcpath).map((file: any) => path.join(srcpath, file));
 };
 
 // Método que retorna un array con los directorios encontrados
@@ -32,12 +32,11 @@ export const getManifestsContent = async (
   return manifests;
 };
 
-
 // Método que permite traer el contenido de un solo directorio
 export const getManifestContent = async (
   directory: string
 ): Promise<ContentManifest> => {
-    await getInformation(resolve(directory));
+  await getInformation(resolve(directory));
   return manifests[0];
 };
 
@@ -58,8 +57,6 @@ export const getInformation = async (dir: string) => {
       log.debug(`manifest.json not found in ${dir}`);
     }
   } catch (error) {
-    console.log(
-      log.debug(`error on read the manifest file in ${dir} check the content`)
-    );
+    log.debug(`error on read the manifest file in ${dir} check the content`);
   }
 };

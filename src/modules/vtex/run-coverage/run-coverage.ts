@@ -4,8 +4,12 @@ import {
   getManifestsContent
 } from '../../../shared/util/get-content-files';
 import { ContentManifest } from '../../../shared/models/global';
-import fs from 'fs';
+import fs, { writeFileSync } from 'fs';
 import { runMultipleCommand } from '../../../shared/util/run-multiple-command';
+import {
+  getJestConfigContent,
+  getSonarQubeContent
+} from './util/get-jest-config-content';
 const directory = process.cwd() + '/';
 
 export default async function() {
@@ -51,16 +55,54 @@ const findNodeOrReactFolder = async (file: string) => {
   if (fs.existsSync(file + '/node') == true) {
     log.info('Proyect contain the folder node');
     const command = `cd ${file}/node && node ./node_modules/jest/bin/jest.js --coverage -u && cd ../..`;
+    await addPercentageOfCoverage(`${file}/node/jest.config.js`);
+    await addLoginDataSonarQube(`${file}/node/sonar-project.properties`);
+    // Ejecuto el proceso de coverage
     runMultipleCommand(command, [
       `Jest: "global" coverage threshold for`,
       'test failed in'
     ]);
   } else if (fs.existsSync(file + '/react') == true) {
     log.info('Proyect contain the folder react');
-    const command = `cd ${file}/react && node ./node_modules/jest/bin/jest.js --coverage -u && npm run sonar-scanner && cd ../..`;
+    const command = `cd ${file}/react && node ./node_modules/jest/bin/jest.js --coverage -u && ./node_modules/sonar-scanner/bin/sonar-scanner && cd ../..`;
+    await addPercentageOfCoverage(`${file}/react/jest.config.js`);
+    await addLoginDataSonarQube(`${file}/react/sonar-project.properties`);
+    // Ejecuto el proceso de coverage
     runMultipleCommand(command, [
       `Jest: "global" coverage threshold for`,
       'test failed in'
     ]);
+  }
+};
+
+const writeFileLocal = async (path: string, string: string) => {
+  try {
+    await writeFileSync(path, string, 'utf8');
+    return true;
+  } catch (error) {
+    log.error(error);
+    process.exit(1);
+  }
+};
+
+//4. Logica que busca el archivo jest.config.js y agrega la configuración de cobertura minima
+const addPercentageOfCoverage = async (dir: string) => {
+  try {
+    const jest = await getJestConfigContent(dir);
+    await writeFileLocal(dir, jest);
+    return true;
+  } catch (error) {
+    log.error(error);
+  }
+};
+
+//4. Logica que busca el archivo jest.config.js y agrega la configuración de cobertura minima
+const addLoginDataSonarQube = async (dir: string) => {
+  try {
+    const sonar = await getSonarQubeContent(dir);
+    await writeFileLocal(dir, sonar);
+    return true;
+  } catch (error) {
+    log.error(error);
   }
 };

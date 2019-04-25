@@ -1,134 +1,133 @@
 export default {
   credentials: {
-    description: "Manage your credentials for aws",
+    description: 'Manage your credentials for aws',
     get: {
-      alias: "g",
-      description: "Gets the current credentials used in aws",
-      handler: "./credentials/get-credentials"
+      alias: 'g',
+      description: 'Gets the current credentials used in aws',
+      handler: './credentials/get-credentials'
     },
     clear: {
-      alias: "c",
-      description: "Clear the current credentials used in aws",
-      handler: "./credentials/clear-credentials"
+      alias: 'c',
+      description: 'Clear the current credentials used in aws',
+      handler: './credentials/clear-credentials'
     },
     set: {
-      alias: "s",
-      description: "Sets the current credentials for aws",
-      handler: "./credentials/set-credentials",
-      requiredArgs: ["username", "pwd"]
+      alias: 's',
+      description: 'Sets the current credentials for aws',
+      handler: './credentials/set-credentials',
+      requiredArgs: ['username', 'pwd']
     }
   },
   aws: {
-    description: "Aws options",
+    description: 'Aws options',
     clone: {
-      alias: "c",
+      alias: 'c',
       description:
-        "Clone specific list of projectos from aws, if your add the option <all>",
-      handler: "./aws/clone/clone-projects",
-      requiredArgs: "criteria",
-      optionalArgs: ["all"]
+        'Clone specific list of projectos from aws, if your add the option <all>',
+      handler: './aws/clone/clone-projects',
+      requiredArgs: 'criteria',
+      optionalArgs: ['all']
     }
   },
   infra: {
-    description: "Proyects infra options",
+    description: 'Proyects infra options',
     // update_config: {
     //   alias: "uc",
     //   description: "Update the continuous integration and prepare the commit for push the changes.",
     //   handler: "./aws/infra/update-config/update-config"
     // },
     update_triggers: {
-      alias: "ut",
-      description: "Run a local triggers.json",
-      handler: "./aws/infra/update-triggers/update-triggers"
+      alias: 'ut',
+      description: 'Run a local triggers.json',
+      handler: './aws/infra/update-triggers/update-triggers'
     }
   },
   init: {
-    alias: "i",
-    description: "Create basic files and folders for your VTEX app",
-    handler: "./github/init/index"
+    alias: 'i',
+    description: 'Create basic files and folders for your VTEX app',
+    handler: './github/init/index'
   },
   generate: {
-    description: "Generate options for the project",
+    description: 'Generate options for the project',
     vtex_json: {
-      alias: "v",
-      description: "Create the json file config of vtex",
-      handler: "./generate/create-vtex-json/create-vtex-json"
+      alias: 'v',
+      description: 'Create the json file config of vtex',
+      handler: './generate/create-vtex-json/create-vtex-json'
     },
     workspaces: {
-      alias: "w",
-      description: "Create the workspaces config for develops",
-      handler: "./generate/create-workspace/create-workspace"
+      alias: 'w',
+      description: 'Create the workspaces config for develops',
+      handler: './generate/create-workspace/create-workspace'
     },
     config: {
-      alias: "c",
-      description: "Get the last config  for projects",
-      handler: "./generate/create-config-project/get-config"
+      alias: 'c',
+      description: 'Get the last config  for projects',
+      handler: './generate/create-config-project/get-config'
     },
     docker: {
-      alias: "d",
+      alias: 'd',
       description:
-        "Create the docker file for aws code-build in environment production (prod) and develop (dev)",
-      handler: "./generate/create-docker-file/create-docker-file",
-      requiredArgs: ["environment", "vendor", "workspace", "email"]
+        'Create the docker file for aws code-build in environment production (prod) and develop (dev)',
+      handler: './generate/create-docker-file/create-docker-file',
+      requiredArgs: ['environment', 'vendor', 'workspace', 'email']
     },
     sonar: {
-      alias: "s",
-      description: "Create the sonar file for test",
-      handler: "./generate/create-sonar-file/create-sonar-file",
-      requiredArgs: ["repository", "version", "src"]
+      alias: 's',
+      description: 'Create the sonar file for test',
+      handler: './generate/create-sonar-file/create-sonar-file',
+      requiredArgs: ['repository', 'version', 'src']
     },
     trigger: {
-      alias: "t",
-      description:
-        "Create the template for aws cloud-formation for mount the infra structure for continuos integration",
-      handler: "./generate/create-triggers-code-commit/create-template",
-      requiredArgs: ["arn"]
+      alias: 't',
+      description: 'Create the triggers config for the indicate proyects',
+      handler: './generate/create-triggers-code-commit/create-triggers',
+      requiredArgs: ['arn']
     }
   },
   vtex: {
-    description: "Vtex options",
+    description: 'Vtex options',
     run: {
-      alias: "v",
+      alias: 'v',
       description:
-        "Execute specific command from vtex, the current commands suport is: <link>, <publish>",
-      handler: "./vtex/run/run-command/run-command",
-      requiredArgs: "command",
-      optionalArgs: ["all"]
+        'Execute specific command from vtex, the current commands suport is: <link>, <publish>',
+      handler: './vtex/run/run-command/run-command',
+      requiredArgs: 'command',
+      optionalArgs: ['all']
     },
     npm_install: {
-      alias: "ni",
-      description: "Install the dependencies in the curren proyect.",
-      handler: "./vtex/npm-install/npm-install"
+      alias: 'ni',
+      description: 'Install the dependencies in the curren proyect.',
+      handler: './vtex/npm-install/npm-install'
     },
     coverage: {
-      alias: "co",
-      description: "Run the coverage process in the proyect",
-      handler: "./vtex/run-coverage/run-coverage"
+      alias: 'co',
+      description: 'Run the coverage process in the proyect',
+      handler: './vtex/run-coverage/run-coverage'
     },
     publish: {
-      alias: "p",
-      description: "Publish only one component into Vtex",
-      handler: "./vtex/run/publish-component/publish-component"
+      alias: 'p',
+      description: 'Publish only one component into Vtex',
+      handler: './vtex/run/publish-component/publish-component'
     },
     login: {
-      alias: "l",
-      description: "Set credentials for vtex in the config file from vtex",
-      handler: "./vtex/run/login/login-vtex",
-      requiredArgs: ["account", "workspace", "email"]
+      alias: 'l',
+      description: 'Set credentials for vtex in the config file from vtex',
+      handler: './vtex/run/login/login-vtex',
+      requiredArgs: ['account', 'workspace', 'email']
     },
     set_vendor: {
-      description: "Set the vendor name in the manifest file",
-      handler: "./vtex/update-manifest/update-manifest",
-      requiredArgs: ["vendor"]
+      description: 'Set the vendor name in the manifest file',
+      handler: './vtex/update-manifest/update-manifest',
+      requiredArgs: ['vendor']
     }
   },
-  handler: "./",
+  handler: './',
   options: [
     {
-      description: "show help information",
-      long: "help",
-      short: "h",
-      type: "boolean"
+      description: 'show help information',
+      long: 'help',
+      short: 'h',
+      type: 'boolean'
     }
   ]
 };
