@@ -21,8 +21,6 @@ RUN exito vtex login ${options.vendor} ${options.workspace} ${
     options.email
   } --verbose
 
-RUN exito vtex set_vendor ${options.vendor} --verbose
-
 RUN exito vtex run link all --verbose
 
 RUN echo "Project successfully uploaded in the workspace ${options.workspace}"`;

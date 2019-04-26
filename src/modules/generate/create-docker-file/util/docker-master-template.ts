@@ -19,8 +19,6 @@ RUN echo "Publish project in the workspace ${
 
 RUN exito generate vtex_json --verbose
 
-RUN exito vtex set_vendor ${options.vendor} --verbose
-
 RUN exito vtex login ${options.vendor} ${options.workspace} ${
     options.email
   } --verbose

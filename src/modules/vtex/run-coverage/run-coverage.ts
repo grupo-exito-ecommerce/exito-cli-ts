@@ -70,6 +70,7 @@ const findNodeOrReactFolder = async (file: string) => {
     // Ejecuto el proceso de coverage
     runMultipleCommand(command, [
       `Jest: "global" coverage threshold for`,
+      "Permission denied",
       'test failed in'
     ]);
   }

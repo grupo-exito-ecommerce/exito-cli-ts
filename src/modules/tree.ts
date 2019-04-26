@@ -29,8 +29,8 @@ export default {
       optionalArgs: ['all']
     }
   },
-  infra: {
-    description: 'Proyects infra options',
+  run: {
+    description: 'Execute options with the cli',
     // update_config: {
     //   alias: "uc",
     //   description: "Update the continuous integration and prepare the commit for push the changes.",
@@ -39,7 +39,7 @@ export default {
     update_triggers: {
       alias: 'ut',
       description: 'Run a local triggers.json',
-      handler: './aws/infra/update-triggers/update-triggers'
+      handler: './run/update-triggers/update-triggers'
     }
   },
   init: {
@@ -67,7 +67,7 @@ export default {
     docker: {
       alias: 'd',
       description:
-        'Create the docker file for aws code-build in environment production (prod) and develop (dev)',
+        'Create docker file for code-build in environment production (prod) and develop (dev)',
       handler: './generate/create-docker-file/create-docker-file',
       requiredArgs: ['environment', 'vendor', 'workspace', 'email']
     },
@@ -114,12 +114,12 @@ export default {
       description: 'Set credentials for vtex in the config file from vtex',
       handler: './vtex/run/login/login-vtex',
       requiredArgs: ['account', 'workspace', 'email']
-    },
-    set_vendor: {
-      description: 'Set the vendor name in the manifest file',
-      handler: './vtex/update-manifest/update-manifest',
-      requiredArgs: ['vendor']
     }
+    // set_vendor: {
+    //   description: 'Set the vendor name in the manifest file',
+    //   handler: './vtex/update-manifest/update-manifest',
+    //   requiredArgs: ['vendor']
+    // }
   },
   handler: './',
   options: [

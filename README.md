@@ -13,7 +13,8 @@ Comandos disponibles:
 ```bash
 
 $ exito
-   Usage: exito <command> [options]
+ 
+  Usage: exito <command> [options]
 
   Commands:
 
@@ -27,14 +28,14 @@ $ exito
     aws                             Aws options
     aws clone <criteria> [all]      Clone specific list of projectos from aws, if your add the option <all>
 
-    infra             Proyects infra options
-    infra update_triggers Run a local triggers.json
+    run             Execute options with the cli
+    run update_triggers Run a local triggers.json
 
     generate                                                        Generate options for the project
     generate vtex_json                                              Create the json file config of vtex
     generate workspaces                                             Create the workspaces config for develops
     generate config                                                 Get the last config  for projects
-    generate docker <environment> <vendor> <workspace> <email>      Create the docker file for aws code-build in environment production (prod) and develop (dev)
+    generate docker <environment> <vendor> <workspace> <email>      Create docker file for code-build in environment production (prod) and develop (dev)
     generate sonar <repository> <version> <src>                     Create the sonar file for test
     generate trigger <arn>                                          Create the triggers config for the indicate proyects
 
@@ -44,11 +45,11 @@ $ exito
     vtex coverage                                  Run the coverage process in the proyect
     vtex publish                                   Publish only one component into Vtex
     vtex login <account> <workspace> <email>       Set credentials for vtex in the config file from vtex
-    vtex set_vendor <vendor>                       Set the vendor name in the manifest file
 
   Options:
 
     -h, --help  show help information
+
 
 ```
 

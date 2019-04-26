@@ -1,7 +1,7 @@
-import { readDirectoryByExtension } from "./../../../../shared/util/read-files-extension";
-import log from "../../../../shared/logger";
-import { runOnlyCommand } from "../../../../shared/util/run-only-command";
-import { getRepositoryName } from "../../../../shared/util/get-repository-name";
+import { readDirectoryByExtension } from "./../../../shared/util/read-files-extension";
+import log from "../../../shared/logger";
+import { runOnlyCommand } from "../../../shared/util/run-only-command";
+import { getRepositoryName } from "../../../shared/util/get-repository-name";
 
 export default async () => {
   const directory = process.cwd() + "/";
