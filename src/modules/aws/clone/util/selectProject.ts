@@ -1,6 +1,7 @@
 import { RepositoryList } from "./../../../../shared/models/global";
 import log from "../../../../shared/logger";
 import inquirer from "inquirer";
+import chalk from "chalk";
 
 // Método que busca una dependencia e la lista de dependencias filtradas por el usuario
 export const findDependency = async (
@@ -33,14 +34,15 @@ export const findDependency = async (
 
 const choiseDependencies = async (projectList: Array<RepositoryList>) => {
   let dependencies = [
-    new inquirer.Separator("\n = Projects list = \n"),
+    new inquirer.Separator(`${chalk.yellow('Select the projects to clone')} \n`),
     ...projectList
   ];
+
 
   const promptCommands = await inquirer.prompt([
     {
       type: "checkbox",
-      message: "Pick The Project to clone",
+      message: `${chalk.greenBright('Pick The Project to clone')}`,
       name: "projects",
       choices: dependencies
     }

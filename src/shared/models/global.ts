@@ -3,6 +3,7 @@ export interface ContentManifest {
   name: string;
   path: string;
   dependencies: ContentDependencies;
+  version: string;
 }
 
 export interface OptRunCommand {
@@ -64,7 +65,7 @@ export interface RepositoryMetadata {
 }
 
 export interface RepositoryOptions {
-  credentials: Credentials;
+  credentials: AwsCredentials;
   project: {
     repositoryMetadata: RepositoryMetadata;
   };
@@ -79,7 +80,7 @@ export interface RepositoryList {
   selected: boolean;
 }
 
-export interface Credentials {
+export interface AwsCredentials {
   username: string;
   pwd: string;
 }
@@ -87,7 +88,7 @@ export interface Credentials {
 export interface AwsState {
   path: string;
   criteria: string;
-  credentials: Credentials;
+  credentials: AwsCredentials;
   projectList: ProjectList;
 }
 
@@ -100,7 +101,7 @@ export interface OptionsCommand {
   path: string;
   commands: string;
   position: number;
-  credentials: Credentials;
+  credentials: AwsCredentials;
   projectList: Array<RepositoryList>;
 }
 
@@ -135,4 +136,37 @@ export interface CreateTemplate {
   buildSpecDir: string;
   codeBuildName: string;
   codePipeLineName: string;
+}
+
+export interface CreateTemplateCloudFormation {
+  codeCommitProyects: Array<string>;
+  nameBranch: string;
+  buildSpecDir: string;
+  codeBuildName: string;
+  codePipeLineName: string;
+}
+
+export interface BranchTriggerInformation {
+  customData: any;
+  name: string;
+}
+
+export interface CreateTriggerCodeCommit {
+  codeCommitProyect: string;
+  branchs: Array<BranchTriggerInformation>;
+  updateReference: Array<string>;
+  destinationArn: string;
+}
+
+export interface ConfigVtexJson {
+  login: string;
+  authToken: string;
+  account: string;
+  workspase: string;
+}
+
+export interface DockerConfiguration {
+  vendor: string;
+  email: string;
+  workspace: string;
 }
