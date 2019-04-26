@@ -5,6 +5,58 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+### v2.2.8 (2019-26-05)
+
+Creación de los siguientes comandos:
+
+- `run update_triggers`: Comando que ejecuta aws cli para asociar el trigger indicado en el json seleccionado
+- `generate trigger <arn>`: Comando que genera los archivos empleados para asociar los triggers a los codecommit
+- `vtex npm_install`:  Comando que permite realizar la instalación de las dependencias en los proyectos de react o node
+- `vtex coverage`: Comando que permite configurar y ejecutar las pruebas con jest en react o node
+
+Eliminación de los siguientes comandos:
+
+- `vtex set_vendor <vendor>`: No es necesario ya que el echo de modificar el vendor no soluciona el problema de multi site
+
+### v2.1.4 (2019-09-04)
+
+Creación de los siguientes comandos
+
+- `generate vtex_json`: Comando que permite crear el archivo de configuración de vtex, en este archivo ellos almacenan las credenciales del usuario.
+- `generate docker <environment> <vendor> <workspace> <email>`: Comando que permite crear los archivos .dockerfile para el proceso de integración continua. se necesita pasar el environment 'prod' o 'dev'.
+- `generate sonar <repository> <version> <src>`: Comando que permite crear el archivo de sonar, se necesita pasar el nombre del repositorio.
+- `vtex login <account> <workspace> <email>`: Comando que permite realizar el login por consola.
+- `vtex set_vendor <vendor>`: Comando que permite renombrar el vendor de un proyecto. este comando se emplea para renombrar los proyectos y permitir el multi sitio
+
+Se crean los comandos aws, vtex, infra
+
+```bash
+aws                             Aws options
+aws clone <criteria> [all]      Clone specific list of projectos from aws, if your add the option <all>
+```
+
+```bash
+infra             Proyects infra options
+infra update      Update the continuous integration and commit the changes.
+```
+
+```bash
+vtex                                           Vtex options
+vtex run <command> [all]                       Execute specific command from vtex, the current commands suport is: <link>, <publish>
+vtex publish                                   Publish only one component into Vtex
+vtex login <account> <workspace> <email>       Set credentials for vtex in the config file from vtex
+vtex set_vendor <vendor>                       Set the vendor name in the manifest file
+```
+
+Se realizo una mejora en el almacenamiento de las credenciales. ahora se genera un archivo exito.json donde se almacenan las credenciales. para visualizar el contenido de este archivo pueden ejecutar en consola la siguiente linea `cat ~/.config/configstore/exito.json`
+
+```bash
+credentials                              Manage your credentials for aws
+credentials get                          Gets the current credentials used in aws
+credentials clear                        Clear the current credentials used in aws
+credentials set <username> <pwd>         Sets the current credentials for aws
+```
+
 ### v2.0.11 (2019-03-18)
 
 Se soluciona el bug al clonar proyectos con el comando exito clone desde windows.

@@ -1,16 +1,16 @@
-import { Credentials } from "./../../../shared/models/global";
+import { AwsCredentials } from "./../../../shared/models/global";
 import {
   getProjectDirectory,
   getProjectInformation
 } from "./util/aws-commands";
 import { RepositoryList, AwsState } from "../../../shared/models/global";
 import _ from "lodash";
-import { setCredentials } from "./util/credentials";
 import { filterProjects } from "./util/filterProjects";
 import { findDependency } from "./util/selectProject";
 import { executeCommands } from "./util/executeCommands";
 import log from "../../../shared/logger";
 import chalk from "chalk";
+import { PrompCredentials } from "../../credentials/required-credentials";
 
 let state: AwsState = {
   path: "",
@@ -30,9 +30,9 @@ export default async (crit: string, all: string) => {
     state.path = process.cwd() + "/";
 
     // 1. Obtengo las credenciales del usuario
-    let credentials: Credentials;
+    let credentials: AwsCredentials;
 
-    credentials = await setCredentials();
+    credentials = await PrompCredentials();
 
     if (!_.isEmpty(credentials)) {
       // Set the credentials
