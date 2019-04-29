@@ -3,9 +3,9 @@ import { ConfigVtexJson } from './../../../../shared/models/global';
 import log from './../../../../shared/logger';
 import { getConfigTemplate } from './util/config-template';
 import { runOnlyCommand } from '../../../../shared/util/run-only-command';
-const axios = require('axios');
+import axios from 'axios';
 let fs = require('fs');
-const chalk = require('chalk');
+import chalk from 'chalk';
 
 // Call to get auth information
 const getAuth = async (workspace: string) => {

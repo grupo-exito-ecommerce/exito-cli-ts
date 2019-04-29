@@ -1,6 +1,6 @@
 {
   "name": "exito",
-  "version": "2.2.8",
+  "version": "2.2.10",
   "description": "Cli for vtex integration",
   "main": "lib/src/index.js",
   "bin": "lib/src/index.js",
@@ -35,7 +35,6 @@
     "@types/ramda": "types/npm-ramda#dist",
     "@types/request": "^2.48.1",
     "@types/update-notifier": "^2.5.0",
-    "axios": "^0.18.0",
     "configstore": "^4.0.0",
     "nodemon": "^1.18.10",
     "tslint": "^5.12.0",
@@ -56,6 +55,7 @@
     "request": "^2.83.0",
     "unzip-stream": "^0.3.0",
     "update-notifier": "^2.3.0",
-    "winston": "^2.4.0"
+    "winston": "^2.4.0",
+    "axios": "^0.18.0"
   }
 }
