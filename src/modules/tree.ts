@@ -59,11 +59,11 @@ export default {
       description: 'Create the workspaces config for develops',
       handler: './generate/create-workspace/create-workspace'
     },
-    config: {
-      alias: 'c',
-      description: 'Get the last config  for projects',
-      handler: './generate/create-config-project/get-config'
-    },
+    // config: {
+    //   alias: 'c',
+    //   description: 'Get the last config  for projects',
+    //   handler: './generate/create-config-project/get-config'
+    // },
     // docker: {
     //   alias: 'd',
     //   description:

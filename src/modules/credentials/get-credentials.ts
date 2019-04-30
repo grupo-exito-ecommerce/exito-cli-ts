@@ -9,9 +9,9 @@ export default async () => {
     let credential: AwsCredentials = getAwsAccount();
     if (credential) {
       log.info(
-        `Credentials for use in Aws: User ${chalk.redBright(
+        `current credentials for aws: user ${chalk.redBright(
           credential.username
-        )} Password ${chalk.redBright(credential.pwd)}`
+        )} password ${chalk.redBright(credential.pwd)}`
       );
     } else {
       log.debug(
