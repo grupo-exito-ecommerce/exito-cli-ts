@@ -1,7 +1,7 @@
-import log from '../../shared/logger';
+import log from '../../../../../shared/logger';
 import { spawn } from 'child_process';
 
-export const childProcessRunCommand = function(command: string) {
+export const childProcessRunCommandPublish = function(command: string) {
   const task = spawn(`${command}`, [], {
     shell: true
   });
@@ -14,5 +14,10 @@ export const childProcessRunCommand = function(command: string) {
   // Método para imprimir el log de error
   task.stderr!.on('data', function(data: string) {
     log.info(data.toString());
+    if(data.toString().includes('Publishing failed')){
+      process.exit(1)
+    } else if(data.toString().includes('504 Gateway Time-out')){
+      process.exit(1)
+    }
   });
 };

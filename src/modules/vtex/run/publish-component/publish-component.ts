@@ -1,10 +1,10 @@
 import { ContentManifest } from './../../../../shared/models/global';
-import { childProcessRunCommand } from './../../../../shared/util/child-process-run-command';
 import log from './../../../../shared/logger';
 import {
   getManifestsContent,
   getDirectories
 } from '../../../../shared/util/get-content-files';
+import { childProcessRunCommandPublish } from './utill/child-process-publish';
 const directory = process.cwd() + '/';
 
 export default async function() {
@@ -17,7 +17,7 @@ const publishComponent = (manifest: ContentManifest) => {
   let command_create_workspace = `cd ${
     manifest.path
   } && vtex workspace use master && vtex publish --verbose`;
-  childProcessRunCommand(command_create_workspace);
+  childProcessRunCommandPublish(command_create_workspace);
 };
 
 // Método que se encarga de buscar un proyecto en el directorio actual
