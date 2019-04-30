@@ -64,13 +64,13 @@ export default {
       description: 'Get the last config  for projects',
       handler: './generate/create-config-project/get-config'
     },
-    docker: {
-      alias: 'd',
-      description:
-        'Create docker file for code-build in environment production (prod) and develop (dev)',
-      handler: './generate/create-docker-file/create-docker-file',
-      requiredArgs: ['environment', 'vendor', 'workspace', 'email']
-    },
+    // docker: {
+    //   alias: 'd',
+    //   description:
+    //     'Create docker file for code-build in environment production (prod) and develop (dev)',
+    //   handler: './generate/create-docker-file/create-docker-file',
+    //   requiredArgs: ['environment', 'vendor', 'workspace', 'email']
+    // },
     sonar: {
       alias: 's',
       description: 'Create the sonar file for test',
