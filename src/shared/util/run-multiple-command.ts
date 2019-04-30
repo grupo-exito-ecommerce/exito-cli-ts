@@ -19,7 +19,7 @@ export const runMultipleCommand = (
     });
 
     // Método para imprimir el log de error
-    task.stderr!.on('data', function(data: string) {
+    task.stderr!.on('data', (data: string) => {
       log.error(data.toString());
 
       if (errors) {

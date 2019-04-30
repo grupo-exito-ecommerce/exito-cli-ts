@@ -83,8 +83,12 @@ export const cloneProject = (options: RepositoryOptions) => {
       });
 
       // Método para imprimir el log de error
-      task.stderr!.on("data", data => {
+      task.stderr!.on("data", (data:string) => {
         log.info(data.toString());
+
+        if(data.toString().includes("already exists and is not an empty directory")){
+          fulfill(false)
+        }
       });
     } catch (error) {
       log.debug(error);

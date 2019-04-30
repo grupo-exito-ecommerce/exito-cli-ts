@@ -17,14 +17,14 @@ export const readDirectory = async (directory: string) => {
   // print log info
   log.info(
     filter.length > 0
-      ? `find ${chalk.blue(`${filter.length}`)} folders with proyects`
-      : `folder ${chalk.blue(".git")} not found in the current directory`
+      ? `find ${chalk.redBright(`${filter.length}`)} folders with proyects`
+      : `folder ${chalk.redBright(".git")} not found in the current directory`
   );
 
   if (filter.length) {
     let choise = await choiseFolders(filter);
     log.info(
-      `Total of proyects to use: ${chalk.yellow(`${choise.folders.length}`)}`
+      `Total of proyects to use: ${chalk.whiteBright(`${choise.folders.length}`)}`
     );
     return choise.folders;
   }
