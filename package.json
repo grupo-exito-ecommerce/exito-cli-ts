@@ -1,7 +1,7 @@
 {
   "name": "exito",
-  "version": "2.2.12",
-  "description": "Cli for vtex integration",
+  "version": "2.2.13",
+  "description": "Commands to work more fast with vtex and aws",
   "main": "lib/src/index.js",
   "bin": "lib/src/index.js",
   "scripts": {
@@ -41,6 +41,7 @@
     "typescript": "^3.3.3"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bluebird": "^3.5.0",
     "chalk": "^2.4.1",
     "findhelp": "^1.0.4",
@@ -50,12 +51,12 @@
     "lodash": "4.17.11",
     "moment": "^2.23.0",
     "ncp": "^2.0.0",
+    "ora": "^3.4.0",
     "pipe-streams-to-promise": "^0.2.0",
     "ramda": "^0.25.0",
     "request": "^2.83.0",
     "unzip-stream": "^0.3.0",
     "update-notifier": "^2.3.0",
-    "winston": "^2.4.0",
-    "axios": "^0.18.0"
+    "winston": "^2.4.0"
   }
 }

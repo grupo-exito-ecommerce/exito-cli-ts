@@ -6,6 +6,7 @@ import { runOnlyCommand } from '../../../../shared/util/run-only-command';
 import axios from 'axios';
 let fs = require('fs');
 import chalk from 'chalk';
+import ora from 'ora';
 
 // Call to get auth information
 const getAuth = async (workspace: string) => {
@@ -34,17 +35,22 @@ export default async function(
   workspace: string,
   email: string
 ) {
+  const spinner = ora('Getting auth token \n').start();
+  spinner.start();
   const auth = await getAuth(workspace);
 
   if (auth) {
-    const authToken = auth.data;
+    const authToken: string = auth.data;
 
     // print information
-    log.debug('auth token to use:' + authToken);
+    spinner.succeed(
+      `auth token to use: ${chalk.redBright(authToken.slice(1, 20))}...`
+    );
+
     log.info(
-      `Credentials for use ${chalk.blue(account)} as ${chalk.green(
+      `Credentials for use ${chalk.redBright(account)} as ${chalk.redBright(
         email
-      )} at workspace ${chalk.green(workspace)}`
+      )} at workspace ${chalk.redBright(workspace)}`
     );
 
     // 1. Find the directory of the file for config vtex
@@ -57,7 +63,7 @@ export default async function(
     } else {
       // print the current ubication from the file config vtex.json
       log.debug(
-        `Vtex config file ubicate in the folder: ${chalk.green(
+        `vtex.json ubication: ${chalk.redBright(
           vtexDirConfig.replace(/\s/g, '')
         )}`
       );
@@ -72,13 +78,10 @@ export default async function(
 
       // 2. Overrite the config file from vtex
       await overwriteFile(vtexDirConfig, options);
-
-      log.info(
-        'Vtex.json file successfully overwritten, now you logged in Vtex!!'
-      );
+      spinner.succeed(`Now you logged in Vtex!!`);
     }
   } else {
-    log.error('No token information found.');
+    spinner.fail('No token information found.');
     process.exit(1);
   }
 }
@@ -88,7 +91,6 @@ export default async function(
  */
 const overwriteFile = async (dirname: string, options: ConfigVtexJson) => {
   try {
-    log.info(dirname.replace(/\s/g, ''));
     // remove white spaces in the path
     return fs.writeFile(
       `${dirname.replace(/\s/g, '')}`,

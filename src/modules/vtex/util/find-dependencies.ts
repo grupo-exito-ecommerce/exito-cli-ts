@@ -1,4 +1,4 @@
-import chalk from "chalk";
+import chalk from 'chalk';
 import { ContentDependencies } from '../../../shared/models/global';
 import inquirer from 'inquirer';
 import log from '../../../shared/logger';
@@ -23,7 +23,11 @@ export const findDependency = async (
       }
     );
 
-    log.info(`Total of proyects to link: ${chalk.yellow(`${dependenciesList.length}`)}`);
+    log.info(
+      `Total of proyects to link: ${chalk.whiteBright(
+        `${dependenciesList.length}`
+      )}`
+    );
 
     return dependenciesList;
   } else {
@@ -35,14 +39,16 @@ const choiseDependencies = async (
   dependenciesList: Array<ContentDependencies>
 ) => {
   let dependencies = [
-    new inquirer.Separator(`${chalk.yellow('Select the proyects to use')} \n`),
+    new inquirer.Separator(
+      `${chalk.whiteBright('Select the proyects to use')} \n`
+    ),
     ...dependenciesList
   ];
 
   const promptCommands: Array<ContentDependencies> = await inquirer.prompt([
     {
       type: 'checkbox',
-      message: `${chalk.greenBright('Pick proyects to link')}`,
+      message: `${chalk.redBright('Pick proyects to link')}`,
       name: 'dependencies',
       choices: dependencies
     }

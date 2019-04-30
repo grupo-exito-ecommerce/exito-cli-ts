@@ -13,7 +13,7 @@ Comandos disponibles:
 ```bash
 
 $ exito
- 
+
   Usage: exito <command> [options]
 
   Commands:
@@ -31,13 +31,11 @@ $ exito
     run             Execute options with the cli
     run update_triggers Run a local triggers.json
 
-    generate                                                        Generate options for the project
-    generate vtex_json                                              Create the json file config of vtex
-    generate workspaces                                             Create the workspaces config for develops
-    generate config                                                 Get the last config  for projects
-    generate docker <environment> <vendor> <workspace> <email>      Create docker file for code-build in environment production (prod) and develop (dev)
-    generate sonar <repository> <version> <src>                     Create the sonar file for test
-    generate trigger <arn>                                          Create the triggers config for the indicate proyects
+    generate                                          Generate options for the project
+    generate vtex_json                                Create the json file config of vtex
+    generate workspaces                               Create the workspaces config for develops
+    generate sonar <repository> <version> <src>       Create the sonar file for test
+    generate trigger <arn>                            Create the triggers config for the indicate proyects
 
     vtex                                           Vtex options
     vtex run <command> [all]                       Execute specific command from vtex, the current commands suport is: <link>, <publish>
@@ -50,7 +48,6 @@ $ exito
 
     -h, --help  show help information
 
-
 ```
 
 ## Desarollo local
@@ -58,7 +55,6 @@ $ exito
 Start `npm run ts-watch`
 
 local `sudo npm link` ò `node npm link`
-
 
 ## Promover a npm
 

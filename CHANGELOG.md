@@ -5,13 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+### v2.2.13 (2019-30-2019)
+
+Eliminación de los siguientes comandos:
+
+- `generate config`: Los desarrolladores no necesitan la carpeta config.
+- `generate docker`: El proceso de integración continua se simplifico de tal modo que ya solo se usa el buildspec configurado para el codebuild.
+
 ### v2.2.8 (2019-26-05)
 
 Creación de los siguientes comandos:
 
 - `run update_triggers`: Comando que ejecuta aws cli para asociar el trigger indicado en el json seleccionado
 - `generate trigger <arn>`: Comando que genera los archivos empleados para asociar los triggers a los codecommit
-- `vtex npm_install`:  Comando que permite realizar la instalación de las dependencias en los proyectos de react o node
+- `vtex npm_install`: Comando que permite realizar la instalación de las dependencias en los proyectos de react o node
 - `vtex coverage`: Comando que permite configurar y ejecutar las pruebas con jest en react o node
 
 Eliminación de los siguientes comandos:

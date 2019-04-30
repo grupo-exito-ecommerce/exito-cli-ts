@@ -8,7 +8,6 @@ export const runOnlyCommand = (command: string): Promise<string> => {
   return new Promise(function(resolve) {
     // Método para imprimir el log normal
     task.stdout!.on("data", (data: string) => {
-      log.info(data.toString());
       resolve(data.toString());
     });
 
