@@ -9,14 +9,14 @@ export const choiseFolders = async (
     folderList: Array<string>
 ): Promise<Folders> => {
     let folders = [
-        new inquirer.Separator(`${chalk.yellow('Select the folders to use')} \n`),
+        new inquirer.Separator(`${chalk.whiteBright('Select the folders to use')} \n`),
         ...folderList
     ];
 
     const promptCommands: Folders = await inquirer.prompt([
         {
             type: 'checkbox',
-            message: `${chalk.greenBright('Pick proyects to link')}`,
+            message: `${chalk.redBright('Pick proyects to link')}`,
             name: 'folders',
             choices: folders
         }
