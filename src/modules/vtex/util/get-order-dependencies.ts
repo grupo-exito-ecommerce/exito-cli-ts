@@ -17,7 +17,7 @@ export const getListProyects = async (
   manifests = manifest;
 
   // 1. Armo un array con dependencias de todos los componentes de la carpeta indicada. se inicia a nvl 0 ya que no hay dependencias validadas aun
-  await manifests.forEach(item => {
+  await manifests.forEach((item: ContentManifest) => {
     let obj = {
       level: 0,
       title: `${item.vendor}.${item.name}`,
@@ -28,8 +28,11 @@ export const getListProyects = async (
   });
 
   // 2. Recorro todas las dependencias de cada uno de los proyectos y valido sus dependencias, armando así el orden para importar los componentes
-  await manifests.forEach((_item, index) => {
-    resolverDenpendecies(manifests[index].dependencies);
+  await manifests.forEach((_item: ContentManifest, index) => {
+    resolverDenpendecies(
+      manifests[index].dependencies,
+      `${_item.vendor}.${_item.name}`
+    );
   });
 
   return dependenciesList;
@@ -60,14 +63,17 @@ export const findLevelDependency = function(item: string) {
 };
 
 // Metodo que valida si ya hay dependencias de un componente y categoriza su nivel de dependencia (Función recursiva que valida en todas las dependencias si hay alguna que necesite de alguien más
-// let manifestItem: ContentManifest;
-
 export const resolverDenpendecies = async (
-  dependencies: ContentDependencies
+  dependencies: ContentDependencies,
+  app_name: string
 ) => {
+  console.log(app_name)
   for (const prop in dependencies) {
     let manifest = manifests.find(res => {
-      if (`${res.vendor}.${res.name}` == prop) {
+      if (
+        `${res.vendor}.${res.name}` == prop &&
+        `${res.vendor}.${res.name}` !== app_name
+      ) {
         log.debug(`dependencie found: ${prop}`);
         findLevelDependency(prop);
         return true;
@@ -78,7 +84,7 @@ export const resolverDenpendecies = async (
     });
 
     if (manifest) {
-      resolverDenpendecies(manifest.dependencies);
+      resolverDenpendecies(manifest.dependencies, app_name);
     }
   }
 };
