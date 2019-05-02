@@ -67,7 +67,6 @@ export const resolverDenpendecies = async (
   dependencies: ContentDependencies,
   app_name: string
 ) => {
-  console.log(app_name)
   for (const prop in dependencies) {
     let manifest = manifests.find(res => {
       if (
