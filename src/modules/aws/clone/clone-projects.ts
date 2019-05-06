@@ -30,7 +30,7 @@ export default async (crit: string, all: string) => {
     const spinner = ora('Start cloning process').start();
     // 0. Set path
     state.path = process.cwd() + '/';
-
+    spinner.stop();
     // 1. Obtengo las credenciales del usuario
     let credentials: AwsCredentials;
 
@@ -43,6 +43,7 @@ export default async (crit: string, all: string) => {
       // 2. Obtengo el criterio de busqueda para los projectos
       let criteria: string = '';
       if (crit) {
+        spinner.start();
         spinner.text = `Search proyects with ${chalk.redBright(crit)} \n`;
         criteria = crit;
         log.debug(
