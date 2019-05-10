@@ -1,4 +1,3 @@
-import { consts } from './../../../../shared/constants';
 import { ConfigVtexJson } from './../../../../shared/models/global';
 import log from './../../../../shared/logger';
 import { getConfigTemplate } from './util/config-template';
@@ -9,14 +8,18 @@ import chalk from 'chalk';
 import ora from 'ora';
 
 // Call to get auth information
-const getAuth = async (workspace: string) => {
+const getAuth = async (workspace: string, account: string) => {
   try {
-    log.debug(`https://${workspace + consts.authtoken}?config=${makeid()}`);
+    log.debug(
+      `https://${workspace}--${account}.myvtex.com/exito/token?config=${makeid()}`
+    );
     return await axios.get(
-      `https://${workspace + consts.authtoken}?config=${makeid()}`
+      `https://${workspace}--${account}.myvtex.com/exito/token?config=${makeid()}`
     );
   } catch (error) {
-    log.error(error);
+    log.debug(error);
+    log.error('Error on get auth token');
+    process.exit(1);
   }
 };
 
@@ -36,8 +39,9 @@ export default async function(
   email: string
 ) {
   const spinner = ora('Getting auth token \n').start();
+  spinner.stop();
+  const auth = await getAuth(workspace, account);
   spinner.start();
-  const auth = await getAuth(workspace);
 
   if (auth) {
     const authToken: string = auth.data;
