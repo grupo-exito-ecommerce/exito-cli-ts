@@ -9,15 +9,22 @@ export const childProcessRunCommandPublish = function(command: string) {
   // Método para imprimir el log normal
   task.stdout!.on('data', (data: string) => {
     log.info(data.toString());
+    validateBuild(data);
   });
 
   // Método para imprimir el log de error
   task.stderr!.on('data', function(data: string) {
     log.info(data.toString());
-    if(data.toString().includes('Publishing failed')){
-      process.exit(1)
-    } else if(data.toString().includes('504 Gateway Time-out')){
-      process.exit(1)
-    }
+    validateBuild(data);
   });
+};
+
+const validateBuild = (data: string) => {
+  if (data.toString().includes('Publishing failed')) {
+    log.error('exito cli error on publish component');
+    process.exit(1);
+  } else if (data.toString().includes('504 Gateway Time-out')) {
+    log.error('exito cli error on publish component');
+    process.exit(1);
+  }
 };

@@ -10,6 +10,12 @@ export const link_succes_log = [
   },
   {
     log: "Available service routes"
+  },
+  {
+    log: "App linked successfully"
+  },
+  {
+    log: "You can try out the queries in this app using the GraphiQL IDE"
   }
 ];
 
@@ -31,6 +37,9 @@ export const link_error_log = [
   },
   {
     log: "Something exploded"
+  },
+  {
+    log: "App build failed."
   }
 ];
 
