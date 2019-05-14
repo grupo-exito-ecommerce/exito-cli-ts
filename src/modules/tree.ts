@@ -36,8 +36,8 @@ export default {
     //   description: "Update the continuous integration and prepare the commit for push the changes.",
     //   handler: "./aws/infra/update-config/update-config"
     // },
-    update_triggers: {
-      alias: 'ut',
+    triggers: {
+      alias: 't',
       description: 'Run a local triggers.json',
       handler: './run/update-triggers/update-triggers'
     }
@@ -114,12 +114,12 @@ export default {
       description: 'Set credentials for vtex in the config file from vtex',
       handler: './vtex/run/login/login-vtex',
       requiredArgs: ['account', 'workspace', 'email']
+    },
+    set_vendor: {
+      description: 'Set the vendor name in the manifest file',
+      handler: './vtex/update-manifest/update-manifest',
+      requiredArgs: ['vendor']
     }
-    // set_vendor: {
-    //   description: 'Set the vendor name in the manifest file',
-    //   handler: './vtex/update-manifest/update-manifest',
-    //   requiredArgs: ['vendor']
-    // }
   },
   handler: './',
   options: [

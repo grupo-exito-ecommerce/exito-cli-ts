@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+### v2.2.20 (2019-30-2019)
+Actualización en el comando empleado para realizar el login en la cuenta de vtex y actualización de los logs que se capturan cuando se realiza link o publish en vtex, se corrigio un error en windows cuando se crean los trigger.
+
+Implementación del comando
+
+- `vtex set_vendor <vendor>`: Se empleara este comando para el proceso de publicación de un componente en diferentes accounts. se a verificado y con vtex no existe problema al usar projectos de diferentes accounts.
+
+Actualiación del comando
+
+- `vtex run triggers`: Se renombra la forma en que se ejecutan los triggers locales
+
 ### v2.2.13 (2019-30-2019)
 
 Eliminación de los siguientes comandos:
