@@ -94,9 +94,10 @@ const ensureDirectoryExistence = async (filePath: string): Promise<Boolean> => {
  * Método que sobreescribe el archivo de tema base para la aplicación.
  */
 const createTemplate = async (options: CreateTriggerCodeCommit) => {
+  const template = await getTemplateContent(options);
   return fs.writeFile(
     `${dirname}/${codeCommitTriggerDir}/${options.codeCommitProyect}.json`,
-    await getTemplateContent(options),
+    template,
     function(err: string) {
       if (err) {
         throw err;
