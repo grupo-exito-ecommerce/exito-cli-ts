@@ -26,5 +26,11 @@ const validateBuild = (data: string) => {
   } else if (data.toString().includes('504 Gateway Time-out')) {
     log.error('exito cli error on publish component');
     process.exit(1);
+  } else if (data.toString().includes('Request failed with status code 404')) {
+    log.error('exito cli error on publish component');
+    process.exit(1);
+  }else if (data.toString().includes('An error happened while building')) {
+    log.error('exito cli error on publish component');
+    process.exit(1);
   }
 };
