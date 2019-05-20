@@ -70,11 +70,13 @@ export interface RepositoryOptions {
     repositoryMetadata: RepositoryMetadata;
   };
   path: string;
+  branch: string;
 }
 
 export interface RepositoryList {
   repositoryName: string;
   repositoryId: string;
+  repositoryMetadata: RepositoryMetadata;
   title: string;
   value: string;
   selected: boolean;
@@ -95,6 +97,15 @@ export interface AwsState {
 export interface ProjectList {
   repositories: Array<RepositoryList>;
 }
+
+export interface AwsExecuteCommandClone {
+  path: string;
+  credentials: AwsCredentials;
+  projectList: RepositoryList[];
+  branch: string;
+  position: number;
+}
+
 
 export interface OptionsCommand {
   command: string;

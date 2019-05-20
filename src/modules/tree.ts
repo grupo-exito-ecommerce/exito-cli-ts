@@ -26,7 +26,7 @@ export default {
         'Clone specific list of projectos from aws, if your add the option <all>',
       handler: './aws/clone/clone-projects',
       requiredArgs: 'criteria',
-      optionalArgs: ['all']
+      optionalArgs: ['branch','all']
     }
   },
   run: {

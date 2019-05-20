@@ -1,4 +1,5 @@
-import { AwsCredentials } from './../../../shared/models/global';
+import { consts } from './../../../shared/constants';
+import { AwsCredentials, AwsExecuteCommandClone } from './../../../shared/models/global';
 import {
   getProjectDirectory,
   getProjectInformation
@@ -25,11 +26,14 @@ let state: AwsState = {
   }
 };
 
-export default async (crit: string, all: string) => {
+export default async (crit: string, branch: string, all: string) => {
   try {
-    const spinner = ora('Start cloning process').start();
-    // 0. Set path
+    // 0. Set path and branch
     state.path = process.cwd() + '/';
+    branch ? branch = `-b ${branch}` : branch = consts.git.command_default_branch_clone
+    log.debug(`Branch to use ${branch}`)
+    const spinner = ora('Start cloning process').start();
+
     spinner.stop();
     // 1. Obtengo las credenciales del usuario
     let credentials: AwsCredentials;
@@ -85,7 +89,7 @@ export default async (crit: string, all: string) => {
             item.selected = true;
           });
 
-          let selectProject: Array<RepositoryList> = filterProject;
+          let selectProject: RepositoryList[] = filterProject;
 
           // 3.3 Valido si el usuario indico el clonar todos los projectos automaticamente, si no se ha indicado esto. paso a mostrar el seleccionable del prompt
           if (!all) {
@@ -98,7 +102,7 @@ export default async (crit: string, all: string) => {
             spinner.text = '';
             spinner.start();
             // 4. Obtengo la información de los repositorios de aws. para poder realizar la clonación
-            let results = selectProject.map(async (element: any) => {
+            let results = selectProject.map(async (element: RepositoryList) => {
               let metadata = await getProjectInformation(
                 element.repositoryName
               );
@@ -108,10 +112,11 @@ export default async (crit: string, all: string) => {
             // 4.1 Espero a que finalicen todas los await definidos en el map
             Promise.all(results).then(async () => {
               // 5 Realizo el proceso de clonación
-              let options = {
+              let options: AwsExecuteCommandClone = {
                 path: state.path,
                 credentials: state.credentials,
                 projectList: selectProject,
+                branch: branch,
                 position: 0
               };
               let cloned = await executeCommands(options);

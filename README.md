@@ -13,7 +13,8 @@ Comandos disponibles:
 ```bash
 
 $ exito
-Usage: exito <command> [options]
+
+  Usage: exito <command> [options]
 
   Commands:
 
@@ -24,8 +25,8 @@ Usage: exito <command> [options]
     credentials clear                        Clear the current credentials used in aws
     credentials set <username> <pwd>         Sets the current credentials for aws
 
-    aws                             Aws options
-    aws clone <criteria> [all]      Clone specific list of projectos from aws, if your add the option <all>
+    aws                                      Aws options
+    aws clone <criteria> [branch] [all]      Clone specific list of projectos from aws, if your add the option <all>
 
     run             Execute options with the cli
     run triggers    Run a local triggers.json
@@ -47,7 +48,6 @@ Usage: exito <command> [options]
   Options:
 
     -h, --help  show help information
-
 
 ```
 
