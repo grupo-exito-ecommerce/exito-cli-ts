@@ -31,6 +31,7 @@ export const getProjectDirectory = (): Promise<ProjectList> => {
   });
 };
 
+
 export const getProjectInformation = (
   projectName: string
 ): Promise<RepositoryMetadataResponse> => {
@@ -68,7 +69,7 @@ export const cloneProject = (options: RepositoryOptions) => {
       const task = spawn(
         `cd ${options.path} && ${consts.git.command_clone} https://${
         options.credentials.username
-        }:${options.credentials.pwd}@${repositorie} ${consts.git.command_default_branch_clone} `,
+        }:${options.credentials.pwd}@${repositorie} ${options.branch} `,
         [],
         { shell: true }
       );
@@ -83,16 +84,17 @@ export const cloneProject = (options: RepositoryOptions) => {
       });
 
       // Método para imprimir el log de error
-      task.stderr!.on("data", (data:string) => {
+      task.stderr!.on("data", (data: string) => {
         log.info(data.toString());
 
-        if(data.toString().includes("already exists and is not an empty directory")){
+        if (data.toString().includes("already exists and is not an empty directory")) {
           fulfill(false)
         }
       });
     } catch (error) {
       log.debug(error);
       reject(error);
+      process.exit(1)
     }
   });
 };

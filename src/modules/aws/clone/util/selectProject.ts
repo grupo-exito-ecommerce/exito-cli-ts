@@ -5,12 +5,12 @@ import chalk from 'chalk';
 
 // Método que busca una dependencia e la lista de dependencias filtradas por el usuario
 export const findDependency = async (
-  projectList: any
-): Promise<Array<RepositoryList>> => {
+  projectList: RepositoryList[]
+): Promise<RepositoryList[]> => {
   if (projectList.length) {
     let filderDependencies: any = await choiseDependencies(projectList);
     if (filderDependencies.projects) {
-      projectList = await projectList.filter((item: any) => {
+      projectList = await projectList.filter((item: RepositoryList) => {
         let isFind = filderDependencies.projects.find((filter: string) => {
           if (item.value == filter) {
             return true;
@@ -21,7 +21,7 @@ export const findDependency = async (
         return isFind;
       });
 
-      log.info(`Proyects to clone: ${chalk.redBright(projectList.length)}`);
+      log.info(`Proyects to clone: ${chalk.redBright(`${projectList.length}`)}`);
       return projectList;
     } else {
       return [];

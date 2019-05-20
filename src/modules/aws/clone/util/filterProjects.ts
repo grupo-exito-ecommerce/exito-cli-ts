@@ -8,7 +8,7 @@ import { RepositoryList } from "../../../../shared/models/global";
 export const filterProjects = async (
   projectsList: any,
   term: any
-): Promise<Array<RepositoryList>> => {
+): Promise<RepositoryList[]> => {
   return await projectsList.repositories.filter((item: any) => {
     return Object.keys(item).find(element => {
       if (
