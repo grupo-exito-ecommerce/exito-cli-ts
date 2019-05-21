@@ -56,7 +56,6 @@ export const publish_error_log = [
   {
     log: "Fail to publish"
   },
-  ,
   {
     log: "Something went wrong, I don't know what to do"
   }
