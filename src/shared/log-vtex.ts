@@ -40,6 +40,9 @@ export const link_error_log = [
   },
   {
     log: "App build failed."
+  },
+  {
+    log: "Something went wrong, I don't know what to do"
   }
 ];
 
@@ -52,5 +55,8 @@ export const publish_succes_log = [
 export const publish_error_log = [
   {
     log: "Fail to publish"
+  },
+  {
+    log: "Something went wrong, I don't know what to do"
   }
 ];
