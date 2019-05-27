@@ -1,62 +1,62 @@
 {
-  "name": "exito",
-  "version": "2.2.23",
-  "description": "Commands to work more fast with vtex and aws",
-  "main": "lib/src/index.js",
-  "bin": "lib/src/index.js",
-  "scripts": {
-    "ts": "tsc",
-    "ts-watch": "tsc --watch",
-    "copy": "ncp resources lib/src/modules/vtex/create-config-project/resources/",
-    "watch-ts": "tsc -w",
-    "prepublish": "npm run ts"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/grupo-exito-ecommerce/exito-cli-ts"
-  },
-  "keywords": [
-    "exito",
-    "cli"
-  ],
-  "author": "Grupo Exito Ecommerce",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/grupo-exito-ecommerce/exito-cli-ts/issues"
-  },
-  "homepage": "https://github.com/grupo-exito-ecommerce/exito-cli-ts#readme",
-  "devDependencies": {
-    "@types/configstore": "^4.0.0",
-    "@types/fs-extra": "^5.0.5",
-    "@types/inquirer": "^0.0.43",
-    "@types/lodash": "^4.14.121",
-    "@types/ncp": "^2.0.1",
-    "@types/node": "^11.9.4",
-    "@types/ramda": "types/npm-ramda#dist",
-    "@types/request": "^2.48.1",
-    "@types/update-notifier": "^2.5.0",
-    "configstore": "^4.0.0",
-    "nodemon": "^1.18.10",
-    "tslint": "^5.12.0",
-    "typescript": "^3.3.3"
-  },
-  "dependencies": {
-    "axios": "^0.18.0",
-    "bluebird": "^3.5.0",
-    "chalk": "^2.4.1",
-    "findhelp": "^1.0.4",
-    "fs-extra": "^7.0.1",
-    "inquirer": "^6.2.2",
-    "inquirer-prompt-suggest": "^0.1.0",
-    "lodash": "4.17.11",
-    "moment": "^2.23.0",
-    "ncp": "^2.0.0",
-    "ora": "^3.4.0",
-    "pipe-streams-to-promise": "^0.2.0",
-    "ramda": "^0.25.0",
-    "request": "^2.83.0",
-    "unzip-stream": "^0.3.0",
-    "update-notifier": "^2.3.0",
-    "winston": "^2.4.0"
-  }
+    "name": "exito",
+    "version": "2.2.24",
+    "description": "Commands to work more fast with vtex and aws",
+    "main": "lib/src/index.js",
+    "bin": "lib/src/index.js",
+    "scripts": {
+        "ts": "tsc",
+        "ts-watch": "tsc --watch",
+        "copy": "ncp resources lib/src/modules/vtex/create-config-project/resources/",
+        "watch-ts": "tsc -w",
+        "prepublish": "npm run ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/grupo-exito-ecommerce/exito-cli-ts"
+    },
+    "keywords": [
+        "exito",
+        "cli"
+    ],
+    "author": "Grupo Exito Ecommerce",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/grupo-exito-ecommerce/exito-cli-ts/issues"
+    },
+    "homepage": "https://github.com/grupo-exito-ecommerce/exito-cli-ts#readme",
+    "devDependencies": {
+        "@types/configstore": "^4.0.0",
+        "@types/fs-extra": "^5.0.5",
+        "@types/inquirer": "^0.0.43",
+        "@types/lodash": "^4.14.121",
+        "@types/ncp": "^2.0.1",
+        "@types/node": "^11.9.4",
+        "@types/ramda": "types/npm-ramda#dist",
+        "@types/request": "^2.48.1",
+        "@types/update-notifier": "^2.5.0",
+        "configstore": "^4.0.0",
+        "nodemon": "^1.18.10",
+        "tslint": "^5.12.0",
+        "typescript": "^3.3.3"
+    },
+    "dependencies": {
+        "axios": "^0.18.0",
+        "bluebird": "^3.5.0",
+        "chalk": "^2.4.1",
+        "findhelp": "^1.0.4",
+        "fs-extra": "^7.0.1",
+        "inquirer": "^6.2.2",
+        "inquirer-prompt-suggest": "^0.1.0",
+        "lodash": "4.17.11",
+        "moment": "^2.23.0",
+        "ncp": "^2.0.0",
+        "ora": "^3.4.0",
+        "pipe-streams-to-promise": "^0.2.0",
+        "ramda": "^0.25.0",
+        "request": "^2.83.0",
+        "unzip-stream": "^0.3.0",
+        "update-notifier": "^2.3.0",
+        "winston": "^2.4.0"
+    }
 }

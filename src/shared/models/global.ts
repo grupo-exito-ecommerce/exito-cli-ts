@@ -171,9 +171,10 @@ export interface CreateTriggerCodeCommit {
 
 export interface ConfigVtexJson {
   login: string;
-  authToken: string;
+  token: string;
   account: string;
-  workspase: string;
+  workspace: string;
+  env: string;
 }
 
 export interface DockerConfiguration {

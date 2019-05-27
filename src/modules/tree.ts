@@ -90,7 +90,7 @@ export default {
       alias: 'v',
       description:
         'Execute specific command from vtex, the current commands suport is: <link>, <publish>',
-      handler: './vtex/run/run-command/run-command',
+      handler: './vtex/commands/run-command/run-command',
       requiredArgs: 'command',
       optionalArgs: ['all']
     },
@@ -102,17 +102,17 @@ export default {
     coverage: {
       alias: 'co',
       description: 'Run the coverage process in the proyect',
-      handler: './vtex/run-coverage/run-coverage'
+      handler: './vtex/coverage/coverage'
     },
     publish: {
       alias: 'p',
       description: 'Publish only one component into Vtex',
-      handler: './vtex/run/publish-component/publish-component'
+      handler: './vtex/commands/publish-component/publish-component'
     },
     login: {
       alias: 'l',
       description: 'Set credentials for vtex in the config file from vtex',
-      handler: './vtex/run/login/login-vtex',
+      handler: './vtex/commands/login/login-vtex',
       requiredArgs: ['account', 'workspace', 'email']
     },
     set_vendor: {
