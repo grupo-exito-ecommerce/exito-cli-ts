@@ -44,7 +44,7 @@ export default {
   },
   generate: {
     description: 'Generate options for the project',
-    vtex_json: {
+    vtexJson: {
       alias: 'v',
       description: 'Create the json file config of vtex',
       handler: './generate/create-vtex-json/create-vtex-json'
@@ -65,6 +65,11 @@ export default {
       description: 'Create the triggers config for the indicate proyects',
       handler: './generate/create-triggers-code-commit/create-triggers',
       requiredArgs: ['arn']
+    },
+    triggerConfig: {
+      alias: 'tc',
+      description: 'Create the trigger-config file for indicate the trigger options',
+      handler: './generate/create-triggers-example-custom-data/index'
     }
   },
   vtex: {
@@ -77,10 +82,11 @@ export default {
       requiredArgs: 'command',
       optionalArgs: ['all']
     },
-    npm_install: {
+    install: {
       alias: 'ni',
-      description: 'Install the dependencies in the curren proyect.',
-      handler: './vtex/npm-install/npm-install'
+      description: 'Install the dependencies in the curren proyect with npm or yarn',
+      handler: './vtex/install/install',
+      requiredArgs: 'adminPackage',
     },
     coverage: {
       alias: 'co',
@@ -98,7 +104,7 @@ export default {
       handler: './vtex/run/login/login-vtex',
       requiredArgs: ['account', 'workspace', 'email']
     },
-    set_vendor: {
+    setVendor: {
       description: 'Set the vendor name in the manifest file',
       handler: './vtex/update-manifest/update-manifest',
       requiredArgs: ['vendor']

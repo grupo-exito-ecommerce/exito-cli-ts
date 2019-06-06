@@ -157,8 +157,16 @@ export interface CreateTemplateCloudFormation {
   codePipeLineName: string;
 }
 
+export interface CustomDataTrigger {
+  code_build: string,
+  vendor: string,
+  workspace: string,
+  code_commit_branch: string,
+  url_to_clone: string
+}
+
 export interface BranchTriggerInformation {
-  customData: any;
+  customData: CustomDataTrigger;
   name: string;
 }
 

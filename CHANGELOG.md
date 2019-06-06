@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+### v2.2.24 (2019-06-06)
+
+Implementación del comando
+
+- `generate triggerConfig`: Se empleara este comando para la creación de una estructura base para los trigger que se crean en codeCommit
+
+Cambio en los comando
+
+- `vtex set_vendor <vendor>` por `vtex setVendor <vendor>`
+- `vtex vtex_json` por `vtex vtexJson`
+- `vtex npm_install` por `vtex install <adminPackage>`: Este nuevo comando recibe la opción para instalar dependencias ya sea con npm o yarn
+
+
 ### v2.2.22 (2019-30-2019)
 Actualización del comando `aws clone` se agrego el parametro opcional de branch para permitir clonar un branch en especifico.
 
