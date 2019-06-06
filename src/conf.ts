@@ -7,6 +7,7 @@ const conf = new Configstore(pkgName);
 export const saveAll = (config: any): void => {
   conf.all = config;
 };
+
 export const saveAccountAws = (credentials: AwsCredentials): void =>
   conf.set("aws_user", credentials);
 
