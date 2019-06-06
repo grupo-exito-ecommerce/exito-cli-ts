@@ -29,14 +29,17 @@ const promptTemplates = async (): Promise<string> => {
 };
 
 const promptContinue = async () => {
+
+  const promt:any = await inquirer.prompt({
+    name: 'proceed',
+    message: `You are about to remove all files in ${process.cwd()}. Do you want to continue?`,
+    type: 'confirm'
+  })
   const proceed = prop(
     'proceed',
-    await inquirer.prompt({
-      name: 'proceed',
-      message: `You are about to remove all files in ${process.cwd()}. Do you want to continue?`,
-      type: 'confirm'
-    })
+    promt
   );
+  
   if (!proceed) {
     log.info(consts.messages.gitInitClose);
     process.exit();

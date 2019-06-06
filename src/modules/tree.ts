@@ -31,11 +31,6 @@ export default {
   },
   run: {
     description: 'Execute options with the cli',
-    // update_config: {
-    //   alias: "uc",
-    //   description: "Update the continuous integration and prepare the commit for push the changes.",
-    //   handler: "./aws/infra/update-config/update-config"
-    // },
     triggers: {
       alias: 't',
       description: 'Run a local triggers.json',
@@ -59,18 +54,6 @@ export default {
       description: 'Create the workspaces config for develops',
       handler: './generate/create-workspace/create-workspace'
     },
-    // config: {
-    //   alias: 'c',
-    //   description: 'Get the last config  for projects',
-    //   handler: './generate/create-config-project/get-config'
-    // },
-    // docker: {
-    //   alias: 'd',
-    //   description:
-    //     'Create docker file for code-build in environment production (prod) and develop (dev)',
-    //   handler: './generate/create-docker-file/create-docker-file',
-    //   requiredArgs: ['environment', 'vendor', 'workspace', 'email']
-    // },
     sonar: {
       alias: 's',
       description: 'Create the sonar file for test',
