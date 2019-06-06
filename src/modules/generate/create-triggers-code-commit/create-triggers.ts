@@ -1,12 +1,15 @@
 import { consts } from './../../../shared/constants';
-import { CreateTriggerCodeCommit } from './../../../shared/models/global';
+import { CreateTriggerCodeCommit, BranchTriggerInformation } from './../../../shared/models/global';
 import log from './../../../shared/logger';
 import { readDirectoryByFiles } from '../../../shared/util/read-directory';
 import { getRepositoryName } from '../../../shared/util/get-repository-name';
 import { getTemplateContent } from './util/get-template';
+import { promtsBranchsConfiguration } from './util/branch-selection';
 const dirname = process.cwd();
 const { codeCommitTriggerDir } = consts.code_commit;
 let fs = require('fs');
+
+
 
 /**
  * Este archivo realiza la creación de la estructura base para el tema de la aplicación.
@@ -15,6 +18,12 @@ let fs = require('fs');
  */
 export default async (destinationArn: string) => {
   log.info('Creating aws triggers configuration');
+
+  // Generación de la configuración de branch y schema
+  let branch: BranchTriggerInformation[] = await promtsBranchsConfiguration(dirname)
+  if (branch.length <= 0) {
+    process.exit(1)
+  }
 
   // 1. Leo el directorio actual y permito seleccionar todos los proyectos deseados
   const currentDirectory: Array<string> = await readDirectoryByFiles(dirname, [
@@ -25,41 +34,18 @@ export default async (destinationArn: string) => {
   let repositoryNames: Array<string> = getProyectNames(currentDirectory);
 
   // 2. Armo el objeto que contendra los recursos de codecommit y codebuild. ademas de la información basica para el codepipeline
-
-  // remuevo puntos del nombre ingresado, esto genera error en aws
-  // const nameRepositoryFormat = nameConfig.replace(".", "-");
-  const urlToClone = 'https://git-codecommit.us-east-1.amazonaws.com/v1/repos/';
-
   repositoryNames.map(nameProyect => {
     let config: CreateTriggerCodeCommit = {
       codeCommitProyect: nameProyect,
-      branchs: [
-        {
-          name: 'develop',
-          customData: {
-            code_build: 'exito-vtex-deploy-develop',
-            vendor: 'exito',
-            workspace: 'dev',
-            code_commit_branch: 'develop',
-            docker_environment: 'dev',
-            url_to_clone: urlToClone + nameProyect
-          }
-        },
-        {
-          name: 'master',
-          customData: {
-            code_build: 'exito-vtex-deploy-master',
-            vendor: 'exito',
-            workspace: 'master',
-            code_commit_branch: 'master',
-            docker_environment: 'prod',
-            url_to_clone: urlToClone + nameProyect
-          }
-        }
-      ],
+      branchs: branch,
       destinationArn: destinationArn,
       updateReference: ['updateReference']
     };
+
+    // change the url to clone with the current name
+    config.branchs.map((item: BranchTriggerInformation) => {
+      item.customData.url_to_clone += `/${nameProyect}`
+    })
 
     createAwsTemplate(config);
   });
@@ -98,7 +84,7 @@ const createTemplate = async (options: CreateTriggerCodeCommit) => {
   return fs.writeFile(
     `${dirname}/${codeCommitTriggerDir}/${options.codeCommitProyect}.json`,
     template,
-    function(err: string) {
+    function (err: string) {
       if (err) {
         throw err;
       }
