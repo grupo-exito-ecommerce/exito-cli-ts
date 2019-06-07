@@ -20,7 +20,7 @@ export const childProcessRunCommandPublish = function(command: string) {
 };
 
 const validateBuild = (data: string) => {
-  if (data.toString().includes('Publishing failed')) {
+  if (data.toString().includes('Failed to publish')) {
     log.error('exito cli error on publish component');
     process.exit(1);
   } else if (data.toString().includes('504 Gateway Time-out')) {
