@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+### v2.4.1 (2019-06-21)
+Solución de error al crear los trigger, se generaban las urls con los nombres de todos los proyectos
+
 ### v2.3.1 (2019-06-06)
 
 Cambio en el log capturado al momento de publicar un componente en vtex, ahora se captura la palabra `Failed to publish` para poder visualizar en el codebuild toda la información de build.

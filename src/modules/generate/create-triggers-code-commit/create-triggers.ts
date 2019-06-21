@@ -10,7 +10,6 @@ const { codeCommitTriggerDir } = consts.code_commit;
 let fs = require('fs');
 
 
-
 /**
  * Este archivo realiza la creación de la estructura base para el tema de la aplicación.
  * recibe como parametro el nombre del tema que se va a emplear
@@ -20,7 +19,7 @@ export default async (destinationArn: string) => {
   log.info('Creating aws triggers configuration');
 
   // Generación de la configuración de branch y schema
-  let branch: BranchTriggerInformation[] = await promtsBranchsConfiguration(dirname)
+  const branch: BranchTriggerInformation[] = await promtsBranchsConfiguration(dirname)
   if (branch.length <= 0) {
     process.exit(1)
   }
@@ -35,7 +34,7 @@ export default async (destinationArn: string) => {
 
   // 2. Armo el objeto que contendra los recursos de codecommit y codebuild. ademas de la información basica para el codepipeline
   repositoryNames.map(nameProyect => {
-    let config: CreateTriggerCodeCommit = {
+    const config: CreateTriggerCodeCommit = {
       codeCommitProyect: nameProyect,
       branchs: branch,
       destinationArn: destinationArn,
@@ -43,10 +42,12 @@ export default async (destinationArn: string) => {
     };
 
     // change the url to clone with the current name
-    config.branchs.map((item: BranchTriggerInformation) => {
+    let copy: any = JSON.stringify(config.branchs);
+    copy = JSON.parse(copy)
+    copy.map((item: BranchTriggerInformation) => {
       item.customData.url_to_clone += `/${nameProyect}`
     })
-
+    config.branchs = copy;
     createAwsTemplate(config);
   });
 };
