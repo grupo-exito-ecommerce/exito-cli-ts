@@ -1,14 +1,16 @@
-import log from '../logger';
-import chalk from 'chalk';
-import { choiseFolders } from './choise-folders';
-import { getFilesInCurrentDirectory } from './get-content-files';
-var path = require('path');
+import log from "../logger";
+import chalk from "chalk";
+import { choiseFolders } from "./choise-folders";
+import { getFilesInCurrentDirectory } from "./get-content-files";
+var path = require("path");
 
 export const readDirectoryByExtension = async (
   directory: string,
-  criterial: Array<string>
+  criterial: Array<string>,
+  message: string,
+  action: string
 ) => {
-  log.debug('Read current directory to find the indicate extensions files');
+  log.debug("Read current directory to find the indicate extensions files");
   // find directory in the current folder
   let currentDirectory: Array<string> = await getFilesInCurrentDirectory(
     directory
@@ -33,7 +35,7 @@ export const readDirectoryByExtension = async (
   );
 
   if (filter.length) {
-    let choise = await choiseFolders(filter);
+    let choise = await choiseFolders(filter, message, action);
     log.info(
       `Total of files to use: ${chalk.whiteBright(`${choise.folders.length}`)}`
     );

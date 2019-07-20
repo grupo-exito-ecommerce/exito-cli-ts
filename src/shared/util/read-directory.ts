@@ -1,14 +1,16 @@
-import log from '../logger';
-import fs from 'fs';
-import chalk from 'chalk';
-import { choiseFolders } from './choise-folders';
-import { getDirectories } from './get-content-files';
+import log from "../logger";
+import fs from "fs";
+import chalk from "chalk";
+import { choiseFolders } from "./choise-folders";
+import { getDirectories } from "./get-content-files";
 
 export const readDirectoryByFiles = async (
   directory: string,
-  criterial: Array<string>
+  criterial: Array<string>,
+  message: string,
+  action: string
 ) => {
-  log.debug('Read current directory to find the indicate folders');
+  log.debug("Read current directory to find the indicate folders");
   // find directory in the current folder
   let currentDirectory: Array<string> = await getDirectories(directory);
 
@@ -31,7 +33,7 @@ export const readDirectoryByFiles = async (
   );
 
   if (filter.length) {
-    let choise = await choiseFolders(filter);
+    let choise = await choiseFolders(filter, message, action);
     log.info(
       `Total of proyects to use: ${chalk.whiteBright(
         `${choise.folders.length}`

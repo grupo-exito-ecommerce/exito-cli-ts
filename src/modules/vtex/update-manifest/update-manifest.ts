@@ -7,13 +7,13 @@ const directory = process.cwd();
 export default async function (vendor: string) {
 
   //1. Busco en el directorio actual si existen proyectos con el archivo manifest.json
-  let response = await findProjectContnet([directory], vendor);
+  let response = await findProjectContent([directory], vendor);
   // si no se encontraron projectos en el directorio actual, paso a buscar en los sub directorios.
   if (!response) {
     // obtengo todos los nombres de las carpetas dentro del directorio indicado
     let files: Array<string> = await getDirectories(directory);
     if (files.length) {
-      let subFiles = await findProjectContnet(files, vendor);
+      let subFiles = await findProjectContent(files, vendor);
       if (!subFiles) {
         process.exit(1);
       } else {
@@ -26,7 +26,7 @@ export default async function (vendor: string) {
   }
 }
 
-const findProjectContnet = async (files: Array<string>, vendor: string) => {
+const findProjectContent = async (files: Array<string>, vendor: string) => {
   // si hay directorios, paso a buscar el archivo manifest.json y obtener su contenido
   const manifests: Array<ContentManifest> = await getManifestsContent(files);
   if (manifests.length) {
