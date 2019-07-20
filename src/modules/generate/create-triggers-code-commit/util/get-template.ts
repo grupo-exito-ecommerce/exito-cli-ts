@@ -27,7 +27,7 @@ const createCodeCommitConfig = (branchInfo: BranchTriggerInformation) => {
     ],
     "name": "${currentOptions.codeCommitProyect.replace(".", "-")}-${
     branchInfo.name
-  }-deploy",
+  }-${branchInfo.customData.vendor}-deploy",
     "customData": "${escape(branchInfo.customData)}"
 }`;
 };

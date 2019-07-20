@@ -10,7 +10,9 @@ export default async () => {
   // 1. Leo el directorio actual y permito seleccionar todos los proyectos deseados
   const currentDirectory: Array<string> = await readDirectoryByExtension(
     directory,
-    [".json"]
+    [".json"],
+    "Pick the file to use",
+    "Select the .json file to use"
   );
 
   const proyectsList = getProyectNames(currentDirectory);

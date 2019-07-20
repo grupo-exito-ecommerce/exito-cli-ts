@@ -5,135 +5,193 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-### v2.3.1 (2019-06-06)
+### v2.6.0 2019-07-20
 
-Cambio en el log capturado al momento de publicar un componente en vtex, ahora se captura la palabra `Failed to publish` para poder visualizar en el codebuild toda la información de build.
+## Changed
 
-### v2.3.0 (2019-06-06)
+* Change in the command `generate trigger <arn>` now this generates the names of the triggers with the vendor, in order to identify when you want to create triggers of the same branch but with different account
 
-Implementación del comando
+* Creation of commands
 
-- `generate triggerConfig`: Se empleara este comando para la creación de una estructura base para los trigger que se crean en codeCommit
+* `generate configDependencies <criteria>` : Command that takes the `current-dependencies.json` file from the current directory and generates an ` update-dependencies.json` file with the filtered dependencies and the format equal to the `dependencies` attribute of the file `manifest.json` 
 
-Cambio en los comando
+> example: `success generate cd vtex.` : generates the file with all the dependencies that match the indicated criteria ` vtex.` 
 
-- `vtex set_vendor <vendor>` por `vtex setVendor <vendor>`
-- `vtex vtex_json` por `vtex vtexJson`
-- `vtex npm_install` por `vtex install <adminPackage>`: Este nuevo comando recibe la opción para instalar dependencias ya sea con npm o yarn
+* `run overWriteDependencies <criteria>` : Command that takes the file `update-dependencies.json` in the current directory and then takes care of searching all the projects in the directory to list them and allowing the selection of the projects to update . After selecting the projects, a validation is carried out to determine whether they have changes at the dependency level and, if so, the dependencies found are updated. this process updates the project version one digit and generates a message in the `CHANGELOG.md` file, indicating which changes were made.
 
+* `aws runGitCommand <commandTouse>` command that allows you to select the projects in the current directory and is responsible for running the indicated git command.
 
-### v2.2.22 (2019-30-2019)
-Actualización del comando `aws clone` se agrego el parametro opcional de branch para permitir clonar un branch en especifico.
+> Example: `success run ov vtex. --verbose
 
-### v2.2.20 (2019-30-2019)
-Actualización en el comando empleado para realizar el login en la cuenta de vtex y actualización de los logs que se capturan cuando se realiza link o publish en vtex, se corrigio un error en windows cuando se crean los trigger.
+### v2.5.0 2019-06-28
 
-Implementación del comando
+## Changed
 
-- `vtex set_vendor <vendor>`: Se empleara este comando para el proceso de publicación de un componente en diferentes accounts. se a verificado y con vtex no existe problema al usar projectos de diferentes accounts.
+* Change in the command that allows to update the name of the vendor of a project. Now the command searches the current directory and takes the project it finds and writes the vendor.
 
-Actualiación del comando
+### v2.4.1 2019-06-21
 
-- `vtex run triggers`: Se renombra la forma en que se ejecutan los triggers locales
+#Fixed
 
-### v2.2.13 (2019-30-2019)
+* Error solution when creating the triggers, the urls were generated with the names of all the projects
 
-Eliminación de los siguientes comandos:
+### v2.3.1 2019-06-06
 
-- `generate config`: Los desarrolladores no necesitan la carpeta config.
-- `generate docker`: El proceso de integración continua se simplifico de tal modo que ya solo se usa el buildspec configurado para el codebuild.
+## Changed
 
-### v2.2.8 (2019-26-05)
+* Change in the captured log when publishing a component in vtex, now the word `Failed to publish` is captured to be able to visualize all the build information in the codebuild.
 
-Creación de los siguientes comandos:
+### v2.3.0 2019-06-06
 
-- `run update_triggers`: Comando que ejecuta aws cli para asociar el trigger indicado en el json seleccionado
-- `generate trigger <arn>`: Comando que genera los archivos empleados para asociar los triggers a los codecommit
-- `vtex npm_install`: Comando que permite realizar la instalación de las dependencias en los proyectos de react o node
-- `vtex coverage`: Comando que permite configurar y ejecutar las pruebas con jest en react o node
+#Added
 
-Eliminación de los siguientes comandos:
+* Implementation of the command
 
-- `vtex set_vendor <vendor>`: No es necesario ya que el echo de modificar el vendor no soluciona el problema de multi site
+* `generate triggerConfig` : This command will be used to create a base structure for the triggers that are created in codeCommit
 
-### v2.1.4 (2019-09-04)
+Change in the commands
 
-Creación de los siguientes comandos
+* `vtex set_vendor <vendor>` by `vtex setVendor <vendor>` 
+* `vtex vtex_json` by ` vtex vtexJson` 
+* `vtex npm_install` by ` vtex install <adminPackage> ` : This new command receives the option to install dependencies with either npm or yarn
 
-- `generate vtex_json`: Comando que permite crear el archivo de configuración de vtex, en este archivo ellos almacenan las credenciales del usuario.
-- `generate docker <environment> <vendor> <workspace> <email>`: Comando que permite crear los archivos .dockerfile para el proceso de integración continua. se necesita pasar el environment 'prod' o 'dev'.
-- `generate sonar <repository> <version> <src>`: Comando que permite crear el archivo de sonar, se necesita pasar el nombre del repositorio.
-- `vtex login <account> <workspace> <email>`: Comando que permite realizar el login por consola.
-- `vtex set_vendor <vendor>`: Comando que permite renombrar el vendor de un proyecto. este comando se emplea para renombrar los proyectos y permitir el multi sitio
+### v2.2.22 2019-30-2019
 
-Se crean los comandos aws, vtex, infra
+## Changed
 
-```bash
-aws                             Aws options
-aws clone <criteria> [all]      Clone specific list of projectos from aws, if your add the option <all>
-```
+* Update of the command `aws clone` added the optional branch parameter to allow cloning a specific branch.
 
-```bash
-infra             Proyects infra options
-infra update      Update the continuous integration and commit the changes.
-```
+### v2.2.20 2019-30-2019
 
-```bash
-vtex                                           Vtex options
-vtex run <command> [all]                       Execute specific command from vtex, the current commands suport is: <link>, <publish>
-vtex publish                                   Publish only one component into Vtex
-vtex login <account> <workspace> <email>       Set credentials for vtex in the config file from vtex
-vtex set_vendor <vendor>                       Set the vendor name in the manifest file
-```
+## Changed
 
-Se realizo una mejora en el almacenamiento de las credenciales. ahora se genera un archivo exito.json donde se almacenan las credenciales. para visualizar el contenido de este archivo pueden ejecutar en consola la siguiente linea `cat ~/.config/configstore/exito.json`
+* Update in the command used to perform the login in the vtex account and update the logs that are captured when link or publish in vtex, an error was corrected in windows when the triggers are created.
 
-```bash
-credentials                              Manage your credentials for aws
-credentials get                          Gets the current credentials used in aws
-credentials clear                        Clear the current credentials used in aws
-credentials set <username> <pwd>         Sets the current credentials for aws
-```
+Implementation of the command
 
-### v2.0.11 (2019-03-18)
+* `vtex set_vendor <vendor>` : This command will be used for the process of publishing a component in different accounts. has been verified and with vtex there is no problem when using projects from different accounts.
 
-Se soluciona el bug al clonar proyectos con el comando exito clone desde windows.
+Command update
 
-### v2.0.11 (2019-03-8)
+* `vtex run triggers` : The way local triggers are executed is renamed
 
-Se remueve `"PollForSourceChanges": "false",` del template creado para cloudFormation, esta linea creaba las instancias de CodePipeline sin la opción de escuchar cambios de CodeCommit
+### v2.2.13 2019-30-2019
 
-### v2.0.10 (2019-02-13)
+## Changed
 
-Creación del comando `exito generate` para realizar la creación de los templates para aws cloud formation con el comando `exito generate templte [repository name]` y la creación de la configuración básica de los projectos con el comando `exito generate config`
+* Elimination of the following commands:
 
-### v2.0.3, v2.0.4, v2.0.5 (2019-02-13)
+* `generate config` : Developers do not need the config folder.
+* `generate docker` : The continuous integration process is simplified so that only the buildspec configured for the codebuild is used.
 
-Actualización de los comandos empleados para realizar el `publish` de los componentes en vtex, para realizar `link`. se optimizaron los comandos para el proceso de integración continua en Vtex
+### v2.2.8 2019-26-05
 
-### v2.0.2 (2019-01-25)
+#Added
 
-Creación del comando `exito init` para la descarga de los códigos fuentes alojados en github
+* Creation of the following commands:
 
-### v2.0.1 (2019-01-25)
+* `run update_triggers` : Command that executes aws cli to associate the indicated trigger in the selected json
+* `generate trigger <arn>` : Command that generates the files used to associate the triggers with the codecommit
+* `vtex npm_install` : Command that allows the installation of the dependencies in the react or node projects
+* `vtex coverage` : Command that allows you to configure and execute tests with jest in react or node
 
-Creación del comando `exito create workspace` para la creación de la configuración de los workspace de desarrollo
+Elimination of the following commands:
 
-### v1.1.0 (2019-01-14)
+* `vtex set_vendor <vendor>` : It is not necessary since the echo of modifying the vendor does not solve the problem of multi site
 
-Integración de la logica para realizar el proceso de integración continua de todos los proyectos a Vtex.
+### v2.1.4 2019-09-04
 
-Se agrego el comando: `Continuos integration`
+#Added
 
-Este comando se encarga de realizar los siguientes procesos
+* Creation of the following commands
 
-1. Creación de un nuevo workspace `dev` y modificación del workspace a productivo con el comando `vtex workspace production true`
-2. Clonación de los repositorios de aws con el prefijo indicado
-3. Publicación de los componentes uno por uno en orden de importancia
-4. Promover el workspace a producción, este comando remueve el workspace `dev` y pasa los cambios al workspace master
+* `generate vtex_json` : Command that allows you to create the vtex configuration file, in this file they store the user's credentials.
+* `generate docker <environment> <vendor> <workspace> <email>` : Command to create the .dockerfile files for the continuous integration process. you need to pass the environment 'prod' or 'dev'.
+* `generate sonar <repository> <version> <src>` : Command that allows you to create the sonar file, you need to pass the name of the repository.
+* `vtex login <account> <workspace> <email>` : Command that allows the login by console.
+* `vtex set_vendor <vendor>` : Command that allows you to rename the vendor of a project. This command is used to rename projects and allow multi-site
 
-Se debe de tener en cuenta en todos los componentes a la hora de ser publicados:
+The commands aws, vtex, infra are created
 
-- La versión del componente debe de ser mayor a la actual, de lo contrario vtex no tomara los cambios realizados sobre el componente, para validar la versión actual de un componente publicado podemos emplear `vtex deps list` el cual lista las dependencias publicadas.
+ ``` bash
+aws Aws options
+aws clone <criteria> [all] Clone specific list of projects from aws, if your add the option <all>
+ ``` 
 
----
+ ``` bash
+infra Proyects infra options
+infra update Update the continuous integration and commit the changes.
+ ``` 
+
+ ``` bash
+vtex Vtex options
+vtex run <command> [all] Execute specific command from vtex, the current commands suport is: <link>, <publish>
+vtex publish Publish only one component into Vtex
+vtex login <account> <workspace> <email> Set credentials for vtex in the config file from vtex
+vtex set_vendor <vendor> Set the vendor name in the manifest file
+ ``` 
+
+An improvement was made in the storage of the credentials. A success file is now generated where the credentials are stored. to view the contents of this file you can run the following line in `console ~ / .config / configstore / exito.json` 
+
+ ``` bash
+credentials Manage your credentials for aws
+credentials get Gets the current credentials used in aws
+credentials clear Clear the current credentials used in aws
+credentials set <username> <pwd> Sets the current credentials for aws
+ ``` 
+
+### v2.0.11 2019-03-18
+
+#Fixed
+
+* The bug is solved when cloning projects with the success command clone from windows.
+
+### v2.0.11 2019-03-8
+
+## Changed
+
+* Removed `" PollForSourceChanges ":" false ",` from the template created for cloudFormation, this line created the instances of CodePipeline without the option to listen to CodeCommit changes
+
+### v2.0.10 2019-02-13
+
+#Added
+
+* Creation of the `success generate` command to create the templates for aws cloud formation with the command ` success generate templte [repository name] ` and the creation of the basic configuration of the projects with the command ` success generate config` 
+
+### v2.0.3, v2.0.4, v2.0.5 2019-02-13
+
+#Added
+
+* Update of the commands used to perform the `publish` of the components in vtex, to perform ` link` . the commands for the continuous integration process in Vtex were optimized
+
+### v2.0.2 2019-01-25
+
+#Added
+
+* Creation of the command `success init` for downloading source codes hosted on github
+
+### v2.0.1 2019-01-25
+
+#Added
+
+* Creation of the command `success create workspace` for the creation of the configuration of the development workspace
+
+### v1.1.0 2019-01-14
+
+#Added
+
+* Integration of logic to perform the process of continuous integration of all projects to Vtex.
+
+Added the command: `Continuous integration` 
+
+This command is responsible for performing the following processes
+
+1. Create a new workspace `dev` and modify the workspace to productive with the command ` vtex workspace production true` 
+2. Cloning of the aws repositories with the indicated prefix
+3. Publication of the components one by one in order of importance
+4. Promote the workspace to production, this command removes the `dev` workspace and passes the changes to the workspace master
+
+It must be taken into account in all the components when they are published:
+
+* The version of the component must be greater than the current one, otherwise vtex will not take the changes made to the component, to validate the current version of a published component we can use `vtex deps list` which lists the published dependencies.
+

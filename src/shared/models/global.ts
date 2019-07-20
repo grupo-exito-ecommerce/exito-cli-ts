@@ -4,6 +4,10 @@ export interface ContentManifest {
   path: string;
   dependencies: ContentDependencies;
   version: string;
+  changelog?: {
+    version: string;
+    dependencies: object;
+  };
 }
 
 export interface OptRunCommand {
@@ -106,7 +110,6 @@ export interface AwsExecuteCommandClone {
   position: number;
 }
 
-
 export interface OptionsCommand {
   command: string;
   path: string;
@@ -158,11 +161,11 @@ export interface CreateTemplateCloudFormation {
 }
 
 export interface CustomDataTrigger {
-  code_build: string,
-  vendor: string,
-  workspace: string,
-  code_commit_branch: string,
-  url_to_clone: string
+  code_build: string;
+  vendor: string;
+  workspace: string;
+  code_commit_branch: string;
+  url_to_clone: string;
 }
 
 export interface BranchTriggerInformation {
