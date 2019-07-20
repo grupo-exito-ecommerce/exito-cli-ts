@@ -27,6 +27,12 @@ export default {
       handler: "./aws/clone/clone-projects",
       requiredArgs: "criteria",
       optionalArgs: ["branch", "all"]
+    },
+    runGitCommand: {
+      alias: "rgc",
+      description: "Run the indicate git command in all projects selected",
+      handler: "./aws/branch/run-git-command/run-git-command",
+      requiredArgs: "commandTouse"
     }
   },
   run: {

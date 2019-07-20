@@ -26,7 +26,7 @@ export default async (destinationArn: string) => {
     true
   );
   
-  if (branch.length <= 0) {
+  if (!branch) {
     process.exit(1);
   }
 

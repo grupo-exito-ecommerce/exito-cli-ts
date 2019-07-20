@@ -33,6 +33,6 @@ export const readFileInDirectory = async (
   if (fileContent.length) {
     return fileContent;
   } else {
-    return [];
+    return false;
   }
 };

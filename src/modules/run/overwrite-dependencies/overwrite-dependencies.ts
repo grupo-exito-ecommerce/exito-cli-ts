@@ -70,7 +70,18 @@ export default async function(criteria: string) {
         Object.keys(item.dependencies).filter(item => item.startsWith(criteria))
       );
 
-      if (!objectEquals(item.dependencies, dependencies, criteria)) {
+      if (isEmpty(dependencies)) {
+        log.info(
+          `No have dependencies in the file update-dependencies.json with the criteria indicate ${criteria}`
+        );
+        log.warn(`${configDependencies}`);
+        log.info("Check the .json file and try again");
+      }
+
+      if (
+        !isEmpty(dependencies) &&
+        !objectEquals(item.dependencies, dependencies, criteria)
+      ) {
         let tempItem: TempItem = {
           dependencies,
           version: newVersion(item.version),
@@ -115,6 +126,10 @@ const removeData = (item: ContentManifest) => {
   return item;
 };
 
+function isEmpty(obj: object) {
+  return !obj || Object.keys(obj).length === 0;
+}
+
 // Método que valida dos arrays para saber si son iguales
 function arraysEqual(arr1: any, arr2: any) {
   if (arr1.length !== arr2.length) return false;
@@ -140,7 +155,8 @@ function objectEquals(objec1: object, object2: object, criteria: string) {
 // Método que genera un cambio en la version pasada
 const newVersion = (currentVersion: string) => {
   const items = currentVersion.split(".");
-  items[2] = String(Number(items[2]) + 1);
+  items[1] = String(Number(items[1]) + 1);
+  items[2] = String(Number(0));
   return items.join(".");
 };
 

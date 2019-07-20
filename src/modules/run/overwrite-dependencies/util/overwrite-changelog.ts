@@ -15,9 +15,19 @@ export const overWriteChangeLogFile = async (
     false
   );
 
+  let prefixReplace: any = "";
+  let changelogContent = "";
+
+  if (!changeLogData) {
+    prefixReplace = /^/;
+  } else {
+    prefixReplace = "## [Unreleased]";
+    changelogContent = changeLogData;
+  }
+
   // Reemplazo el contenido del changelog agregando las dependencias modificadas y la version asignada junto a la fecha y la version de la cli que realizo el cambio.
-  let replaceInfo = changeLogData.replace(
-    "## [Unreleased]",
+  let replaceInfo = changelogContent.replace(
+    prefixReplace,
     `## [Unreleased]
     
 ## [${changelogInfo.version}] - ${getCurrentDate()}
