@@ -6,6 +6,13 @@ import { readFileInDirectory } from "../../../shared/util/read-file";
 import { readDirectoryByFiles } from "../../../shared/util/read-directory";
 import { getManifestsContent } from "../../../shared/util/get-content-files";
 import { writeFileSync } from "fs";
+import { overWriteChangeLogFile } from "./util/overwrite-changelog";
+
+interface TempItem {
+  dependencies: object;
+  version: string;
+  changelog: object;
+}
 
 export default async function(criteria: string) {
   log.info("OverWrite dependencies", directory);
@@ -64,9 +71,17 @@ export default async function(criteria: string) {
       );
 
       if (!objectEquals(item.dependencies, dependencies, criteria)) {
-        const tempItem = {
+        let tempItem: TempItem = {
           dependencies,
-          version: newVersion(item.version)
+          version: newVersion(item.version),
+          changelog: {
+            dependencies
+          }
+        };
+
+        tempItem.changelog = {
+          version: tempItem.version,
+          dependencies
         };
 
         item = _.merge(item, tempItem);
@@ -82,17 +97,21 @@ export default async function(criteria: string) {
   );
 
   if (manifestUpdate.length) {
-    manifestUpdate.map((item: ContentManifest) =>
-      writeFile(item.path, JSON.stringify(removePath(item), null, 4))
-    );
+    manifestUpdate.map(async (item: ContentManifest) => {
+      // Realizo la escritura del archivo ChangeLog agregando las dependencias modificadas y el número de la versión
+      await overWriteChangeLogFile(item.path, item.changelog);
+      // Escribo el archivo manifest.json
+      await writeFile(item.path, JSON.stringify(removeData(item), null, 4));
+    });
   } else {
     log.info("No have projects to update, all projects already are update");
   }
 }
 
 // Método que remueve el path del objecto
-const removePath = (item: ContentManifest) => {
+const removeData = (item: ContentManifest) => {
   delete item.path;
+  delete item.changelog;
   return item;
 };
 
