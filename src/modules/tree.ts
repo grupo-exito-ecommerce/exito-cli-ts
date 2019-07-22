@@ -47,7 +47,8 @@ export default {
       description:
         "Overwrite the current dependencies in base to the file `update-dependencies.json`",
       handler: "./run/overwrite-dependencies/overwrite-dependencies",
-      requiredArgs: ["criteria"]
+      requiredArgs: ["criteria"],
+      optionalArgs: ["lastVersion"]
     }
   },
   init: {

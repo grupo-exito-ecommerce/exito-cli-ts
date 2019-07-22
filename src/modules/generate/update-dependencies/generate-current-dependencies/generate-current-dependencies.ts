@@ -4,7 +4,7 @@ const directory = process.cwd();
 import _ from "lodash";
 let fs = require("fs");
 
-export default async function(criteria: string) {
+export default async function (criteria: string) {
   // 1. Leer el archivo .json y lista las dependencias filtradas de acuerdo al cricterio de busqueda, permite seleccionar las dependencias a emplear y genera un archivo config.json con las dependencias a emplear y su versión.
   log.info("Find .json file in the current directory");
 
@@ -24,18 +24,17 @@ export default async function(criteria: string) {
     .reverse()
     .filter(item => {
       const element = item.split("@");
-      if (
-        item.startsWith(criteria) &&
-        !currentDependencies.includes(element[0])
-      ) {
-        currentDependencies.push(element[0]);
-        return item;
-      }
+      currentDependencies.push(element[0]);
+      return item;
     });
 
-  let formatFilter = filter.reduce(function(prev: any, cur) {
+
+  let formatFilter = filter.reduce(function (prev: any, cur) {
     const split = cur.split("@");
-    prev[split[0]] = split[1];
+    if (prev[split[0]]) {
+      prev[split[0]] += '-' + split[1];
+    }
+    else { prev[split[0]] = split[1]; }
     return prev;
   }, {});
 
@@ -49,7 +48,7 @@ const createFileConfig = async (dependencies: string[]) => {
   return fs.writeFile(
     `${directory}/update-dependencies.json`,
     JSON.stringify(dependencies, null, 4),
-    function(err: string) {
+    function (err: string) {
       if (err) {
         throw err;
       }
