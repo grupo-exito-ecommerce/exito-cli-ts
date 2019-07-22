@@ -10,6 +10,18 @@ export interface ContentManifest {
   };
 }
 
+export interface ContentManifestOverwrite {
+  vendor: string;
+  name: string;
+  path: string;
+  dependencies: object;
+  version: string;
+  changelog?: {
+    version: string;
+    dependencies: object;
+  };
+}
+
 export interface OptRunCommand {
   path: string;
   command: string;

@@ -1,4 +1,4 @@
-import { ContentManifest } from "./../../../shared/models/global";
+import { ContentManifestOverwrite } from "./../../../shared/models/global";
 import log from "./../../../shared/logger";
 const directory = process.cwd();
 import _ from "lodash";
@@ -11,10 +11,13 @@ import { overWriteChangeLogFile } from "./util/overwrite-changelog";
 interface TempItem {
   dependencies: object;
   version: string;
-  changelog: object;
+  changelog?: {
+    dependencies: object
+    version: string
+  };
 }
 
-export default async function(criteria: string) {
+export default async function (criteria: string, lastVersion: string) {
   log.info("OverWrite dependencies", directory);
 
   if (!criteria) {
@@ -41,7 +44,7 @@ export default async function(criteria: string) {
   );
 
   // 3. Paso a obtener el contenido de los archivo seleccionados
-  let manifestContent: ContentManifest[] = await findProjectContent(
+  let manifestContent: ContentManifestOverwrite[] = await findProjectContent(
     projectsInCurrentDirectory
   );
 
@@ -52,24 +55,25 @@ export default async function(criteria: string) {
 
   // Filtro los proyectos con dependencias vacias
   let filterElements = manifestContent.filter(
-    (item: ContentManifest) =>
+    (item: ContentManifestOverwrite) =>
       Object.getOwnPropertyNames(item.dependencies).length > 0
   );
 
   log.warn(
     `Found projects with empty dependencies, only use ${
-      filterElements.length
+    filterElements.length
     } projects to update dependencies`
   );
 
   // Recorro los projectos y realizo la actualización de las dependencias. valido si se realizaron los cambios en alguna de las dependencias y preparo el array final para realizar la actualización de los archivos manifest.json
-  let manifestUpdate: ContentManifest[] = filterElements.filter(
-    (item: ContentManifest) => {
+  let manifestUpdate: ContentManifestOverwrite[] = filterElements.filter(
+    (item: ContentManifestOverwrite) => {
       let dependencies: object = _.pick(
         JSON.parse(configDependencies),
         Object.keys(item.dependencies).filter(item => item.startsWith(criteria))
       );
 
+      // EL Objecto `dependencies` posee la lista de dependencias a actualizar. este es un objecto con las versiones a emplear
       if (isEmpty(dependencies)) {
         log.info(
           `No have dependencies in the file update-dependencies.json with the criteria indicate ${criteria}`
@@ -78,37 +82,70 @@ export default async function(criteria: string) {
         log.info("Check the .json file and try again");
       }
 
+      // Si las dependencias actuales son diferentes a las que se preparan para modificar
       if (
         !isEmpty(dependencies) &&
         !objectEquals(item.dependencies, dependencies, criteria)
       ) {
-        let tempItem: TempItem = {
-          dependencies,
-          version: newVersion(item.version),
-          changelog: {
-            dependencies
+
+        // Lógica que permite capturar la ultima versión en base a la versión actual que posee el proyecto.
+        // Hay dependencias que pueden tener mas de una versión, ejem "vtex.render-server": "8.47.2-7.39.0"
+        // Lo que se hace es obtener un array en base a las versiones disponibles de una versión [8.47.2,7.39.0]
+        // Si se indica que se emplee la ultima versión siempre con la variable lastVersion, se pasa a emplear la ultima versión que sería 8.47.2
+
+        // Si no se indica que se emplee la ultima versión, se pasa a realizar una busqueda de la ultima versión en base a la versión actual
+        // [8.47.2,7.39.0]  de la versión actual que es 8.x. con lo que trae la versión 8.47.2, si se indica la versión 7.x se trae la ultima versión pero de 7.39.0
+        let dependenciesToUse: object = {}
+        Object.keys(dependencies).map((itemDependencie: string, index) => {
+          let listVersion: any = Object.values(dependencies)[index].split('-')
+          let versionToUse: any = listVersion[0]
+
+          if (lastVersion == "--last") {
+            versionToUse = listVersion.find((val: string) => val.startsWith(Object.values(item.dependencies)[index].split('.')[0]))
           }
-        };
+          if (versionToUse) {
+            dependenciesToUse = {
+              ...dependenciesToUse, [itemDependencie]: versionToUse
+            }
+          }
+          return item
+        })
 
-        tempItem.changelog = {
-          version: tempItem.version,
-          dependencies
-        };
+        // Si la lista de depenencias con la versión validada se encuentra null, paso a mostrar mensaje indicando que no hay versiones a emplear
+        if (!isEmpty(dependenciesToUse) && !objectEquals(item.dependencies, dependenciesToUse, criteria)) {
+          let tempItem: TempItem = {
+            dependencies: dependenciesToUse,
+            version: newVersion(item.version),
+          };
 
-        item = _.merge(item, tempItem);
-        return item;
+          // Paso a crear una variable que contiene la versión y la lista de depencias
+          tempItem.changelog = {
+            version: tempItem.version,
+            dependencies: dependenciesToUse
+          };
+
+          item = _.merge(item, tempItem);
+          return item;
+        } else {
+          log.warn(
+            `The dependencies from the project ${item.vendor +
+            "." +
+            item.name} is already update`
+          );
+        }
+
       } else {
         log.warn(
           `The dependencies from the project ${item.vendor +
-            "." +
-            item.name} is already update`
+          "." +
+          item.name} is already update`
         );
       }
     }
   );
 
   if (manifestUpdate.length) {
-    manifestUpdate.map(async (item: ContentManifest) => {
+    manifestUpdate.map(async (item: ContentManifestOverwrite) => {
       // Realizo la escritura del archivo ChangeLog agregando las dependencias modificadas y el número de la versión
       await overWriteChangeLogFile(item.path, item.changelog);
       // Escribo el archivo manifest.json
@@ -120,7 +157,7 @@ export default async function(criteria: string) {
 }
 
 // Método que remueve el path del objecto
-const removeData = (item: ContentManifest) => {
+const removeData = (item: ContentManifestOverwrite) => {
   delete item.path;
   delete item.changelog;
   return item;
@@ -133,7 +170,7 @@ function isEmpty(obj: object) {
 // Método que valida dos arrays para saber si son iguales
 function arraysEqual(arr1: any, arr2: any) {
   if (arr1.length !== arr2.length) return false;
-  for (var i = arr1.length; i--; ) {
+  for (var i = arr1.length; i--;) {
     if (arr1[i].key === arr2[i].key && arr1[i].value !== arr2[i].value)
       return false;
   }
@@ -162,7 +199,7 @@ const newVersion = (currentVersion: string) => {
 
 const findProjectContent = async (files: string[]) => {
   // si hay directorios, paso a buscar el archivo manifest.json y obtener su contenido
-  const manifests: ContentManifest[] = await getManifestsContent(files);
+  const manifests: ContentManifestOverwrite[] = await getManifestsContent(files);
   if (manifests.length) {
     return manifests;
   } else {
