@@ -10,7 +10,7 @@ export default async (commandToUse: string) => {
   // 1. Leer el directorio actual y obtener los proyectos disponibles con la carpeta .git
   const projectsInCurrentDirectory: string[] = await readDirectoryByFiles(
     directory,
-    ["manifest.json", ".git"],
+    ["manifest.json"],
     "Pick the projects to use",
     "Select the projects"
   );

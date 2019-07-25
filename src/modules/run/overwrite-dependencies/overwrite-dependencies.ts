@@ -17,7 +17,7 @@ interface TempItem {
   };
 }
 
-export default async function (criteria: string, lastVersion: string) {
+export default async function (criteria: string) {
   log.info("OverWrite dependencies", directory);
 
   if (!criteria) {
@@ -96,23 +96,49 @@ export default async function (criteria: string, lastVersion: string) {
         // Si no se indica que se emplee la ultima versión, se pasa a realizar una busqueda de la ultima versión en base a la versión actual
         // [8.47.2,7.39.0]  de la versión actual que es 8.x. con lo que trae la versión 8.47.2, si se indica la versión 7.x se trae la ultima versión pero de 7.39.0
         let dependenciesToUse: object = {}
+
+        // Variable que arma un objeto en base a las keys filstradas por el cricterio, arma el objeto con key y value, para así obtener la lista de depencias a emplear
+        const filterDependencies: object = Object.keys(item.dependencies)
+          .filter((key) => key.startsWith(criteria))
+          .reduce((obj: any, key: string) => {
+            obj[key] = item.dependencies[key];
+            return obj;
+          }, {});
+
+        // Variable que contiene la lista de dependencias final a emplear, esto ya que puedo realizar el filtro del objeto filterDependencies y remover keys que no van a ser necesarias para emplear.
+        let filterDependenciesToUse = filterDependencies;
+
         Object.keys(dependencies).map((itemDependencie: string, index) => {
+
+          // Variable que contiene la lista de versiones a emplear de la dependencia
           let listVersion: any = Object.values(dependencies)[index].split('-')
           let versionToUse: any = listVersion[0]
 
-          if (lastVersion == "--last") {
-            versionToUse = listVersion.find((val: string) => val.startsWith(Object.values(item.dependencies)[index].split('.')[0]))
+          // Capturo el flag para saber si empleo la ultima versión siempre o no.
+          const LASTVERSION = '--last';
+          const lastVersion = process.argv.indexOf(LASTVERSION) >= 0;
+
+          // Si no se indica que se use la ultima versión y el número de versiones es mayor o igual a 2
+          if (!lastVersion && listVersion.length >= 2) {
+            versionToUse = listVersion.find((val: string) => val.startsWith(Object.values(filterDependencies)[index].split('.')[0]))
+
+            if (!versionToUse) {
+              // Remuevo la dependencia que no se encontro de acuerdo a la versión empleada actualmente, esto permite validar si la dependnecia actual existe pero la version solicitada no existe.
+              filterDependenciesToUse = _.omit(filterDependencies, itemDependencie);
+            }
           }
+
           if (versionToUse) {
             dependenciesToUse = {
               ...dependenciesToUse, [itemDependencie]: versionToUse
             }
           }
+
           return item
         })
 
         // Si la lista de depenencias con la versión validada se encuentra null, paso a mostrar mensaje indicando que no hay versiones a emplear
-        if (!isEmpty(dependenciesToUse) && !objectEquals(item.dependencies, dependenciesToUse, criteria)) {
+        if (!isEmpty(dependenciesToUse) && !objectEquals(filterDependenciesToUse, dependenciesToUse, criteria)) {
           let tempItem: TempItem = {
             dependencies: dependenciesToUse,
             version: newVersion(item.version),
@@ -155,6 +181,7 @@ export default async function (criteria: string, lastVersion: string) {
     log.info("No have projects to update, all projects already are update");
   }
 }
+
 
 // Método que remueve el path del objecto
 const removeData = (item: ContentManifestOverwrite) => {

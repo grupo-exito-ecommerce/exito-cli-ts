@@ -35,7 +35,9 @@ export const overWriteChangeLogFile = async (
 ### Changed
   
 - Update in the following dependencies with the version of exito: ${pkg.version}
-- ${JSON.stringify(changelogInfo.dependencies, null, 4)}`
+${'``` json'} 
+  ${JSON.stringify(changelogInfo.dependencies, null, 4)}
+${'```'}`
   );
 
   await writeFile(`${directory}/CHANGELOG.md`, replaceInfo);
