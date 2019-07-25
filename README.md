@@ -283,3 +283,6 @@ Con esta configuración se generarán dos triggers apuntando a diferentes branch
   
 
 `exito init`: Comando que permite realizar la clonación de los proyectos configurados.
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTc5ODQ4MTUxMl19
+-->
