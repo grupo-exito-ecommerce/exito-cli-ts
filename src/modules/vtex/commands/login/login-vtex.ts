@@ -6,9 +6,9 @@ import ora from 'ora';
 import { saveVtexConfig } from './util/save-credentials';
 
 // Call to get auth information
-const getAuth = async (workspace: string, account: string) => {
+const getAuth = async (workspace: string, account: string, token: string) => {
   try {
-    const url = `https://${workspace}--${account}.myvtex.com/exito/token?config=${makeid()}`
+    const url = `https://${workspace}--${account}.myvtex.com/exito/token?credentials=${token}?config=${makeid()}`
     log.debug(url);
     return await axios.get(url);
   } catch (error) {
@@ -31,11 +31,12 @@ function makeid() {
 export default async function (
   account: string,
   workspace: string,
-  email: string
+  email: string,
+  token: string
 ) {
   const spinner = ora('Getting auth token \n').start();
   spinner.stop();
-  const auth = await getAuth(workspace, account);
+  const auth = await getAuth(workspace, account, token);
   spinner.start();
 
   if (auth) {

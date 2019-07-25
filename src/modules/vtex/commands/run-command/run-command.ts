@@ -26,15 +26,24 @@ let orderList: boolean = false;
 // 1. Método inicial que se encarga de buscar las carpetas dentro del directorio indicado.
 export default async (command: string, all: string) => {
   // indico cual comando se va a ejecutar y cual directorio se va a emplear
-  commands = `vtex ${command}`;
   directory = process.cwd() + '/';
   orderList = true;
+
+  // Capturo el flag para saber si empleo la ultima versión siempre o no.
+  const SCAPECOMMAND = '--scape';
+  const scapeCommand = process.argv.indexOf(SCAPECOMMAND) >= 0;
+
+  commands = command;
+  if (scapeCommand) {
+    commands = command.replace(/\@S+/g, ' ');
+    commands = commands.replace(/\@AND+/g, '&&');
+  }
 
   log.debug(`Order dependencies list ${orderList}`);
   log.debug(`Command to run: ${commands}`);
   log.debug(`Directory to use: ${directory}`);
 
-  if (commands && directory) {
+  if (command && directory) {
     // Realizo la busqueda en el directorio actual
     searchProjectCurrentDirectory(all);
   } else {

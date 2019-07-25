@@ -25,7 +25,7 @@ export default async (destinationArn: string) => {
     `${dirname}/trigger-config.json`,
     true
   );
-  
+
   if (!branch) {
     process.exit(1);
   }
@@ -54,7 +54,11 @@ export default async (destinationArn: string) => {
     let copy: any = JSON.stringify(config.branchs);
     copy = JSON.parse(copy);
     copy.map((item: BranchTriggerInformation) => {
-      item.customData.url_to_clone += `/${nameProyect}`;
+      item.customData.urlToClone += `/${nameProyect}`;
+      item.customData.linkCommand = item.customData.linkCommand.replace(/\s+/g, '@S')
+      item.customData.publishCommand = item.customData.publishCommand.replace(/\s+/g, '@S')
+      item.customData.linkCommand = item.customData.linkCommand.replace(/\&&+/g, '@AND')
+      item.customData.publishCommand = item.customData.publishCommand.replace(/\&&+/g, '@AND')
     });
     config.branchs = copy;
     createAwsTemplate(config);
@@ -94,7 +98,7 @@ const createTemplate = async (options: CreateTriggerCodeCommit) => {
   return fs.writeFile(
     `${dirname}/${codeCommitTriggerDir}/${options.codeCommitProyect}.json`,
     template,
-    function(err: string) {
+    function (err: string) {
       if (err) {
         throw err;
       }

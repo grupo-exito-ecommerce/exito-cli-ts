@@ -47,8 +47,7 @@ export default {
       description:
         "Overwrite the current dependencies in base to the file `update-dependencies.json`",
       handler: "./run/overwrite-dependencies/overwrite-dependencies",
-      requiredArgs: ["criteria"],
-      optionalArgs: ["lastVersion"]
+      requiredArgs: ["criteria"]
     }
   },
   init: {
@@ -84,7 +83,7 @@ export default {
     },
     trigger: {
       alias: "t",
-      description: "Create the triggers config for the indicate proyects",
+      description: "Create the triggers config for the indicate projects",
       handler: "./generate/create-triggers-code-commit/create-triggers",
       requiredArgs: ["arn"]
     },
@@ -108,30 +107,35 @@ export default {
     install: {
       alias: "ni",
       description:
-        "Install the dependencies in the curren proyect with npm or yarn",
+        "Install the dependencies in the curren project with npm or yarn",
       handler: "./vtex/install/install",
       requiredArgs: "adminPackage"
     },
     coverage: {
       alias: "co",
-      description: "Run the coverage process in the proyect",
+      description: "Run the coverage process in the project",
       handler: "./vtex/coverage/coverage"
     },
     publish: {
       alias: "p",
       description: "Publish only one component into Vtex",
-      handler: "./vtex/commands/publish-component/publish-component"
+      handler: "./vtex/commands/publish-component/publish-component",
+      requiredArgs: ["command"]
     },
     login: {
       alias: "l",
       description: "Set credentials for vtex in the config file from vtex",
       handler: "./vtex/commands/login/login-vtex",
-      requiredArgs: ["account", "workspace", "email"]
+      requiredArgs: ["account", "workspace", "email", "token"]
     },
     setVendor: {
       description: "Set the vendor name in the manifest file",
       handler: "./vtex/update-manifest/update-manifest",
       requiredArgs: ["vendor"]
+    },
+    updateDepProject: {
+      description: "Update the current project in the deps",
+      handler: "./vtex/update-dep-project/update-dep-project"
     }
   },
   handler: "./",

@@ -7,16 +7,28 @@ import {
 import { childProcessRunCommandPublish } from './utill/child-process-publish';
 const directory = process.cwd() + '/';
 
-export default async function() {
+let commandToUse = ""
+
+export default async function (command: string) {
+
+  // Capturo el flag para saber si empleo la ultima versión siempre o no.
+  const SCAPECOMMAND = '--scape';
+  const scapeCommand = process.argv.indexOf(SCAPECOMMAND) >= 0;
+  commandToUse = command;
+
+  if (scapeCommand) {
+    commandToUse = command.replace(/\@S+/g, ' ');
+    commandToUse = commandToUse.replace(/\@AND+/g, '&&');
+  }
+  
+  log.debug(`Command to run: ${commandToUse}`);
   log.info('Loading publish component process');
   searchProjectCurrentDirectory();
 }
 
 const publishComponent = (manifest: ContentManifest) => {
   // Uso el workspace master y realizo la publicación
-  let command_create_workspace = `cd ${
-    manifest.path
-  } && vtex workspace use master && vtex publish --verbose`;
+  let command_create_workspace = `cd ${manifest.path} && ${commandToUse}`;
   childProcessRunCommandPublish(command_create_workspace);
 };
 
