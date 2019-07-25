@@ -1,4 +1,4 @@
-export const link_succes_log = [
+export const link_success_log = [
   {
     log: "Step success finished"
   },
@@ -43,10 +43,13 @@ export const link_error_log = [
   },
   {
     log: "Something went wrong, I don't know what to do"
+  },
+  {
+    log: "Request failed with status code"
   }
 ];
 
-export const publish_succes_log = [
+export const publish_success_log = [
   {
     log: "published successfully!"
   }

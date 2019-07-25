@@ -14,7 +14,7 @@ export interface ContentManifestOverwrite {
   vendor: string;
   name: string;
   path: string;
-  dependencies: object;
+  dependencies: any;
   version: string;
   changelog?: {
     version: string;
@@ -173,11 +173,13 @@ export interface CreateTemplateCloudFormation {
 }
 
 export interface CustomDataTrigger {
-  code_build: string;
+  codeBuild: string;
   vendor: string;
   workspace: string;
-  code_commit_branch: string;
-  url_to_clone: string;
+  codeCommitBranch: string;
+  urlToClone: string;
+  linkCommand: string;
+  publishCommand: string;
 }
 
 export interface BranchTriggerInformation {

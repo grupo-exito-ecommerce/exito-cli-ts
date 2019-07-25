@@ -8,6 +8,7 @@ export const runGitCommand = async (
   log.info(`Running ${commandToUse}`);
   return Promise.all(
     directory.map(async item => {
+      log.debug(`${directory} --> Command: ${commandToUse}`)
       await executeGitCommand(item, commandToUse);
     })
   );

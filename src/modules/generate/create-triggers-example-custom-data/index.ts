@@ -7,11 +7,13 @@ const basicInfo = `
   {
     "name": "develop",
     "customData": {
-        "code_build": "exito-vtex-deploy-develop",
+        "codeBuild": "exito-vtex-deploy-develop",
         "vendor": "exito",
         "workspace": "dev",
-        "code_commit_branch": "develop",
-        "url_to_clone": "https://git-codecommit.us-east-1.amazonaws.com/v1/repos"
+        "codeCommitBranch": "develop",
+        "urlToClone": "https://git-codecommit.us-east-1.amazonaws.com/v1/repos",
+        "linkCommand": "vtex link",
+        "publishCommand": "vtex workspace use master && vtex publish"
     }
   }
 ]

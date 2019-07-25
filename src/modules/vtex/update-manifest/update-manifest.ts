@@ -16,8 +16,6 @@ export default async function (vendor: string) {
       let subFiles = await findProjectContent(files, vendor);
       if (!subFiles) {
         process.exit(1);
-      } else {
-        log.info(`Proyect found in the sub location`);
       }
     } else {
       log.warn(`No projects found in ${directory}`);
