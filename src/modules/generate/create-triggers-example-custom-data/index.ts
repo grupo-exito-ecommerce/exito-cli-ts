@@ -1,5 +1,5 @@
-import log from './../../../shared/logger';
 import { writeFileSync } from 'fs';
+import { logger } from './../../../shared';
 const dirname = process.cwd();
 
 const basicInfo = `
@@ -20,6 +20,6 @@ const basicInfo = `
 `
 
 export default async () => {
-  log.info('Creating aws triggers example custom data');
+  logger.info('Creating aws triggers example custom data');
   await writeFileSync(dirname + "/trigger-config.json", basicInfo);
 }

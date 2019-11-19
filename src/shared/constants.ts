@@ -1,7 +1,7 @@
-import { getCurrenVersion } from "../conf";
+import { getCurrentVersion } from "../conf";
 
 // Lista de comandos empleados para vtex
-export const consts = {
+export const configuration = {
   link: "vtex link",
   publish: "vtex publish",
   workspace_create: "vtex workspace create",
@@ -16,11 +16,11 @@ export const consts = {
     default_src: "src",
     command_generate_config: "exito generate config",
     command_generate_sonar: "exito generate sonar",
-    command_generate_tempalte: "exito generate template"
+    command_generate_template: "exito generate template"
   },
   git: {
     command_create_feature: "git checkout -b",
-    command_push_changes: `git add . && git commit -m "exito cli update infra, version ${getCurrenVersion()}" && git push --set-upstream origin feature/aws-infra-update-exito-cli`,
+    command_push_changes: `git add . && git commit -m "exito cli update infra, version ${getCurrentVersion()}" && git push --set-upstream origin feature/aws-infra-update-exito-cli`,
     command_clone: "git clone",
     command_default_branch_clone: "-b master"
   },
@@ -32,7 +32,7 @@ export const consts = {
     develop: "dev",
     production: "prod"
   },
-  code_commit:{
+  code_commit: {
     codeCommitTriggerDir: "code-commit-triggers"
   },
   // configuration aws cloud-formation for vtex
@@ -52,7 +52,7 @@ export const consts = {
   messages: {
     awsAccesKey:
       "Check your Access key and Secret Access key for aws, Run aws configure for configure this information.",
-    gitInitProyect: "Choose where do you want to start from",
+    gitInitProject: "Choose where do you want to start from",
     gitInitClose: "Bye",
     gitInitHellow:
       "Hello! I will help you generate basic files and folders for your app."

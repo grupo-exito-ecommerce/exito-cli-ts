@@ -1,4 +1,4 @@
-export const link_success_log = [
+export const linkSuccessLog = [
   {
     log: "Step success finished"
   },
@@ -19,7 +19,7 @@ export const link_success_log = [
   }
 ];
 
-export const link_error_log = [
+export const linkErrorLog = [
   {
     log: "timeout of"
   },
@@ -49,13 +49,13 @@ export const link_error_log = [
   }
 ];
 
-export const publish_success_log = [
+export const publishSuccessLog = [
   {
     log: "published successfully!"
   }
 ];
 
-export const publish_error_log = [
+export const publishErrorLog = [
   {
     log: "Fail to publish"
   },

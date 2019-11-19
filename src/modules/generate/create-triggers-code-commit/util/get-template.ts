@@ -1,7 +1,4 @@
-import {
-  CreateTriggerCodeCommit,
-  BranchTriggerInformation
-} from "./../../../../shared/models/global";
+import { BranchTriggerInformation, CreateTriggerCodeCommit } from "./../../../../shared";
 let currentOptions: CreateTriggerCodeCommit;
 
 // Retorno la cadena de string con los diferentes metodos que se quieren escuchar del trigger
@@ -25,16 +22,16 @@ const createCodeCommitConfig = (branchInfo: BranchTriggerInformation) => {
     "branches": [
         "${branchInfo.name}"
     ],
-    "name": "${currentOptions.codeCommitProyect.replace(".", "-")}-${
+    "name": "${currentOptions.codeCommitProject.replace(".", "-")}-${
     branchInfo.name
   }-${branchInfo.customData.vendor}-deploy",
     "customData": "${escape(branchInfo.customData)}"
 }`;
 };
 
-const getCodeBuildProyects = () => {
+const getCodeBuildProjects = () => {
   let codeCommit: Array<any> = [];
-  currentOptions.branchs.map((branchInfo: BranchTriggerInformation) =>
+  currentOptions.branches.map((branchInfo: BranchTriggerInformation) =>
     codeCommit.push(createCodeCommitConfig(branchInfo))
   );
   return codeCommit;
@@ -43,15 +40,14 @@ const getCodeBuildProyects = () => {
 export const getTemplateContent = (options: CreateTriggerCodeCommit) => {
   currentOptions = options;
   return `{
-    "repositoryName": "${options.codeCommitProyect}",
+    "repositoryName": "${options.codeCommitProject}",
     "triggers": [
-    ${getCodeBuildProyects()}
+    ${getCodeBuildProjects()}
 ]
 }`;
 };
 
 const escape = (obj: any) => {
   var escapedValue = JSON.stringify(obj).replace(/"/g, '\\"');
-  // var oldValue = escapedValue.replace(/\\\"/g, "\"");
   return escapedValue;
 };

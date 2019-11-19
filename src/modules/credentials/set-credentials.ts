@@ -1,15 +1,14 @@
-import { AwsCredentials } from "./../../shared/models/global";
-import log from "./../../shared/logger";
+import { AwsCredentials, logger } from "./../../shared";
 import { saveAccountAws } from "../../conf";
 
 // Método que recibe un objeto con las credenciales y las guarda.
-export const saveCredentials = function (credentials: AwsCredentials) {
+export const saveCredentials = function(credentials: AwsCredentials) {
   try {
     // 1.  Guardo las credenciales indicadas
-    saveAccountAws(credentials)
+    saveAccountAws(credentials);
     return true;
   } catch (e) {
-    log.debug(e);
+    logger.debug(e);
   }
 };
 
@@ -21,11 +20,11 @@ export default async (username: string, password: string) => {
     };
     let credentials = await saveCredentials(user);
     if (credentials) {
-      log.info("Your credentials has ven saved");
+      logger.info("Your credentials has ven saved");
     } else {
-      log.error("Error on save your credentials");
+      logger.error("Error on save your credentials");
     }
   } catch (e) {
-    log.debug(e);
+    logger.debug(e);
   }
 };

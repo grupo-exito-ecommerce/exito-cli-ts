@@ -1,8 +1,7 @@
 import inquirer from "inquirer";
-import log from "../../shared/logger";
-import { AwsCredentials } from "./../../shared/models/global";
-import { saveCredentials } from "./set-credentials";
 import { getAwsAccount } from "../../conf";
+import { AwsCredentials, logger } from "./../../shared";
+import { saveCredentials } from "./set-credentials";
 const emptyUser: AwsCredentials = {
   username: "",
   pwd: ""
@@ -10,23 +9,24 @@ const emptyUser: AwsCredentials = {
 
 export const PrompCredentials = async (): Promise<AwsCredentials> => {
   try {
-
     // Get the current credentials
     let credential: AwsCredentials = getAwsAccount();
     if (credential) {
       return credential;
     } else {
-      log.debug('No have aws credentials, save your aws credentials for clone projects');
+      logger.debug(
+        "No have aws credentials, save your aws credentials for clone projects"
+      );
       return await requireCredentials();
     }
   } catch (e) {
-    log.debug(e);
+    logger.debug(e);
     return emptyUser;
   }
 };
 
 export const requireCredentials = async (): Promise<AwsCredentials> => {
-  log.info("Enter credentials for AWS");
+  logger.info("Enter credentials for AWS");
   // Get AWS CodeCommit Credential
   const credentials: AwsCredentials = await promptCredentials();
   if (credentials.username !== "") {

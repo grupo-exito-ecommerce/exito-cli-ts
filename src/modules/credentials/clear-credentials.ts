@@ -1,6 +1,6 @@
-import log from "../../shared/logger";
 import inquirer from "inquirer";
 import { clear } from "../../conf";
+import { logger } from "../../shared";
 
 export default async () => {
   let questions = [
@@ -16,7 +16,7 @@ export default async () => {
     let result: any = answers;
     if (result.confirm) {
       clear();
-      log.info("Credentials has been removed");
+      logger.info("Credentials has been removed");
     }
   });
 };

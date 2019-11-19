@@ -1,7 +1,5 @@
-import { childProcessRunCommand } from './../../../shared/util/child-process-run-command';
-import log from './../../../shared/logger';
-import inquirer from 'inquirer';
-import { consts } from './../../../shared/constants';
+import inquirer from "inquirer";
+import { childProcessRunCommand, configuration, logger } from "./../../../shared";
 
 interface QuestionModel {
   develop: string;
@@ -9,14 +7,14 @@ interface QuestionModel {
   quantity: number;
 }
 export default async function() {
-  log.info('Enter the options to create the workspace config');
+  logger.info("Enter the options to create the workspace config");
 
   let questions = [
     {
-      type: 'input',
-      name: 'develop',
-      message: 'develop workspace name',
-      default: 'develop',
+      type: "input",
+      name: "develop",
+      message: "develop workspace name",
+      default: "develop",
       validate: function(value: string) {
         let valid = value.length >= 3;
         return (
@@ -26,10 +24,10 @@ export default async function() {
       }
     },
     {
-      type: 'input',
-      name: 'qa',
-      message: 'qa workspace name',
-      default: 'qa',
+      type: "input",
+      name: "qa",
+      message: "qa workspace name",
+      default: "qa",
       validate: function(value: string) {
         let valid = value.length >= 2;
         return (
@@ -39,15 +37,15 @@ export default async function() {
       }
     },
     {
-      type: 'input',
-      name: 'quantity',
-      message: 'number of workspace for qa',
+      type: "input",
+      name: "quantity",
+      message: "number of workspace for qa",
       validate: function(value: any) {
         let valid = !isNaN(parseFloat(value));
         if (!(parseFloat(value) > 0)) {
-          return 'Please enter a number diferent of 0';
+          return "Please enter a number different of 0";
         } else {
-          return valid || 'Please enter a number';
+          return valid || "Please enter a number";
         }
       },
       filter: Number
@@ -64,11 +62,9 @@ export default async function() {
 const confirmCreation = (question: QuestionModel) => {
   let questions = [
     {
-      type: 'confirm',
-      name: 'confirm',
-      message: `I Create one workspace call ${question.develop} and ${
-        question.quantity
-      } workspaces called ${question.qa}, Use this configuration?`,
+      type: "confirm",
+      name: "confirm",
+      message: `I Create one workspace call ${question.develop} and ${question.quantity} workspaces called ${question.qa}, Use this configuration?`,
       default: false
     }
   ];
@@ -76,19 +72,17 @@ const confirmCreation = (question: QuestionModel) => {
   inquirer.prompt(questions).then(async answers => {
     let result: any = answers;
     if (result.confirm) {
-      let createDevelop: string = `${consts.workspace_create} ${
-        question.develop
-      } `;
-      let createQa: string = '';
-      let command: string = '';
+      let createDevelop: string = `${configuration.workspace_create} ${question.develop} `;
+      let createQa: string = "";
+      let command: string = "";
 
       if (question.quantity > 1) {
         for (let index = 1; index <= question.quantity; index++) {
-          createQa += `${consts.workspace_create} ${question.qa +
+          createQa += `${configuration.workspace_create} ${question.qa +
             index} && `;
         }
       } else {
-        createQa = `${consts.workspace_create} ${question.qa +
+        createQa = `${configuration.workspace_create} ${question.qa +
           question.quantity} && `;
       }
 
