@@ -37,10 +37,16 @@ export default {
   },
   run: {
     description: "Execute options with the cli",
-    triggers: {
+    triggersPut: {
       alias: "t",
-      description: "Run a local triggers.json",
+      description:
+        "Command to create the trigger in CodeCommit, Run a local triggers.json",
       handler: "./run/update-triggers/update-triggers"
+    },
+    triggersTest: {
+      alias: "t",
+      description: "Tet trigger in CodeCommit, Run a local triggers.json",
+      handler: "./run/update-triggers/test-triggers"
     },
     overWriteDependencies: {
       alias: "ov",
