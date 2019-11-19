@@ -1,15 +1,7 @@
-import { consts } from "./../../../shared/constants";
-import {
-  CreateTriggerCodeCommit,
-  BranchTriggerInformation
-} from "./../../../shared/models/global";
-import log from "./../../../shared/logger";
-import { readDirectoryByFiles } from "../../../shared/util/read-directory";
-import { getRepositoryName } from "../../../shared/util/get-repository-name";
+import { BranchTriggerInformation, configuration, CreateTriggerCodeCommit, getRepositoryName, logger, readDirectoryByFiles, readFileInDirectory } from "./../../../shared";
 import { getTemplateContent } from "./util/get-template";
-import { readFileInDirectory } from "../../../shared/util/read-file";
 const dirname = process.cwd();
-const { codeCommitTriggerDir } = consts.code_commit;
+const { codeCommitTriggerDir } = configuration.code_commit;
 let fs = require("fs");
 
 /**
@@ -18,7 +10,7 @@ let fs = require("fs");
  *
  */
 export default async (destinationArn: string) => {
-  log.info("Creating aws triggers configuration");
+  logger.info("Creating aws triggers configuration");
 
   // Generación de la configuración de branch y schema
   const branch: BranchTriggerInformation[] = await readFileInDirectory(
@@ -39,34 +31,46 @@ export default async (destinationArn: string) => {
   );
 
   // 2. Obtengo los nombres de los proyectos. en base al nombre de la carpeta
-  let repositoryNames: Array<string> = getProyectNames(currentDirectory);
+  let repositoryNames: Array<string> = getProjectNames(currentDirectory);
 
   // 2. Armo el objeto que contendra los recursos de codecommit y codebuild. ademas de la información basica para el codepipeline
-  repositoryNames.map(nameProyect => {
+  repositoryNames.map(nameProject => {
     const config: CreateTriggerCodeCommit = {
-      codeCommitProyect: nameProyect,
-      branchs: branch,
+      codeCommitProject: nameProject,
+      branches: branch,
       destinationArn: destinationArn,
       updateReference: ["updateReference"]
     };
 
     // change the url to clone with the current name
-    let copy: any = JSON.stringify(config.branchs);
+    let copy: any = JSON.stringify(config.branches);
     copy = JSON.parse(copy);
     copy.map((item: BranchTriggerInformation) => {
-      item.customData.urlToClone += `/${nameProyect}`;
-      item.customData.linkCommand = item.customData.linkCommand.replace(/\s+/g, '@S')
-      item.customData.publishCommand = item.customData.publishCommand.replace(/\s+/g, '@S')
-      item.customData.linkCommand = item.customData.linkCommand.replace(/\&&+/g, '@AND')
-      item.customData.publishCommand = item.customData.publishCommand.replace(/\&&+/g, '@AND')
+      item.customData.urlToClone += `/${nameProject}`;
+      item.customData.linkCommand = item.customData.linkCommand.replace(
+        /\s+/g,
+        "@S"
+      );
+      item.customData.publishCommand = item.customData.publishCommand.replace(
+        /\s+/g,
+        "@S"
+      );
+      item.customData.linkCommand = item.customData.linkCommand.replace(
+        /\&&+/g,
+        "@AND"
+      );
+      item.customData.publishCommand = item.customData.publishCommand.replace(
+        /\&&+/g,
+        "@AND"
+      );
     });
-    config.branchs = copy;
+    config.branches = copy;
     createAwsTemplate(config);
   });
 };
 
 // Método que recorre la lista de proyectos y obtiene el nombre a emplear de acuerdo a la carpeta.
-const getProyectNames = (currentDirectory: Array<string>) => {
+const getProjectNames = (currentDirectory: Array<string>) => {
   let repositoryNames: Array<string> = [];
   currentDirectory.map(async (item: string) => {
     repositoryNames.push(getRepositoryName(item));
@@ -96,9 +100,9 @@ const ensureDirectoryExistence = async (filePath: string): Promise<Boolean> => {
 const createTemplate = async (options: CreateTriggerCodeCommit) => {
   const template = await getTemplateContent(options);
   return fs.writeFile(
-    `${dirname}/${codeCommitTriggerDir}/${options.codeCommitProyect}.json`,
+    `${dirname}/${codeCommitTriggerDir}/${options.codeCommitProject}.json`,
     template,
-    function (err: string) {
+    function(err: string) {
       if (err) {
         throw err;
       }

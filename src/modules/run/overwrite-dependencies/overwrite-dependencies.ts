@@ -1,12 +1,8 @@
-import { ContentManifestOverwrite } from "./../../../shared/models/global";
-import log from "./../../../shared/logger";
-const directory = process.cwd();
-import _ from "lodash";
-import { readFileInDirectory } from "../../../shared/util/read-file";
-import { readDirectoryByFiles } from "../../../shared/util/read-directory";
-import { getManifestsContent } from "../../../shared/util/get-content-files";
 import { writeFileSync } from "fs";
+import _ from "lodash";
+import { ContentManifestOverwrite, getManifestsContent, logger, readDirectoryByFiles, readFileInDirectory } from "../../../shared";
 import { overWriteChangeLogFile } from "./util/overwrite-changelog";
+const directory = process.cwd();
 
 interface TempItem {
   dependencies: object;
@@ -18,10 +14,10 @@ interface TempItem {
 }
 
 export default async function (criteria: string) {
-  log.info("OverWrite dependencies", directory);
+  logger.info("OverWrite dependencies", directory);
 
   if (!criteria) {
-    log.error("Not pass the criteria to use");
+    logger.error("Not pass the criteria to use");
     process.exit(1);
   }
 
@@ -49,7 +45,7 @@ export default async function (criteria: string) {
   );
 
   if (!manifestContent.length) {
-    log.error("No manifest content");
+    logger.error("No manifest content");
     process.exit(1);
   }
 
@@ -59,7 +55,7 @@ export default async function (criteria: string) {
       Object.getOwnPropertyNames(item.dependencies).length > 0
   );
 
-  log.warn(
+  logger.warn(
     `Found projects with empty dependencies, only use ${
     filterElements.length
     } projects to update dependencies`
@@ -75,11 +71,11 @@ export default async function (criteria: string) {
 
       // EL Objecto `dependencies` posee la lista de dependencias a actualizar. este es un objecto con las versiones a emplear
       if (isEmpty(dependencies)) {
-        log.info(
+        logger.info(
           `No have dependencies in the file update-dependencies.json with the criteria indicate ${criteria}`
         );
-        log.warn(`${configDependencies}`);
-        log.info("Check the .json file and try again");
+        logger.warn(`${configDependencies}`);
+        logger.info("Check the .json file and try again");
       }
 
       // Si las dependencias actuales son diferentes a las que se preparan para modificar
@@ -108,7 +104,7 @@ export default async function (criteria: string) {
         // Variable que contiene la lista de dependencias final a emplear, esto ya que puedo realizar el filtro del objeto filterDependencies y remover keys que no van a ser necesarias para emplear.
         let filterDependenciesToUse = filterDependencies;
 
-        Object.keys(dependencies).map((itemDependencie: string, index) => {
+        Object.keys(dependencies).map((itemDependencies: string, index) => {
 
           // Variable que contiene la lista de versiones a emplear de la dependencia
           let listVersion: any = Object.values(dependencies)[index].split('-')
@@ -124,13 +120,13 @@ export default async function (criteria: string) {
 
             if (!versionToUse) {
               // Remuevo la dependencia que no se encontro de acuerdo a la versión empleada actualmente, esto permite validar si la dependnecia actual existe pero la version solicitada no existe.
-              filterDependenciesToUse = _.omit(filterDependencies, itemDependencie);
+              filterDependenciesToUse = _.omit(filterDependencies, itemDependencies);
             }
           }
 
           if (versionToUse) {
             dependenciesToUse = {
-              ...dependenciesToUse, [itemDependencie]: versionToUse
+              ...dependenciesToUse, [itemDependencies]: versionToUse
             }
           }
 
@@ -153,7 +149,7 @@ export default async function (criteria: string) {
           item = _.merge(item, tempItem);
           return item;
         } else {
-          log.warn(
+          logger.warn(
             `The dependencies from the project ${item.vendor +
             "." +
             item.name} is already update`
@@ -161,7 +157,7 @@ export default async function (criteria: string) {
         }
 
       } else {
-        log.warn(
+        logger.warn(
           `The dependencies from the project ${item.vendor +
           "." +
           item.name} is already update`
@@ -178,7 +174,7 @@ export default async function (criteria: string) {
       await writeFile(item.path, JSON.stringify(removeData(item), null, 4));
     });
   } else {
-    log.info("No have projects to update, all projects already are update");
+    logger.info("No have projects to update, all projects already are update");
   }
 }
 
@@ -238,8 +234,8 @@ const findProjectContent = async (files: string[]) => {
 const writeFile = async (path: string, string: string) => {
   try {
     await writeFileSync(path + "/manifest.json", string);
-    log.debug(`manifest file update in the directory ${path}`);
+    logger.debug(`manifest file update in the directory ${path}`);
   } catch (error) {
-    log.error(error);
+    logger.error(error);
   }
 };

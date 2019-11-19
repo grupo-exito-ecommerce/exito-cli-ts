@@ -1,16 +1,14 @@
-import log from "./../../../../shared/logger";
-import { readFileInDirectory } from "../../../../shared/util/read-file";
+import { logger, readFileInDirectory } from "./../../../../shared";
 const directory = process.cwd();
-import _ from "lodash";
 let fs = require("fs");
 
 export default async function (criteria: string) {
   // 1. Leer el archivo .json y lista las dependencias filtradas de acuerdo al cricterio de busqueda, permite seleccionar las dependencias a emplear y genera un archivo config.json con las dependencias a emplear y su versión.
-  log.info("Find .json file in the current directory");
+  logger.info("Find .json file in the current directory");
 
   // 1. Leo el directorio actual y permito seleccionar todos los proyectos deseados
   if (criteria) {
-    log.info(`Use the criteria ${criteria}`);
+    logger.info(`Use the criteria ${criteria}`);
   }
 
   // Generación de la configuración de branch y schema

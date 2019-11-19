@@ -1,12 +1,12 @@
-const Configstore = require('configstore');
-import log from './../../../shared/logger';
+const Configstore = require("configstore");
+import { logger } from "./../../../shared";
 
 export default async () => {
   try {
-    new Configstore('vtex', { workspace: 'production' });
-    log.info('vtex json generate succefully');
+    new Configstore("vtex", { workspace: "production" });
+    logger.info("vtex json generate successfully");
   } catch (error) {
-    log.error('Error on generate the vtex file');
+    logger.error("Error on generate the vtex file");
     process.exit(1);
   }
 };

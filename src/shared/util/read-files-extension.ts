@@ -1,7 +1,7 @@
 import log from "../logger";
 import chalk from "chalk";
-import { choiseFolders } from "./choise-folders";
 import { getFilesInCurrentDirectory } from "./get-content-files";
+import { chooseFolders } from "./choose-folders";
 var path = require("path");
 
 export const readDirectoryByExtension = async (
@@ -35,11 +35,11 @@ export const readDirectoryByExtension = async (
   );
 
   if (filter.length) {
-    let choise = await choiseFolders(filter, message, action);
+    let choose = await chooseFolders(filter, message, action);
     log.info(
-      `Total of files to use: ${chalk.whiteBright(`${choise.folders.length}`)}`
+      `Total of files to use: ${chalk.whiteBright(`${choose.folders.length}`)}`
     );
-    return choise.folders;
+    return choose.folders;
   }
 
   return [];

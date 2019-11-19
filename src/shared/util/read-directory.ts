@@ -1,7 +1,7 @@
-import log from "../logger";
-import fs from "fs";
 import chalk from "chalk";
-import { choiseFolders } from "./choise-folders";
+import fs from "fs";
+import { logger } from "../index";
+import { chooseFolders } from "./choose-folders";
 import { getDirectories } from "./get-content-files";
 
 export const readDirectoryByFiles = async (
@@ -10,7 +10,7 @@ export const readDirectoryByFiles = async (
   message: string,
   action: string
 ) => {
-  log.debug("Read current directory to find the indicate folders");
+  logger.debug("Read current directory to find the indicate folders");
   // find directory in the current folder
   let currentDirectory: Array<string> = await getDirectories(directory);
 
@@ -26,20 +26,20 @@ export const readDirectoryByFiles = async (
   });
 
   // print log info
-  log.info(
+  logger.info(
     filter.length > 0
-      ? `find ${chalk.redBright(`${filter.length}`)} folders with proyects`
+      ? `find ${chalk.redBright(`${filter.length}`)} folders with projects`
       : `folders not found in the current directory`
   );
 
   if (filter.length) {
-    let choise = await choiseFolders(filter, message, action);
-    log.info(
-      `Total of proyects to use: ${chalk.whiteBright(
-        `${choise.folders.length}`
+    let choose = await chooseFolders(filter, message, action);
+    logger.info(
+      `Total of projects to use: ${chalk.whiteBright(
+        `${choose.folders.length}`
       )}`
     );
-    return choise.folders;
+    return choose.folders;
   }
 
   return [];

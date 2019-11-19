@@ -1,4 +1,4 @@
-import { consts } from './../../../shared/constants';
+import { configuration } from './../../../shared/constants';
 import { AwsCredentials, AwsExecuteCommandClone } from './../../../shared/models/global';
 import {
   getProjectDirectory,
@@ -30,7 +30,7 @@ export default async (crit: string, branch: string, all: string) => {
   try {
     // 0. Set path and branch
     state.path = process.cwd() + '/';
-    branch ? branch = `-b ${branch}` : branch = consts.git.command_default_branch_clone
+    branch ? branch = `-b ${branch}` : branch = configuration.git.command_default_branch_clone
     log.debug(`Branch to use ${branch}`)
     const spinner = ora('Start cloning process').start();
 

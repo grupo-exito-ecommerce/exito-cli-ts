@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-import log from "./shared/logger";
-import * as pkg from "../package.json";
-import tree from "./modules/tree";
-import { find, run as unboundRun } from "findhelp";
 import * as Bluebird from "bluebird";
+import { find, run as unboundRun } from "findhelp";
 import * as path from "path";
 import { without } from "ramda";
+import * as pkg from "../package.json";
+import tree from "./modules/tree";
+import { logger } from "./shared";
 import notify from "./update";
 
 // check updates
@@ -20,7 +20,7 @@ const run = (command: any) =>
   );
 
 const logToolbeltVersion = () => {
-  log.debug(`Exito version: ${pkg.version}`);
+  logger.debug(`Exito version: ${pkg.version}`);
 };
 
 const main = async () => {
@@ -34,8 +34,8 @@ const main = async () => {
 };
 
 const onError = (e: string) => {
-  log.error("Something went wrong, I don't know what to do :(");
-  log.debug(e);
+  logger.error("Something went wrong, I don't know what to do :(");
+  logger.debug(e);
 
   process.exit(1);
 };

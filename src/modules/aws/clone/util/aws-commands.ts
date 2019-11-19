@@ -1,4 +1,4 @@
-import { consts } from './../../../../shared/constants';
+import { configuration } from './../../../../shared/constants';
 import { exec, spawn } from "child_process";
 import {
   RepositoryOptions,
@@ -14,10 +14,10 @@ export const getProjectDirectory = (): Promise<ProjectList> => {
   return new Promise(function (fulfill, reject) {
     try {
       let result: ProjectList;
-      exec(consts.aws.command_list_repositories, (error, stdout, _stderr) => {
+      exec(configuration.aws.command_list_repositories, (error, stdout, _stderr) => {
         if (error) {
           log.error("AWS Error:" + error)
-          log.info(consts.messages.awsAccesKey)
+          log.info(configuration.messages.awsAccesKey)
           reject(error);
           process.exit(1)
         }
@@ -39,10 +39,10 @@ export const getProjectInformation = (
     try {
       let result: RepositoryMetadataResponse;
       exec(
-        `${consts.aws.command_get_repositories} ${projectName}`,
+        `${configuration.aws.command_get_repositories} ${projectName}`,
         (error, stdout, _stderr) => {
           if (error) {
-            log.info(consts.messages.awsAccesKey)
+            log.info(configuration.messages.awsAccesKey)
             reject(error);
             process.exit(1)
           }
@@ -67,7 +67,7 @@ export const cloneProject = (options: RepositoryOptions) => {
       );
 
       const task = spawn(
-        `cd ${options.path} && ${consts.git.command_clone} https://${
+        `cd ${options.path} && ${configuration.git.command_clone} https://${
         options.credentials.username
         }:${options.credentials.pwd}@${repositorie} ${options.branch} `,
         [],

@@ -1,5 +1,5 @@
 const fs = require('fs');
-import log from '../../../../shared/logger';
+import { logger } from '../../../../shared';
 
 // Metodo que trae el contenido de un directorio indicado
 export const getJestConfigContent = async (dir: string): Promise<any> => {
@@ -25,11 +25,11 @@ export const getJestConfigContent = async (dir: string): Promise<any> => {
         return jest;
       }
     } else {
-      log.debug(`jest.config.js not found in ${dir}`);
+      logger.debug(`jest.config.js not found in ${dir}`);
       process.exit(1);
     }
   } catch (error) {
-    log.debug(
+    logger.debug(
       `error on read the jest.config.js file in ${dir} check the content`
     );
     process.exit(1);
@@ -49,11 +49,11 @@ sonar.login=c234975f7deabc7e40e6dcc4af2e3cfd9168a96e`;
         return jest;
       }
     } else {
-      log.debug(`sonar-project.properties not found in ${dir}`);
+      logger.debug(`sonar-project.properties not found in ${dir}`);
       process.exit(1);
     }
   } catch (error) {
-    log.debug(
+    logger.debug(
       `error on read the sonar-project.properties file in ${dir} check the content`
     );
     process.exit(1);

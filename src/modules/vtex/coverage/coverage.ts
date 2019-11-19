@@ -1,19 +1,10 @@
-import log from './../../../shared/logger';
-import {
-  getDirectories,
-  getManifestsContent
-} from '../../../shared/util/get-content-files';
-import { ContentManifest } from '../../../shared/models/global';
-import fs, { writeFileSync } from 'fs';
-import { runMultipleCommand } from '../../../shared/util/run-multiple-command';
-import {
-  getJestConfigContent,
-  getSonarQubeContent
-} from './util/get-jest-config-content';
-const directory = process.cwd() + '/';
+import fs, { writeFileSync } from "fs";
+import { ContentManifest, getDirectories, getManifestsContent, logger, runMultipleCommand } from "../../../shared";
+import { getJestConfigContent, getSonarQubeContent } from "./util/get-jest-config-content";
+const directory = process.cwd() + "/";
 
 export default async function() {
-  log.info('Run coverage');
+  logger.info("Run coverage");
   //1. Busco en el directorio actual si existen proyectos con el archivo manifest.json
   let response = await findProject([directory]);
   // si no se encontraron projectos en el directorio actual, paso a buscar en los sub directorios.
@@ -25,10 +16,10 @@ export default async function() {
       if (!subFiles) {
         process.exit(1);
       } else {
-        log.info(`Proyect found in the sub location`);
+        logger.info(`Project found in the sub location`);
       }
     } else {
-      log.warn(`No projects found in ${directory}`);
+      logger.warn(`No projects found in ${directory}`);
       process.exit(1);
     }
   }
@@ -37,10 +28,10 @@ export default async function() {
 //2. Tomo el directorio encontrado y paso a buscar la carpeta node o react
 const findProject = async (files: Array<string>) => {
   // si hay directorios, paso a buscar el archivo manifest.json y obtener su contenido
-  log.debug(`Searchin proyect in ${files}`);
+  logger.debug(`Searching projects in ${files}`);
   const manifests: Array<ContentManifest> = await getManifestsContent(files);
   if (manifests.length) {
-    log.info(`Proyect found in the folder: ${files}`);
+    logger.info(`Projects found in the folder: ${files}`);
     manifests.map((item: ContentManifest) => {
       findNodeOrReactFolder(item.path);
     });
@@ -52,18 +43,18 @@ const findProject = async (files: Array<string>) => {
 
 //3. De acuerdo al directorio encontrado, paso a realizar la instalación de las dependencias
 const findNodeOrReactFolder = async (file: string) => {
-  if (fs.existsSync(file + '/node') == true) {
-    log.info('Proyect contain the folder node');
+  if (fs.existsSync(file + "/node") == true) {
+    logger.info("Project contain the folder node");
     const command = `cd ${file}/node && node ./node_modules/jest/bin/jest.js --coverage -u && cd ../..`;
     await addPercentageOfCoverage(`${file}/node/jest.config.js`);
     await addLoginDataSonarQube(`${file}/node/sonar-project.properties`);
     // Ejecuto el proceso de coverage
     runMultipleCommand(command, [
       `Jest: "global" coverage threshold for`,
-      'test failed in'
+      "test failed in"
     ]);
-  } else if (fs.existsSync(file + '/react') == true) {
-    log.info('Proyect contain the folder react');
+  } else if (fs.existsSync(file + "/react") == true) {
+    logger.info("Project contain the folder react");
     const command = `cd ${file}/react && node ./node_modules/jest/bin/jest.js --coverage -u && ./node_modules/sonar-scanner/bin/sonar-scanner && cd ../..`;
     await addPercentageOfCoverage(`${file}/react/jest.config.js`);
     await addLoginDataSonarQube(`${file}/react/sonar-project.properties`);
@@ -71,17 +62,17 @@ const findNodeOrReactFolder = async (file: string) => {
     runMultipleCommand(command, [
       `Jest: "global" coverage threshold for`,
       "Permission denied",
-      'test failed in'
+      "test failed in"
     ]);
   }
 };
 
 const writeFileLocal = async (path: string, string: string) => {
   try {
-    await writeFileSync(path, string, 'utf8');
+    await writeFileSync(path, string, "utf8");
     return true;
   } catch (error) {
-    log.error(error);
+    logger.error(error);
     process.exit(1);
   }
 };
@@ -93,7 +84,7 @@ const addPercentageOfCoverage = async (dir: string) => {
     await writeFileLocal(dir, jest);
     return true;
   } catch (error) {
-    log.error(error);
+    logger.error(error);
   }
 };
 
@@ -104,6 +95,6 @@ const addLoginDataSonarQube = async (dir: string) => {
     await writeFileLocal(dir, sonar);
     return true;
   } catch (error) {
-    log.error(error);
+    logger.error(error);
   }
 };
