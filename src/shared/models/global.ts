@@ -188,8 +188,8 @@ export interface BranchTriggerInformation {
 }
 
 export interface CreateTriggerCodeCommit {
-  codeCommitProyect: string;
-  branchs: Array<BranchTriggerInformation>;
+  codeCommitProject: string;
+  branches: Array<BranchTriggerInformation>;
   updateReference: Array<string>;
   destinationArn: string;
 }

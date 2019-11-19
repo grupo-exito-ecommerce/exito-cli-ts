@@ -1,14 +1,13 @@
-import log from "../../../../shared/logger";
-import { runMultipleCommand } from "../../../../shared/util/run-multiple-command";
+import { runMultipleCommand, logger } from "../../../../shared";
 
 export const runGitCommand = async (
   directory: string[],
   commandToUse: string
 ) => {
-  log.info(`Running ${commandToUse}`);
+  logger.info(`Running ${commandToUse}`);
   return Promise.all(
     directory.map(async item => {
-      log.debug(`${directory} --> Command: ${commandToUse}`)
+      logger.debug(`${directory} --> Command: ${commandToUse}`);
       await executeGitCommand(item, commandToUse);
     })
   );

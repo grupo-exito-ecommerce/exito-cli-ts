@@ -1,5 +1,4 @@
-import log from "./../../../../shared/logger";
-import { readFileInDirectory } from "../../../../shared/util/read-file";
+import { logger, readFileInDirectory } from "./../../../../shared";
 import { writeFileSync } from "fs";
 import * as pkg from "./../../../../../package.json";
 
@@ -7,7 +6,7 @@ export const overWriteChangeLogFile = async (
   directory: string,
   changelogInfo: any
 ) => {
-  log.info("OverWrite Changelog", directory);
+  logger.info("OverWrite Changelog", directory);
 
   // 1. Obtengo el cotenido del archivo Changelog
   let changeLogData: any = await readFileInDirectory(
@@ -35,9 +34,9 @@ export const overWriteChangeLogFile = async (
 ### Changed
   
 - Update in the following dependencies with the version of exito: ${pkg.version}
-${'``` json'} 
+${"``` json"} 
   ${JSON.stringify(changelogInfo.dependencies, null, 4)}
-${'```'}`
+${"```"}`
   );
 
   await writeFile(`${directory}/CHANGELOG.md`, replaceInfo);
@@ -54,8 +53,8 @@ function getCurrentDate() {
 const writeFile = async (path: string, string: string) => {
   try {
     await writeFileSync(path, string);
-    log.debug(`Changelog file update in the directory ${path}`);
+    logger.debug(`Changelog file update in the directory ${path}`);
   } catch (error) {
-    log.error(error);
+    logger.error(error);
   }
 };

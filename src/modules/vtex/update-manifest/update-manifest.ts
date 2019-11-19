@@ -1,7 +1,5 @@
-import { ContentManifest } from "./../../../shared/models/global";
-import log from "./../../../shared/logger";
-import { getManifestContent, getManifestsContent, getDirectories } from "../../../shared/util/get-content-files";
 import { writeFileSync } from "fs";
+import { ContentManifest, getDirectories, getManifestContent, getManifestsContent, logger } from "./../../../shared";
 const directory = process.cwd();
 
 export default async function (vendor: string) {
@@ -18,7 +16,7 @@ export default async function (vendor: string) {
         process.exit(1);
       }
     } else {
-      log.warn(`No projects found in ${directory}`);
+      logger.warn(`No projects found in ${directory}`);
       process.exit(1);
     }
   }
@@ -28,7 +26,7 @@ const findProjectContent = async (files: Array<string>, vendor: string) => {
   // si hay directorios, paso a buscar el archivo manifest.json y obtener su contenido
   const manifests: Array<ContentManifest> = await getManifestsContent(files);
   if (manifests.length) {
-    log.info("Update manifest information");
+    logger.info("Update manifest information");
     const content: ContentManifest = await getManifestContent(directory);
     if (content) {
       updateManifestInfo(content, vendor);
@@ -53,8 +51,8 @@ const updateManifestInfo = async (
 const writeFile = async (path: string, string: string) => {
   try {
     await writeFileSync(path + "/manifest.json", string);
-    log.info("manifest file update.");
+    logger.info("manifest file update.");
   } catch (error) {
-    log.error(error);
+    logger.error(error);
   }
 };

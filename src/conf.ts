@@ -1,6 +1,6 @@
-import { AwsCredentials } from "./shared/models/global";
-const Configstore = require("configstore");
 import { name as pkgName, version } from "../package.json";
+import { AwsCredentials } from "./shared";
+const Configstore = require("configstore");
 
 const conf = new Configstore(pkgName);
 
@@ -15,6 +15,6 @@ export const getAll = (): any => conf.all;
 
 export const getAwsAccount = (): AwsCredentials => conf.get("aws_user");
 
-export const getCurrenVersion = (): string => version;
+export const getCurrentVersion = (): string => version;
 
 export const clear = (): void => conf.clear();

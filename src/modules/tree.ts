@@ -36,7 +36,14 @@ export default {
     }
   },
   run: {
-    description: "Execute options with the cli",
+    description: "Options to run with the cli",
+    command: {
+      alias: "c",
+      description:
+        "Option to run a command in a list of projects, pass the directory to run and the command to execute. \n You can pass in the arg `command` the interpolation $name and the cli replace this point with the project name",
+      handler: "./run/command/index",
+      requiredArgs: ["location", "command"]
+    },
     triggersPut: {
       alias: "t",
       description:
@@ -105,7 +112,7 @@ export default {
     run: {
       alias: "v",
       description:
-        "Execute specific command from vtex, the current commands suport is: <link>, <publish>",
+        "Execute specific command from vtex, the current commands support is: <link>, <publish>",
       handler: "./vtex/commands/run-command/run-command",
       requiredArgs: "command",
       optionalArgs: ["all"]
@@ -113,7 +120,7 @@ export default {
     install: {
       alias: "ni",
       description:
-        "Install the dependencies in the curren project with npm or yarn",
+        "Install the dependencies in the current project with npm or yarn",
       handler: "./vtex/install/install",
       requiredArgs: "adminPackage"
     },

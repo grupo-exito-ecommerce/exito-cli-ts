@@ -1,17 +1,16 @@
-import { consts } from "./../../../shared/constants";
+import { configuration, logger } from "./../../../shared";
 let fs = require("fs");
-import log from "./../../../shared/logger";
 import { sonarTemplate } from "./util/sonar-template";
-const { configDir, sonarDir } = consts.aws_template;
+const { configDir, sonarDir } = configuration.aws_template;
 const dirname = process.cwd() + `/${configDir}`;
 import chalk from "chalk";
 
 export default async (repository: string, version: string, src: string) => {
-  log.info(`Creating the sonar file`);
+  logger.info(`Creating the sonar file`);
   try {
     await ensureDirectoryExistence(dirname);
     await ensureDirectoryExistence(dirname + `/${sonarDir}`);
-    log.info(
+    logger.info(
       `${chalk.redBright("name")} ${repository} ${chalk.redBright(
         "version"
       )} ${version} ${chalk.redBright("directory")} ${src}`
@@ -26,9 +25,9 @@ export default async (repository: string, version: string, src: string) => {
       }
     );
 
-    log.info("Sonar file created succesfully.");
+    logger.info("Sonar file created successfully.");
   } catch (error) {
-    log.debug("error" + error);
+    logger.debug("error" + error);
   }
 };
 

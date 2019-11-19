@@ -1,6 +1,6 @@
 {
   "name": "exito",
-  "version": "2.7.8",
+  "version": "2.8.0",
   "description": "Commands to work more fast with vtex and aws",
   "main": "lib/src/index.js",
   "bin": "lib/src/index.js",

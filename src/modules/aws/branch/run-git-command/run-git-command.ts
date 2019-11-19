@@ -1,11 +1,10 @@
 import { runGitCommand } from "./../util/run-git-commands";
-import log from "../../../../shared/logger";
-import { readDirectoryByFiles } from "../../../../shared/util/read-directory";
+import { readDirectoryByFiles, logger } from "../../../../shared";
 const directory = process.cwd() + "/";
 
 export default async (commandToUse: string) => {
-  log.info("Running git command in all projects selected");
-  log.info(commandToUse);
+  logger.info("Running git command in all projects selected");
+  logger.info(commandToUse);
 
   // 1. Leer el directorio actual y obtener los proyectos disponibles con la carpeta .git
   const projectsInCurrentDirectory: string[] = await readDirectoryByFiles(
