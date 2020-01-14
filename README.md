@@ -68,6 +68,13 @@ local `sudo npm link` ò `node npm link`
 
 Publish to npm `sudo npm publish`
 
+### How to create new module
+
+1. Create the module for the command in the folder `./modules`
+
+2. Add the command in the tree of commands in the file `./modules/tree.ts` for allow the use of the command.
+
+
 ### Guide to use
 
 #### Comandos `exito vtex`
