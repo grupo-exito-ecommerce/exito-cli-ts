@@ -1,21 +1,22 @@
-import * as inquirer from 'inquirer';
-import { keys, prop } from 'ramda';
-import { configuration, logger } from './../../../shared';
-import * as git from './git';
+import * as inquirer from "inquirer";
+import { keys, prop } from "ramda";
+import { configuration, logger } from "./../../../shared";
+import * as git from "./git";
 
 const templates: any = {
-  'hello react typescript': 'hello-react-ts',
-  'graphql getstarted': 'graphql-getstarted'
+  "hello react typescript": "hello-react-ts",
+  "get started with react + redux + sagas": "react-with-redux",
+  "graphql get started": "graphql-getstarted"
 };
 
 const promptTemplates = async (): Promise<string> => {
-  const cancel = 'Cancel';
+  const cancel = "Cancel";
   const chosen: any = prop<string>(
-    'service',
+    "service",
     await inquirer.prompt({
-      name: 'service',
+      name: "service",
       message: configuration.messages.gitInitProject,
-      type: 'list',
+      type: "list",
       choices: [...keys(templates), cancel]
     })
   );
@@ -27,17 +28,13 @@ const promptTemplates = async (): Promise<string> => {
 };
 
 const promptContinue = async () => {
-
-  const promt:any = await inquirer.prompt({
-    name: 'proceed',
+  const promt: any = await inquirer.prompt({
+    name: "proceed",
     message: `You are about to remove all files in ${process.cwd()}. Do you want to continue?`,
-    type: 'confirm'
-  })
-  const proceed = prop(
-    'proceed',
-    promt
-  );
-  
+    type: "confirm"
+  });
+  const proceed = prop("proceed", promt);
+
   if (!proceed) {
     logger.info(configuration.messages.gitInitClose);
     process.exit();
@@ -45,10 +42,8 @@ const promptContinue = async () => {
 };
 
 export default async () => {
-  logger.debug('Prompting for app info');
-  logger.info(
-    configuration.messages.gitInitHellow
-  );
+  logger.debug("Prompting for app info");
+  logger.info(configuration.messages.gitInitHellow);
   try {
     const repo = templates[await promptTemplates()];
 
